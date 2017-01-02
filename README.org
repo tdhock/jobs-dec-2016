@@ -1,11 +1,5 @@
 | where         | when         |
 |---------------+--------------|
-| [[https://recruit.ap.ucsb.edu/apply/JPF00838][UCSB CS]]       | 30 Nov 2016  |
-| [[https://apol-recruit.ucsd.edu/apply/JPF01108][UCSD ECE]]      | 1 Dec 2016   |
-| [[https://www.cs.ubc.ca/our-department/employment/faculty-positions/tenure-track-faculty-positions][UBC CS]]        | 1 Dec 2016   |
-| [[https://apol-recruit.ucsd.edu/apply/JPF01176][UCSD Biostats]] | 2 Dec 2016   |
-| [[https://recruit.apo.ucla.edu/apply/JPF02623][UCLA Stats]]    | 2 Jan 2017   |
-| [[https://recruit.ucsc.edu/apply/JPF00409][UCSC CS]]       | 3 Jan 2017   |
-| [[https://recruit.ucsc.edu/apply/JPF00410][UCSC CS]]       | 3 Jan 2017   |
+| [[https://recruit.ap.ucsb.edu/apply/JPF00838][UCSB CS]]       | 30 Apr 2017  |
 | [[https://recruit.apo.ucla.edu/apply/JPF02635][UCLA CS]]       | 30 June 2017 |
 | [[https://recruit.ap.ucsb.edu/apply/JPF00835][UCSB Stats]]    | 31 May 2017  |
