@@ -4,29 +4,151 @@
 \usepackage[cm]{fullpage}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+\usepackage{natbib}
 
-\setlength{\headheight}{15.2pt}
+%\setlength{\headheight}{9.2pt}
+\setlength{\headsep}{5.2pt}
 \pagestyle{fancyplain}
-
+\pagenumbering{gobble}
 \lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
 
 \rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
 
 \begin{document}
 
-\mbox{ }
-
-\vspace{ -0.5cm}
+ \mbox{ }
+% \vspace{ -0.5cm}
 
 \section*{\centering Research Statement}
 
 During 2009-2012, I completed my PhD degree in applied mathematics
 from the Ecole Normale Sup\'erieure de Cachan, France. I studied
-machine learning algorithms for genomic data analysis, under the
+machine learning algorithms for biology and medicine, under the
 supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
 Vert (Institut Curie, Mines ParisTech). I am currently continuing my
-research about machine learning algorithms for genomic data, as a
+research about machine learning algorithms for biology, as a
 postdoctoral research associate under the supervision of Dr. Guillaume
 Bourque, in the McGill University Department of Human Genetics.
+
+With recent advances in technology, more data are being generated and
+recorded than ever before in human history. For example, in scientific
+fields such as medicine and biology, new sensors and DNA sequencing
+machines are being used to generate many high-dimensional data
+sets. This has led to a need to develop new statistical models and
+machine learning algorithms to understand patterns in these data, i.e.
+to generate knowledge about how the human genome influences medical
+conditions. I am interested in developing new statistical machine
+learning algorithms to address these needs, by collaborating with
+domain experts who generate these large data sets.
+
+So far my research has been focused on proposing new supervised and
+unsupervised machine learning models for clustering, regression,
+changepoint detection, ranking, and classification. My contributions
+to the statistics and machine learning literature are algorithms for
+efficiently solving these discrete and convex optimization problems,
+which typically involve very large data sets. I have developed close
+collaborations with domain experts in the fields of medicine and
+biology, in order to better understand their problems and propose
+appropriate solutions. The following sections summarize my previous
+research projects, and my future research plan.
+
+\section{Changepoint detection and regression algorithms for DNA copy
+  number data}
+
+During my PhD in Paris, I worked in collaboration with medical doctors
+at the Institut Curie on semi-automatic methods for diagnosing
+neuroblastoma, a cancer that most frequently occurs in small
+children. The doctors wanted to give targeted treatments based on the
+number of ``breakpoints'' or abrupt changes in DNA copy number data
+from the patient's tumor. Previous unsupervised methods for
+changepoint detection in these data provided insufficient accuracy
+with respect to the doctors' interpretation of the signal/noise in
+these data. 
+
+\paragraph{New labeling method for supervised breakpoint detection.}
+
+In work published in \emph{BMC Bioinformatics}
+\citep{HOCKING-breakpoints}, we proposed to re-frame the breakpoint
+detection problem in terms of supervised learning. In our framework,
+the doctors first labeled a subset of their data with positive regions
+that contain breakpoints, and negative regions that contain no
+breakpoints. We thus have a set of labeled data sequences, and the
+goal is to learn a model that provides accurate breakpoint predictions
+on a set of un-labeled data sequences. The main contributions of our
+paper were to show that existing algorithms can be (1) trained by
+learning parameters via grid search that minimize the number of
+incorrect training labels, and (2) compared by computing the number of
+incorrect test labels in a held-out data set. We performed a
+comparison study which showed that the most accurate existing method
+was a Gaussian maximum likelihood changepoint detection model. 
+% Each
+% data sequence is modeled by a piecewise constant segment mean, and a
+% dynamic programming algorithm finds the most likely changepoint
+% positions, subject to an L0 sparsity constraint on the number of
+% changes. 
+In this paper we selected the number of changes using a
+simple univariate penalty function that depends on the number of data
+points, and in our next paper we investigated generalizing that to
+multivariate penalty functions.
+
+\paragraph{Regularized linear regression for supervised penalty
+  function learning.} 
+
+In work published at ICML \citep{HOCKING-penalties}, we proposed a
+fast and accurate supervised machine learning algorithm that exploits
+the structure of the labeled changepoint detection problem. We showed
+that learning a penalty function for selecting the number of
+changepoints is in fact a regression problem with censored
+outputs. For each data sequence in which we would like to detect
+changepoints, the input is a feature vector of statistics (number of
+data points in the sequence, variance estimates, quantiles, etc), and
+the output is an interval of log(penalty) values that achieves the
+minimum number of incorrect labels. We showed that a data sequence
+with a negative label results in a right-censored output (when the
+penalty is too small, there are too many changepoints); a positive
+label results in a left-censored output (when the penalty is too
+large, there are not enough changepoints). When a data sequence has
+both positive and negative labels, the output is interval-censored.
+We proposed a margin-based convex loss function that exploits the
+structure of the censored outputs. We also proposed an L1 penalty to
+encourage a sparse, interpretable penalty function. Our main
+contribution was a new convex optimization algorithm that minimizes
+the resulting convex objective. We showed that our algorithm learns a
+multivariate penalty function, and provides more accurate breakpoint
+detection than the previous univariate penalty. I implemented these
+algorithms in the penaltyLearning R package, which I presented during
+a useR2017 tutorial on optimal changepoint detection algorithms
+\citep{change-tutorial}.
+
+
+\paragraph{Functional pruning algorithm for fast changepoint detection} \citep{fpop}
+
+
+\paragraph{Collaborations using an interactive web app for supervised breakpoint detection} I have used my SegAnnDB system to perform
+supervised breakpoint detection in collaborations with scientists at
+Intitute Curie, Paris, France \citep{Chicard}; and Aichi Cancer
+Center, Nagoya, Japan \citep{Hocking-Leukemia-2016}.
+
+\section{Peak detection in ChIP-seq data}
+
+\paragraph{Constrained dynamic programming algorithm.} \citep{HOCKING-PeakSeg}.
+
+\paragraph{New labeling method for supervised peak detection.}also
+showed that scientists' labels are highly consistent, by observing
+similar test error rates when training on labels from the same or a
+different scientist.
+
+\section{Other research projects}
+
+\paragraph{Convex clustering} \citep{HOCKING-clusterpath}.
+
+\paragraph{Support vector machines for ranking and comparing}\citep{svmcompare}.
+
+\paragraph{Bayesian model of evolution} \citep{HOCKING-evolution}.
+
+\paragraph{Documentation generation for R} \citep{hocking13:inlinedocs}.
+
+\bibliographystyle{plain}
+\bibliography{TDH-refs}
 
 \end{document}
