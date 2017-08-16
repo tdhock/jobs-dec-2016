@@ -59,24 +59,25 @@ During my PhD in Paris, I worked in collaboration with medical doctors
 at the Institut Curie on semi-automatic methods for diagnosing
 neuroblastoma, a cancer that most frequently occurs in small
 children. The doctors wanted to give targeted treatments based on the
-number of ``breakpoints'' or abrupt changes in DNA copy number data
-from the patient's tumor. Previous unsupervised methods for
+number of abrupt changes in DNA copy number data
+from the patient's tumor. Previous unsupervised algorithms for
 changepoint detection in these data provided insufficient accuracy
 with respect to the doctors' interpretation of the signal/noise in
-these data. 
+these data, and my goal was to develop new algorithms for more
+accurate changepoint detection.
 
-\paragraph{New labeling method for supervised breakpoint detection.}
+\paragraph{New labeling method for supervised changepoint detection.}
 
 In work published in \emph{BMC Bioinformatics}
-\citep{HOCKING-breakpoints}, we proposed to re-frame the breakpoint
+\citep{HOCKING-breakpoints}, we proposed to re-frame the changepoint
 detection problem in terms of supervised learning. In our framework,
 the doctors first labeled a subset of their data with positive regions
-that contain breakpoints, and negative regions that contain no
-breakpoints. We thus have a set of labeled data sequences, and the
-goal is to learn a model that provides accurate breakpoint predictions
+that contain changepoints, and negative regions that contain no
+changepoints. We thus have a set of labeled data sequences, and the
+goal is to learn a model that provides accurate changepoint predictions
 on a set of un-labeled data sequences. The main contributions of our
 paper were to show that existing algorithms can be (1) trained by
-learning parameters via grid search that minimize the number of
+learning parameters that minimize the number of
 incorrect training labels, and (2) compared by computing the number of
 incorrect test labels in a held-out data set. We performed a
 comparison study which showed that the most accurate existing method
@@ -94,7 +95,7 @@ multivariate penalty functions.
 \paragraph{Regularized linear regression for supervised penalty
   function learning.} 
 
-In work published at ICML \citep{HOCKING-penalties}, we proposed a
+In work published at \emph{ICML'13} \citep{HOCKING-penalties}, we proposed a
 fast and accurate supervised machine learning algorithm that exploits
 the structure of the labeled changepoint detection problem. We showed
 that learning a penalty function for selecting the number of
@@ -110,24 +111,53 @@ label results in a left-censored output (when the penalty is too
 large, there are not enough changepoints). When a data sequence has
 both positive and negative labels, the output is interval-censored.
 We proposed a margin-based convex loss function that exploits the
-structure of the censored outputs. We also proposed an L1 penalty to
-encourage a sparse, interpretable penalty function. Our main
+structure of the censored outputs, and an L1 penalty to
+regularize and encourage a sparse penalty function. Our main
 contribution was a new convex optimization algorithm that minimizes
-the resulting convex objective. We showed that our algorithm learns a
-multivariate penalty function, and provides more accurate breakpoint
+the resulting convex objective function. We showed that our algorithm learns a
+multivariate penalty function, and provides more accurate changepoint
 detection than the previous univariate penalty. I implemented these
 algorithms in the penaltyLearning R package, which I presented during
 a useR2017 tutorial on optimal changepoint detection algorithms
 \citep{change-tutorial}.
 
+\paragraph{Collaborations using an interactive web app for supervised
+  changepoint detection.} In work published in \emph{Bioinformatics}
+\citep{hocking-SegAnnDB}, we proposed an web application that
+facilitates interactive labeling and supervised machine learning
+analysis of DNA copy number data. On the practical side, our system
+was novel because it allows genomic scientists to not only view the
+data but also label obvious signal and noise patterns. This
+functionality is essential for collaborations, because when a domain
+expert sees an incorrect prediction, he/she will be able to
+immediately correct it by adding appropriate labels. Our main
+statistical contribution was an efficient dynamic programming
+algorithm for computing the most likely K changepoints for a given set
+of K positive labels. This algorithm was essential in order to provide a model
+which fits any set of labels provided by an expert user. We have used
+this system to facilitate collaborations with scientists at Intitute
+Curie, Paris, France \citep{Chicard}; and Aichi Cancer Center, Nagoya,
+Japan \citep{Hocking-Leukemia-2016,m14:clonal}.
 
-\paragraph{Functional pruning algorithm for fast changepoint detection} \citep{fpop}
 
-
-\paragraph{Collaborations using an interactive web app for supervised breakpoint detection} I have used my SegAnnDB system to perform
-supervised breakpoint detection in collaborations with scientists at
-Intitute Curie, Paris, France \citep{Chicard}; and Aichi Cancer
-Center, Nagoya, Japan \citep{Hocking-Leukemia-2016}.
+\paragraph{Pruning algorithms for optimal changepoint detection.} In
+work published in \emph{Statistics and Computing} \citep{fpop}, we
+studied two previous optimal changepoint detection algorithms, and
+generalized their pruning techniques to other optimization
+problems. One previous algorithm used an inequality pruning technique
+for the penalized optimization problem, and we showed that a
+functional pruning technique can also be used to solve the penalized
+optimization problem. Our mathematical analysis showed that every
+changepoint pruned by the inequality technique will also be pruned by
+the functional technique. This result suggested that the functional
+pruning algorithm should be faster; we also observed this result in
+the empirical analysis of the algorithm on several real DNA copy
+number data sets from neuroblastoma tumors. My main contribution to
+this paper was to conduct the empirical analysis of speed and accuracy
+of the algorithm. In a comparison with other changepoint detection
+algorithms, we showed that our proposed algorithm achieves
+state-of-the-art speed and changepoint detection
+accuracy. 
 
 \section{Peak detection in ChIP-seq data}
 
