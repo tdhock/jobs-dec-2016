@@ -1,3 +1,9 @@
+** TODOs
+
+add Makefile, bibfile, CV tex, mcgill logo.
+
+** List
+
 | where                 | when         |
 |-----------------------+--------------|
 | [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]        | 3 July 2017  |

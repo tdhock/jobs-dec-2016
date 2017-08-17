@@ -95,11 +95,11 @@ multivariate penalty functions.
 \paragraph{Regularized linear regression for supervised penalty
   function learning.} 
 
-In work published at \emph{ICML'13} \citep{HOCKING-penalties}, we proposed a
-fast and accurate supervised machine learning algorithm that exploits
-the structure of the labeled changepoint detection problem. We showed
-that learning a penalty function for selecting the number of
-changepoints is in fact a regression problem with censored
+In work published at \emph{ICML'13} \citep{HOCKING-penalties}, we
+proposed a fast and accurate supervised machine learning algorithm
+that exploits the structure of the labeled changepoint detection
+problem. We showed that learning a penalty function for selecting the
+number of changepoints is in fact a regression problem with censored
 outputs. For each data sequence in which we would like to detect
 changepoints, the input is a feature vector of statistics (number of
 data points in the sequence, variance estimates, quantiles, etc), and
@@ -111,15 +111,17 @@ label results in a left-censored output (when the penalty is too
 large, there are not enough changepoints). When a data sequence has
 both positive and negative labels, the output is interval-censored.
 We proposed a margin-based convex loss function that exploits the
-structure of the censored outputs, and an L1 penalty to
-regularize and encourage a sparse penalty function. Our main
-contribution was a new convex optimization algorithm that minimizes
-the resulting convex objective function. We showed that our algorithm learns a
-multivariate penalty function, and provides more accurate changepoint
+structure of the censored outputs, and an L1 penalty to regularize and
+encourage a sparse penalty function. Our main contribution was a new
+convex optimization algorithm that minimizes the resulting convex
+objective function. We showed that our algorithm learns a multivariate
+linear penalty function, and provides more accurate changepoint
 detection than the previous univariate penalty. I implemented these
 algorithms in the penaltyLearning R package, which I presented during
 a useR2017 tutorial on optimal changepoint detection algorithms
-\citep{change-tutorial}.
+\citep{change-tutorial}. In more recent work under review at
+\emph{NIPS'17}, we have proposed a nonlinear decision tree model for
+learning such penalty functions. 
 
 \paragraph{Collaborations using an interactive web app for supervised
   changepoint detection.} In work published in \emph{Bioinformatics}
@@ -177,6 +179,58 @@ different scientist.
 \paragraph{Bayesian model of evolution} \citep{HOCKING-evolution}.
 
 \paragraph{Documentation generation for R} \citep{hocking13:inlinedocs}.
+
+\section{Plan for future research}
+
+\paragraph{Survival models for penalty function learning.} In previous
+work we have showed that learning a penalty function for changepoint
+detection can be cast as a regression problem with censored outputs, a
+problem that has been extensively studied in the survival
+literature. In ongoing work, we have made connections with models from
+the survival literature, by proposing to learn the penalty function
+via elastic net regularized Accelerated Failure Time models.
+
+\paragraph{Multi-task penalty function learning.} Our previous work
+has shown that labels can be used to learn a penalty function for
+predicting the number of changepoints in maximum likelihood
+segmentation models. In practice we often have several different
+genomic scientists that have provided separate labels for a given data
+set. One could imagine that some scientists would provide similar
+labels, and others have different labels, for the same data
+sequence. In this setting, we would like to learn a different penalty
+function for each scientist, under the assumption that there will be
+clusters of similar penalty functions. In this project we will
+investigate adapting techniques from the multi-task learning
+literature, to the penalty function learning problem.
+
+\paragraph{Labeling and supervised learning in data sequences.} My
+collaborations with genomic scientists have revealed that existing
+algorithms Multivariate patterns in histone marks (chromatin
+states). Labeling changes in variance.
+
+\paragraph{Functional pruning algorithms for multi-state changepoint
+  models.}
+
+\paragraph{GenomicLearner platform for collaborations.} My previous
+research has shown that genomic scientists can label some obvious
+signal/noise patterns in their data sets, and these labels can be used
+with supervised learning algorithms for highly accurate pattern
+recognition. This is a much more user-friendly for scientists than
+existing unsupervised tools, which can not be directly trained using
+the labels. However, existing genomic data visualization software
+(e.g. UCSC genome browser) does not support interactive labeling. The
+goal of this project will be to develop GenomicLearner, a extensible
+web app for machine learning analysis of genomic data. The app will be
+used to (1) view and label genomic data sets (e.g. ChIP-seq, copy
+number, etc), and (2) interactively run state-of-the-art machine
+learning algorithms. GenomicLearner will make recent developments in
+machine learning more accessible to genomic scientists, thus
+facilitating collaborations between researchers in machine learning
+and biology. I have already written a grant proposal, which I plan to
+submit to NIH or NSF.
+
+\paragraph{Deep learning for nonparametric changepoint detection.} Our
+previous work
 
 \bibliographystyle{plain}
 \bibliography{TDH-refs}
