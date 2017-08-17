@@ -293,16 +293,16 @@ work used a discriminative model (minimizing a margin-based loss
 function).
 
 \paragraph{Aim 2: multi-task penalty function learning.} My previous
-work has shown that labels from a single genomic scientist can be used to
-learn a penalty function for changepoint detection. But in practice I
-often have several different genomic scientists that have provided
-separate labels for a given data set. One could imagine that some
-scientists would provide similar labels, and others have different
-labels, for the same data sequence. In this setting, I would like to
-learn a different penalty function for each scientist, under the
-assumption that there will be clusters of similar scientists. In this
-project I will investigate adapting techniques from the multi-task
-learning literature to this more complex penalty function learning problem.
+work has shown that labels from a single genomic scientist can be used
+to learn a penalty function for changepoint detection. But in
+practice, several different genomic scientists provide separate
+labels for a given data set. Some pairs of scientists provide similar
+labels, and others provide different labels, for the same data
+sequence. In this setting, we would like to learn a different penalty
+function for each scientist, under the assumption that there will be
+clusters of similar scientists. In this project I will investigate
+adapting techniques from the multi-task learning literature to this
+more complex penalty function learning problem.
 
 
 \paragraph{Aim 3: functional pruning algorithms for multi-state
@@ -315,21 +315,22 @@ for ChIP-seq data. For example, neuro spike train data sets could be
 modeled using a changepoint model with three states: flat/constant,
 increasing toward a spike, decreasing after a spike.
 
-\paragraph{Aim 4: GenomicLearner platform for collaborations.} My previous
-research has shown that genomic scientists can label some obvious
-signal/noise patterns in their data sets, and these labels can be used
-to train supervised learning algorithms for highly accurate pattern
-recognition. However, existing genomic data visualization software
-(e.g. UCSC genome browser) does not support interactive labeling. The
-goal of this project will be to develop GenomicLearner, a extensible
-web app for machine learning analysis of genomic data. The app will be
-used to (1) view and label genomic data sets (e.g. ChIP-seq, copy
-number, etc), and (2) interactively run state-of-the-art machine
-learning algorithms. GenomicLearner will make recent developments in
-machine learning more accessible to genomic scientists, thus
-facilitating collaborations between researchers in machine learning
-and biology. I have already written a grant proposal, which I plan to
-submit to NIH or NSF.
+\paragraph{Aim 4: GenomicLearner platform for collaborations.} My
+previous research has shown that genomic scientists can label some
+obvious signal/noise patterns in their data sets, and these labels can
+be used to train supervised learning algorithms for highly accurate
+pattern recognition. However, existing genomic data visualization
+software (e.g. UCSC genome browser) supports neither interactive
+labeling nor machine learning. The goal of this project will be to
+develop GenomicLearner, a extensible web app for machine learning
+analysis of genomic data. The app will be used to (1) view and label
+genomic data sets (e.g. ChIP-seq, copy number, etc), and (2)
+interactively run state-of-the-art machine learning
+algorithms. GenomicLearner will make recent developments in machine
+learning more accessible to genomic scientists, thus facilitating
+collaborations between researchers in machine learning and biology. I
+have already written a grant proposal, which I plan to submit to NIH
+or NSF.
 
 % \paragraph{Aim 3: other labeling and supervised learning in data
 %   sequences.}
@@ -339,13 +340,13 @@ submit to NIH or NSF.
 
 \paragraph{Aim 5: Deep learning for nonparametric changepoint
   detection.} My previous work on supervised changepoint detection has
-been limited to learning the penalty function that predicts the number
+been limited to learning a penalty function that predicts the number
 of changes in maximum likelihood segmentation models. These models
 work quite well in relatively small data sets (thousands of labels),
 but I expect they will not be flexible enough to learn accurate models
-in the larger data sets that I will generate using the GenomicLearner
-system (millions of labels). In this project I will explore training
-deep convolutional neural networks, which should provide more accurate
+in the larger data sets that GenomicLearner will generate
+(millions of labels). In this project I will explore training deep
+convolutional neural networks, which should provide more accurate
 predictions in these larger data sets.
 
 \bibliographystyle{plain}
