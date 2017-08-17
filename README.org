@@ -1,6 +1,8 @@
 ** TODOs
 
-add Makefile, bibfile, CV tex, mcgill logo.
+** 17 Aug 2017
+
+added Makefile, bibfile, mcgill logo.
 
 ** List
 
