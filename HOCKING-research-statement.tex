@@ -102,16 +102,17 @@ proposed a fast and accurate supervised machine learning algorithm
 that exploits the structure of the labeled changepoint detection
 problem. We showed that learning a penalty function for selecting the
 number of changepoints is in fact a regression problem with censored
-outputs. For each data sequence in which we would like to detect
-changepoints, the input is a feature vector of statistics (number of
-data points in the sequence, variance estimates, quantiles, etc), and
-the output is an interval of log(penalty) values that achieves the
-minimum number of incorrect labels. We showed that a data sequence
-with a negative label results in a right-censored output (when the
-penalty is too small, there are too many changepoints); a positive
-label results in a left-censored output (when the penalty is too
-large, there are not enough changepoints). When a data sequence has
-both positive and negative labels, the output is interval-censored.
+outputs. 
+% For each data sequence in which we would like to detect
+% changepoints, the input is a feature vector of statistics (number of
+% data points in the sequence, variance estimates, quantiles, etc), and
+% the output is an interval of log(penalty) values that achieves the
+% minimum number of incorrect labels. We showed that a data sequence
+% with a negative label results in a right-censored output (when the
+% penalty is too small, there are too many changepoints); a positive
+% label results in a left-censored output (when the penalty is too
+% large, there are not enough changepoints). When a data sequence has
+% both positive and negative labels, the output is interval-censored.
 We proposed a margin-based convex loss function that exploits the
 structure of the censored outputs, and an L1 penalty to regularize and
 encourage a sparse penalty function. Our main contribution was a new
@@ -120,7 +121,7 @@ objective function. We showed that our algorithm learns a multivariate
 linear penalty function, and provides more accurate changepoint
 detection than the previous univariate penalty. I implemented these
 algorithms in the penaltyLearning R package, which I presented during
-a useR2017 tutorial on optimal changepoint detection algorithms
+a \emph{useR2017} tutorial on optimal changepoint detection algorithms
 \citep{change-tutorial}. In more recent work under review at
 \emph{NIPS'17}, we proposed a nonlinear decision tree model for
 learning such penalty functions. 
@@ -162,37 +163,37 @@ accuracy of the algorithm. In a comparison with other changepoint
 detection algorithms, we showed that our proposed algorithm achieves
 state-of-the-art speed and changepoint detection accuracy.
 
-\section{Peak detection in ChIP-seq data}
+\section{Machine learning models for peak detection in ChIP-seq data}
 
-\paragraph{New labeling method for supervised peak detection.} In work
-published in \emph{Bioinformatics} \citep{HOCKING-chipseq}, we
-proposed a labeling method and supervised learning framework for peak
-detection in genomic data such as ChIP-seq. These experiments are
-performed in order to determine active and inactive regions of the
-genome in different individuals and cell types. In these data, the
-main analysis task is to segment the genome into peaks (with large
-values) and background noise (with small values). Although there are
-dozens of unsupervised heuristic algorithms for this task in the
-bioinformatics literature, they all suffer from inaccurate peak
-detection because there is no method to systematically adapt tuning
-parameter values to the different peak patterns in different data
-sets.
+\paragraph{Reframing peak detection as supervised binary
+  classification.} In work published in \emph{Bioinformatics}
+\citep{HOCKING-chipseq}, we proposed a labeling method and supervised
+learning framework for peak detection in genomic data such as
+ChIP-seq. These experiments characterize active and inactive regions
+of the genome in different individuals and cell types. In these data,
+the main analysis task is classify each position of the genome as
+either peaks (with large values) or background noise (with small
+values). Although there are dozens of unsupervised heuristic
+algorithms for this task in the bioinformatics literature, they all
+suffer from inaccurate peak detection because there is no method to
+systematically adapt tuning parameter values to the different peak
+patterns in different data sets.
 
 We proposed to frame the problem in terms of supervised learning, with
 labels from expert scientists that indicate regions in specific
-samples with or without peaks. We showed that these labels can be used
-to (1) choose appropriate parameters that minimize the number of
-incorrect labels in training data, and (2) compare the peak detection
-accuracy of different algorithms in held-out test data. In our
-cross-validation experiments, we trained a single significance
-threshold parameter of each unsupervised algorithm, then computed
-predicted peaks and number of incorrectly predicted labels in a
-held-out test set. We observed that different algorithms achieved
-maximum peak detection accuracy in different data sets; there was no
-single algorithm which was most accurate in all data sets. We also
-showed that labels from different scientists are highly consistent, by
-observing similar test error rates when training on labels from the
-same or a different scientist.
+samples with peaks or without peaks. We showed that these positive and
+negative labels can be used to (1) choose appropriate parameters that
+minimize the number of incorrect labels in training data, and (2)
+compare the peak detection accuracy of different algorithms in
+held-out test data. In our cross-validation experiments, we trained a
+single significance threshold parameter of each unsupervised
+algorithm, then computed predicted peaks and the number of incorrectly
+predicted labels in a held-out test set. We observed that different
+algorithms achieved maximum peak detection accuracy in different data
+sets; there was no single algorithm which was most accurate in all
+data sets. We also showed that labels from different scientists are
+highly consistent, by observing similar test error rates when training
+on labels from the same or a different scientist.
 
 \paragraph{Up-down constrained changepoint detection model for peak
   detection.} In work published at \emph{ICML'15}
@@ -219,8 +220,8 @@ Our quadratic time dynamic programming algorithm has two issues: it is
 slow for large data sets, and it does not necessarily compute the
 optimal solution to the constrained problem. In work under review in
 \emph{Annals of Applied Statistics}
-\citep{Hocking-constrained-changepoint-detection}, we propose a new
-algorithm that resolves both issues. We describe how a functional
+\citep{Hocking-constrained-changepoint-detection}, we proposed a new
+algorithm that resolves both issues. We described how a functional
 pruning technique can be generalized to changepoint problems with
 constraints between adjacent segment means (e.g. second segment mean
 must be greater than first segment mean). This results in a fast
@@ -228,37 +229,48 @@ log-linear time algorithm, because it immediately prunes changements
 which result in a sub-optimal cost. The algorithm is also guaranteed
 to compute the solution to the constrained changepoint detection
 problem. We applied this algorithm to our benchmark of labeled
-ChIP-seq data sets. We observed the same state-of-the art peak
-detection accuracy, and orders of magnitude faster run-times.
+ChIP-seq data sets. We observed the same state-of-the-art peak
+detection accuracy as our previous quadratic time algorithm, and
+orders of magnitude faster run-times -- about as fast as the
+sub-optimal unsupervised heuristic algorithms that are common 
+in the bioinformatics literature.
 
 \paragraph{Changepoint model for comparing samples.}
 Rather than modeling the peaks in each sample in isolation, scientists
 often would like to characterize the differences between samples. In
-my ongoing collaborations at the McGill genome center, we are trying
-to characterize active and inactive regions in several different human
+my collaborations at the McGill genome center, we would like to
+characterize active and inactive regions in several different human
 cell types (B cells, T cell, monocytes, etc). In ongoing work, I have
-proposed a model that enforces the constraint that peaks should occur
-in the same positions across samples \citep{HOCKING-PeakSegJoint}.
+proposed a changepoint detection model that enforces the constraint that peaks
+should occur in the same positions across samples
+\citep{HOCKING-PeakSegJoint}.
 
 \section{Other research projects}
 
 \paragraph{Convex clustering.} In work published at \emph{ICML'11}
-\citep{HOCKING-clusterpath}, I described efficient algorithms for
-hierarchical clustering using convex fusion penalties. This paper has
-been influential, with over 80 citations including theoretical,
-algorithmic, and applications papers. 
+\citep{HOCKING-clusterpath}, we described efficient algorithms for
+hierarchical clustering using convex fusion penalties. This
+influential paper has over 80 citations
+including theoretical, algorithmic, and applications papers.
 
 \paragraph{Bayesian model of evolution.} In work that we published in
 \emph{PLOS ONE} \citep{HOCKING-evolution}, we proposed to identify
 genetic markers under selection using a hierarchical Bayesian model of
 evolution.
 
-\paragraph{The inlinedocs R package for documentation generation} was
+\paragraph{The inlinedocs documentation generation system} for R was
 described in our \emph{Journal of Statistical Software}
 \citep{hocking13:inlinedocs} article.
 
+\paragraph{Adding interactivity to the grammar of graphics.} In work
+which we plan to submit to \emph{Journal of Computational and
+  Graphical Statistics}, we described new keywords for the grammar of
+graphics which permit interactivity and animation, implemented in the
+animint R package. This work was also presented in an invited session
+at \emph{Joint Statistical Meetings 2015} and in a tutorial at
+\emph{useR2016}.
 
-\paragraph{Support vector machines for ranking and comparing} In my
+\paragraph{Support vector machines for ranking and comparing.} In my
 2013 postdoc at Tokyo Institute of Technology, I studied a support
 vector machine algorithm for ranking and comparing
 \citep{svmcompare}. In ongoing work which we plan to publish in
