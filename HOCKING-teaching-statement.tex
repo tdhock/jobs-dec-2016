@@ -1,0 +1,210 @@
+\documentclass{article}
+
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage[cm]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+%\setlength{\headheight}{9.2pt}
+\setlength{\headsep}{5.2pt}
+\pagestyle{fancyplain}
+\pagenumbering{gobble}
+\lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
+
+\rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
+
+\begin{document}
+
+ \mbox{ }
+% \vspace{ -0.5cm}
+
+\section*{\centering Teaching Statement}
+
+\paragraph{Summary of teaching statement.} I am committed to teaching
+classes and mentoring students in research projects. I enjoy teaching
+subjects such as machine learning, statistics, data visualization,
+programming for data analysis, and bioinformatics. I could also teach
+basic classes on the subjects of mathematics, probability, and
+computer science. For example I will be happy to teach introductory
+undergraduate classes that are relevant to machine learning, such as
+linear algebra, real analysis, probability, statistics, algorithms,
+and data structures. I could also teach classes on more advanced
+topics such as convex and discrete optimization, which are techniques
+that I have found useful for fitting machine learning models to big
+data sets. In all classes I will use strategies from my teaching
+philosophy such as surveys, adapting to the audience, using motivating
+examples, and asking quiz questions. I will emphasize student
+evaluation via creative coding projects (results presented as a
+research report or poster) rather than examinations, if possible. In
+research projects I will encourage my students to publish papers in
+top-tier peer-reviewed conferences and journals, and to publish
+free/open-source code on the internet.
+
+\section{Plans for classes on specific topics}
+
+\paragraph{Plan for statistical machine learning class.} My plan for a
+class about statistical machine learning will be to use a blackboard
+and slides to present the mathematics alongside intuitive geometric
+interpretations, whenever possible. I will follow the presentation
+used in \emph{Elements of Statistical Learning} by Hastie, \emph{et
+  al}. In particular I will start with examples of supervised learning
+problems, then present linear models for regression and classification
+before discussing more general principles such as mathematical
+optimization, function approximation, cross-validation, overfitting
+and underfitting. Finally I will discuss several non-linear methods
+(e.g. trees, boosting, random forests, neural networks), the principle
+of convex relaxation (e.g. regularized linear models, support vector
+machines), and unsupervised learning algorithms.
+
+\paragraph{Plan for class about machine learning for bioinformatics.}
+I could also teach a class about applications of machine learning in
+bioinformatics. I will use a less technical approach, as in
+\emph{Introduction to Statistical Learning} by James, \emph{et al}. I
+will focus on interpretable methods for regression and classification
+(linear models, decision trees), evaluating models (cross-validation),
+clustering (k-means, mixture models, hierarchical clustering), feature
+selection (greedy stepwise variable selection, L1-regularization),
+analysis of survival data (accelerated failure time and Cox models),
+genomic segmentation (dynamic programming, HMMs), and model selection
+using penalty functions (information criteria such as AIC, BIC).
+
+\paragraph{Plan for class about data visualization.} For a class about
+data visualization I will focus on how to visualize real data sets
+using free/open-source programming tools (R+ggplot2 and
+JavaScript+D3). Before mentioning any details about writing code for
+graphic design, I will start by showing a few motivating examples of
+data sets and informative visualizations. I will emphasize graphic
+design using Wilkinson’s ``Grammar of Graphics,'' and how it can be
+used in practice for non-interactive data visualization (the ggplot2
+package in R). I will also include a discussion of research into
+methods for optimal perception of data visualizations (e.g. Cynthia
+Brewer’s color palettes). Finally, I will explain how to create
+interactive data visualizations using JavaScript and the Data-Driven
+Documents (D3) library.
+
+\paragraph{Plan for class about programming for data analysis.} I will
+use Paul Murrell's book \emph{Introduction to Data Technologies} to
+structure a class about programming for data analysis. One of its main
+strengths is that it covers not just R but also SQL, HTML, regular
+expressions, and other technologies. I will spend most of the class
+time on R programming, and explain how to write an R package. I will
+discuss the advantages and disadvantages of the classic CRAN
+distribution system with respect to GitHub. For an advanced class I
+will also include a few lectures about the relative strengths of C,
+C++, and Python.
+
+\section{Summary of experience teaching classes} 
+
+\paragraph{Universit\'e de Qu\'ebec \`A Montr\'eal, Advanced R, Fall
+  2017.} I plan to teach a 15-hour class about advanced topics in R
+(advanced data manipulation and visualization, machine learning, 
+package development, compiled code).
+
+\paragraph{International useR conference, Changepoint Detection
+  Tutorial, Summer 2017.} With my co-presenter Rebecca Killick, we
+created course materials and presented a 3-hour tutorial about R
+packages for optimal changepoint detection. 
+
+\paragraph{Universit\'e de Montr\'eal, Introduction to R, Spring
+  2017.} I taught two 3-hour lectures and practical sessions about
+introductory R programming (data structures, input/output, data
+manipulation, data visualization).
+
+\paragraph{International useR conference, Interactive Graphics
+  Tutorial, Summer 2016.} With my co-presenter Claus Thorn Ekstr\o m,
+we created course materials and presented a 3-hour tutorial about R
+packages for interactive graphics.
+
+\paragraph{Mines ParisTech, Machine Learning, Spring 2011.} As
+teaching assistant, I taught three lectures and practical sessions
+about machine learning algorithms (support vector machines, graphical
+models, and clustering).
+
+\section{Summary of experience mentoring students}
+
+\paragraph{Research projects.} I have mentored the following
+students in research projects.
+\begin{itemize}
+\item Alexandre Drouin, PhD student, Universit\'e Laval, machine
+  learning paper about a decision tree model for regression with
+  censored outputs (under review at \emph{NIPS'17}).
+\item Carson Sievert, PhD student, Iowa State University, statistics
+  paper about new keywords for interactivity in the grammar of
+  graphics (to submit to \emph{Journal of Computational and Graphical
+    Statistics}).
+\item David Venuto, Research Assistant, McGill University, machine
+  learning paper about learning ranking functions in data such as
+  chess matches (to submit to \emph{Journal of Machine Learning
+    Research}).
+\item Najmeh Alirezaie, PhD student, McGill University, application
+  paper about learning a score for predicting clinical pathogenicity
+  of genetic variants (work in progress).
+\end{itemize}
+
+\paragraph{Google summer of code projects.} I have mentored the
+following students in coding free/open-source software.
+\begin{itemize}
+\item Marlin Na, 2017, interactive genome browser.
+\item Rover Van, 2017, regularized interval regression.
+\item Abhishek Shrivastava, 2016, interactive system for labeling and
+  machine learning in genomic data.
+\item Faizan Khan, 2016--2017, interactive grammar of graphics.
+\item Anuj Khare, 2016, regularized interval regression.
+\item Qin Wenfeng, 2016, regular expressions.
+\item Akash Tandon, 2016, performance testing R packages.
+\item Ishmael Belghazi, 2015, stochastic average gradient algorithm.
+\item Kevin Ferris, 2015, interactive grammar of graphics.
+\item Tony Tsai, 2015, interactive grammar of graphics.
+\item Carson Sievert, 2014, interactive grammar of graphics.
+\item Susan VanderPlas, 2013, interactive grammar of graphics.
+\end{itemize}
+
+\section{Teaching Philosophy}
+
+In general, my teaching philosophy emphasizes three guiding
+principles: (1) adapt to the target audience, (2) start with
+motivating examples, and (3) frequent interactions with and between
+students.
+
+\paragraph{Adapting to the audience.} The best teaching strategy will
+depend not only on the subject of the course, but also the target
+audience. For example, if I were to teach machine learning to an
+audience of biologists, I will avoid too many mathematical details,
+and instead prepare slides with examples and figures based on real
+data sets from biology. However, for teaching machine learning to
+mathematicians or statisticians, I think it will be better to focus on
+showing mathematical demonstrations and geometric interpretations of
+the models and algorithms.
+
+\paragraph{Motivating examples.} It is important to start any class
+with an interesting example problem that students can think about over
+the course of the class, and that will be solvable with the tools
+presented in the class. For example, in my useR2017 tutorial on
+optimal changepoint detection algorithms, I used a data set of labeled
+neuroblastoma tumors as a motivating example. As another example, I
+taught a class on named capture regular expressions for my current
+colleagues who are mainly genomics researchers. The motivating example
+that I used in the beginning of the class was converting a genomic
+location string to a Python dictionary; after the class, several
+students said that it was a very convincing example that motivated
+them to learn more about regular expressions.
+
+\paragraph{Frequent interactions.} Finally, I think it is essential to
+encourage interactions with and between students. I take frequent
+breaks in my lectures to ask if the audience has questions. It is also
+very helpful to ask the audience to think about a quiz question, then
+to give them 1 minute of discussion with their neighbor to try to find
+an answer. For example, in my class about clustering, after asking the
+students to compute the log-likelihood of several Gaussian mixture
+models, I asked ``does the model with one or two components have a higher
+log-likelihood? Why?'' The resulting discussions helped students
+understand overfitting and the need for model selection
+criteria. After every class, I asked students to fill out an anonymous
+survey with questions such as ``would you prefer explanations in
+English or French?'' and ``what were the easiest and most difficult
+concepts to understand?''
+
+
+\end{document}

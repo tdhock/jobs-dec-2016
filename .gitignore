@@ -7,3 +7,4 @@ old
 *.blg
 HOCKING-research-statement.pdf
 *.out
+.Rhistory
