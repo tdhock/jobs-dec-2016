@@ -7,12 +7,12 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
-%\setlength{\headheight}{9.2pt}
+\setlength{\headheight}{9.2pt}
 \setlength{\headsep}{5.2pt}
 \pagestyle{fancyplain}
 \pagenumbering{gobble}
 \lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
-
+\chead{{\LARGE \bf Research Statement} }
 \rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
 
 \begin{document}
@@ -20,14 +20,13 @@
  \mbox{ }
 % \vspace{ -0.5cm}
 
-\section*{\centering Research Statement}
+%\section*{\centering Research Statement}
 
 During 2009-2012, I completed my PhD degree in applied mathematics
 from the Ecole Normale Sup\'erieure de Cachan, France. I studied
 statistical machine learning algorithms for biology and medicine, under the
 supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
-Vert (Institut Curie, Mines ParisTech). I am currently continuing my
-research about statistical machine learning algorithms for biology, as a
+Vert (Institut Curie, Mines ParisTech). I am currently a
 postdoctoral research associate under the supervision of Dr. Guillaume
 Bourque, in the McGill University Department of Human Genetics.
 
@@ -40,7 +39,7 @@ machine learning algorithms to understand patterns in these data, i.e.
 to generate knowledge about how the human genome influences medical
 conditions. I am interested in developing new statistical machine
 learning algorithms to address these needs, by collaborating with
-domain experts who generate these large data sets.
+domain experts who generate these data.
 
 So far my research has been focused on proposing new statistical
 machine learning models for clustering, regression, changepoint
@@ -280,17 +279,22 @@ player rankings and future game outcomes.
 
 \section{Plan for future research}
 
-I plan to assign the research Aims below as projects for my future
-graduate students. In addition, I will submit grant applications to
-the NIH and NSF to fund these projects. I will continue to develop new
-Aims by collaborating with domain scientists, in order to formulate
-statistical machine learning algorithms that solve important
-problems. These collaborative projects will result in better
-understanding and modeling for various application domains
-(e.g. biology, genomics, neuroscience, medicine, audio,
-internet). Finally, I will continue to publish my algorithms as
-free/open-source R packages, in order to facilitate reproducible
-research.
+In the short term, I plan to pursue research projects related to
+optimal changepoint detection and penalty function learning. These
+algorithms have proven to be very effective for genomic data, and I
+will pursue collaborations to investigate other applications in other
+domains (neuroscience, audio, etc). In particular, I plan to assign
+the research Aims below as projects for my future graduate students. I
+will submit grant applications to the NIH and NSF to fund these
+projects. I will continue to publish algorithms as free/open-source R
+packages, in order to facilitate reproducible research. In the long
+term, my research will be focused on other statistical models and
+efficient optimization algorithms for interactive analysis and
+understanding of big data sets. I am especially interested to continue
+collaborating with genomic scientists and medical doctors, and use
+statistical machine learning models to further our understanding of
+how the human genome influences medical conditions such as cancer.
+
 
 \paragraph{Aim 1: survival models for penalty function learning.} In
 previous work I have showed that learning a penalty function for
@@ -362,7 +366,7 @@ in the larger data sets that GenomicLearner will generate
 (millions of labels). In this project I will explore training deep
 convolutional neural networks, which should provide more accurate
 predictions in these larger data sets.
-
+%\small
 \bibliographystyle{plain}
 \bibliography{TDH-refs}
 
