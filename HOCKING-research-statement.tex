@@ -17,54 +17,56 @@
 
 \begin{document}
 
- \mbox{ }
+\mbox{ }
 % \vspace{ -0.5cm}
 
 %\section*{\centering Research Statement}
 
-During 2009-2012, I completed my PhD degree in applied mathematics
-from the Ecole Normale Sup\'erieure de Cachan, France. I studied
-statistical machine learning algorithms for biology and medicine, under the
-supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
-Vert (Institut Curie, Mines ParisTech). I am currently a
-postdoctoral research associate under the supervision of Dr. Guillaume
-Bourque, in the McGill University Department of Human Genetics.
+% During 2009-2012, I completed my PhD degree in applied mathematics
+% from the Ecole Normale Sup\'erieure de Cachan, France. I studied
+% statistical machine learning algorithms for biology and medicine, under the
+% supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
+% Vert (Institut Curie, Mines ParisTech). I am currently a
+% postdoctoral research associate under the supervision of Dr. Guillaume
+% Bourque, in the McGill University Department of Human Genetics.
 
-With recent advances in technology, more data are being generated and
-recorded than ever before in human history. For example, in scientific
-fields such as medicine and biology, new sensors and DNA sequencing
-machines are being used to generate many high-dimensional data
-sets. This has led to a need to develop new statistical models and
-machine learning algorithms to understand patterns in these data, i.e.
-to generate knowledge about how the human genome influences medical
-conditions. I am interested in developing new statistical machine
-learning algorithms to address these needs, by collaborating with
-domain experts who generate these data.
+% With recent advances in technology, more data are being generated and
+% recorded than ever before in human history. For example, in scientific
+% fields such as medicine and biology, new sensors and DNA sequencing
+% machines are being used to generate many high-dimensional data
+% sets. This has led to a need to develop new statistical models and
+% machine learning algorithms to understand patterns in these data, i.e.
+% to generate knowledge about how the human genome influences medical
+% conditions. 
 
-So far my research has been focused on proposing new statistical
-machine learning models for clustering, regression, changepoint
-detection, ranking, and classification. My contributions to the
-statistics and machine learning literature are algorithms for
-efficiently solving these discrete and convex optimization problems,
-which typically involve very large data sets. I have developed close
-collaborations with domain experts in the fields of medicine and
-biology, in order to better understand their problems and propose
-appropriate solutions. The following sections summarize my previous
+I develop new statistical machine learning algorithms for solving big
+data analysis problems in scientific domains such as medicine and
+biology. I work in close collaboration with domain experts in order to
+develop appropriate models, and I work with other statisticians and
+machine learners in order to develop fast and accurate optimization
+algorithms. So far my research has been focused on proposing new
+statistical machine learning models for clustering, regression,
+changepoint detection, ranking, and classification. My contributions
+to the statistics and machine learning literature are algorithms for
+efficiently solving these discrete and convex optimization problems.
+I am particularly interested in developing algorithms that are fast
+enough to support interactive labeling and supervised machine learning
+in very large data sets. The following is a summary of my previous
 research projects, and my future research plan.
 
 \section{Changepoint detection and regression algorithms for DNA copy
   number data}
 
 During my PhD in Paris, I worked in collaboration with medical doctors
-at the Institut Curie on semi-automatic methods for diagnosing
-neuroblastoma, a cancer that most frequently occurs in small
-children. The doctors wanted to give targeted treatments based on the
-number of abrupt changes in DNA copy number data from the patient's
-tumor. Previous heuristic algorithms for changepoint detection in
-these data provided insufficient accuracy with respect to the doctors'
-interpretation of the signal/noise in these data, and my goal was to
-develop new statistical learning algorithms for more accurate
-changepoint detection.
+at the Institut Curie on statistical machine learning methods for
+diagnosing neuroblastoma, a cancer that most frequently occurs in
+small children. The doctors wanted to give targeted treatments based
+on the number of abrupt changes in DNA copy number data from the
+patient's tumor. Previous heuristic algorithms for changepoint
+detection in these data provided insufficient accuracy with respect to
+the doctors' interpretation of the signal/noise in these data. My
+contribution was to develop new statistical machine learning
+algorithms based on labels provided by the doctors.
 
 \paragraph{New labeling method for supervised changepoint detection.}
 
@@ -73,9 +75,11 @@ In work published in \emph{BMC Bioinformatics}
 detection problem in terms of supervised learning. In our framework,
 the doctors first labeled a subset of their data with positive regions
 that contain changepoints, and negative regions that contain no
-changepoints. We thus have a set of labeled data sequences, and the
-goal is to learn a model that provides accurate changepoint predictions
-on a set of un-labeled data sequences. The main contributions of our
+changepoints. 
+% We thus have a set of labeled data sequences, and the
+% goal is to learn a model that provides accurate changepoint predictions
+% on a set of un-labeled data sequences. 
+The main contributions of our
 paper were to show that existing algorithms can be (1) trained by
 learning parameters that minimize the number of
 incorrect training labels, and (2) compared by computing the number of
@@ -113,27 +117,27 @@ outputs.
 % large, there are not enough changepoints). When a data sequence has
 % both positive and negative labels, the output is interval-censored.
 We proposed a margin-based convex loss function that exploits the
-structure of the censored outputs, and an L1 penalty to regularize and
-encourage a sparse penalty function. Our main contribution was a new
-convex optimization algorithm that minimizes the resulting convex
-objective function. We showed that our algorithm learns a multivariate
-linear penalty function, and provides more accurate changepoint
-detection than the previous univariate penalty. I implemented these
-algorithms in the penaltyLearning R package, which I presented during
-a \emph{useR2017} tutorial on optimal changepoint detection algorithms
+structure of the censored outputs, and an L1 penalty for
+regularization and sparsity. Our main contribution was a new convex
+optimization algorithm that minimizes the resulting convex objective
+function. We showed that our algorithm learns a multivariate linear
+penalty function, and provides more accurate changepoint detection
+than the previous univariate penalty. I implemented these algorithms
+in the penaltyLearning R package, which I presented during a
+\emph{useR2017} tutorial on optimal changepoint detection algorithms
 \citep{change-tutorial}. In more recent work under review at
 \emph{NIPS'17}, we proposed a nonlinear decision tree model for
-learning such penalty functions. 
+learning such penalty functions.
 
 \paragraph{Collaborations using an interactive web app for supervised
   changepoint detection.} In work published in \emph{Bioinformatics}
-\citep{hocking-SegAnnDB}, we proposed an web application that
+\citep{hocking-SegAnnDB}, we proposed a web application that
 facilitates interactive labeling and supervised statistical learning
 analysis of DNA copy number data. On the practical side, our system
 was novel because it allows genomic scientists to not only view the
 data but also label obvious signal and noise patterns. This
 functionality is essential for collaborations, because when a domain
-expert sees an incorrect prediction, he/she will be able to
+expert sees an incorrect prediction, he/she can
 immediately correct it by adding appropriate labels. Our main
 statistical contribution was an efficient dynamic programming
 algorithm for computing the most likely K changepoints for a given set
@@ -223,7 +227,7 @@ optimal solution to the constrained problem. In work under review in
 algorithm that resolves both issues. We described how a functional
 pruning technique can be generalized to changepoint problems with
 constraints between adjacent segment means (e.g. second segment mean
-must be greater than first segment mean). This results in a fast
+must be greater than or equal to first segment mean). This results in a fast
 log-linear time algorithm, because it immediately prunes changements
 which result in a sub-optimal cost. The algorithm is also guaranteed
 to compute the solution to the constrained changepoint detection
@@ -246,54 +250,82 @@ should occur in the same positions across samples
 
 \section{Other research projects}
 
-\paragraph{Convex clustering.} In work published at \emph{ICML'11}
-\citep{HOCKING-clusterpath}, we described efficient algorithms for
-hierarchical clustering using convex fusion penalties. This
-influential paper has over 80 citations
-including theoretical, algorithmic, and applications papers.
+% \paragraph{Convex clustering.} In work published at \emph{ICML'11}
+% \citep{HOCKING-clusterpath}, we described efficient algorithms for
+% hierarchical clustering using convex fusion penalties. This
+% influential paper has over 80 citations
+% including theoretical, algorithmic, and applications papers.
 
-\paragraph{Bayesian model of evolution.} In work that we published in
-\emph{PLOS ONE} \citep{HOCKING-evolution}, we proposed to identify
-genetic markers under selection using a hierarchical Bayesian model of
-evolution.
+% \paragraph{Bayesian model of evolution.} In work that we published in
+% \emph{PLOS ONE} \citep{HOCKING-evolution}, we proposed to identify
+% genetic markers under selection using a hierarchical Bayesian model of
+% evolution.
 
-\paragraph{The inlinedocs documentation generation system} for R was
-described in our \emph{Journal of Statistical Software}
-\citep{hocking13:inlinedocs} article.
+% \paragraph{The inlinedocs documentation generation system} for R was
+% described in our \emph{Journal of Statistical Software}
+% \citep{hocking13:inlinedocs} article.
+
+% \paragraph{Adding interactivity to the grammar of graphics.} In work
+% under review in \emph{Journal of Computational and Graphical
+%   Statistics} \citep{animint}, we described new keywords for
+% interactivity and animation in the grammar of graphics. This work was
+% also presented in an invited session at \emph{Joint Statistical
+%   Meetings 2015} and in a tutorial at \emph{useR2016}.
+
+% \paragraph{Support vector machines for ranking and comparing.} In my
+% 2013 postdoc at Tokyo Institute of Technology, I studied a support
+% vector machine algorithm for ranking and comparing
+% \citep{svmcompare}. In ongoing work which we plan to publish in
+% \emph{Journal of Machine Learning Research}, we train this
+% algorithm on historical data of chess matches, and use it to predict
+% player rankings and future game outcomes.
+
+\paragraph{Statistical machine learning models for big data.} In work
+published at \emph{ICML'11} \citep{HOCKING-clusterpath}, we described
+efficient algorithms for hierarchical clustering using convex fusion
+penalties. This influential paper has over 80 citations including
+theoretical, algorithmic, and applications papers. In work for my
+Masters thesis that we published in \emph{PLOS ONE}
+\citep{HOCKING-evolution}, we proposed to identify genetic markers
+under selection using a hierarchical Bayesian model of evolution. In
+my 2013 postdoc at Tokyo Institute of Technology, I studied a support
+vector machine algorithm for ranking and comparing
+\citep{svmcompare}. In ongoing work which we plan to publish in
+\emph{Journal of Machine Learning Research}, we train this algorithm
+on historical data of chess matches, and use it to predict player
+rankings and future game outcomes.
 
 \paragraph{Adding interactivity to the grammar of graphics.} In work
 under review in \emph{Journal of Computational and Graphical
-  Statistics} \citep{animint}, we described new keywords for the
-grammar of graphics which permit interactivity and animation,
-implemented in the animint R package. This work was also presented in
-an invited session at \emph{Joint Statistical Meetings 2015} and in a
-tutorial at \emph{useR2016}.
+  Statistics} \citep{animint}, we described new keywords for
+interactivity and animation in the grammar of graphics. This work was
+also presented in an invited session at \emph{Joint Statistical
+  Meetings 2015} and in a tutorial at \emph{useR2016}.
 
-\paragraph{Support vector machines for ranking and comparing.} In my
-2013 postdoc at Tokyo Institute of Technology, I studied a support
-vector machine algorithm for ranking and comparing
-\citep{svmcompare}. In ongoing work which we plan to publish in
-\emph{Journal of Machine Learning Research}, we train this
-algorithm on historical data of chess matches, and use it to predict
-player rankings and future game outcomes.
+\paragraph{Contributions to reproducible research and free/open-source
+  software.} For each of my research papers, I have written an R
+package which provides a reference implementation of the corresponding
+algorithm/model. Our paper about a new documentation generation system
+for R was described in our \emph{Journal of Statistical Software}
+\citep{hocking13:inlinedocs} article.
 
 \section{Plan for future research}
 
 In the short term, I plan to pursue research projects related to
 optimal changepoint detection and penalty function learning. These
 algorithms have proven to be very effective for genomic data, and I
-will pursue collaborations to investigate other applications in other
-domains (neuroscience, audio, etc). In particular, I plan to assign
-the research Aims below as projects for my future graduate students. I
-will submit grant applications to the NIH and NSF to fund these
-projects. I will continue to publish algorithms as free/open-source R
-packages, in order to facilitate reproducible research. In the long
-term, my research will be focused on other statistical models and
-efficient optimization algorithms for interactive analysis and
-understanding of big data sets. I am especially interested to continue
-collaborating with genomic scientists and medical doctors, and use
-statistical machine learning models to further our understanding of
-how the human genome influences medical conditions such as cancer.
+will pursue collaborations to investigate other applications
+(neuroscience, audio, medical monitoring, etc). In particular, I plan
+to assign the research Aims below as projects for my future graduate
+students. I will submit grant applications to the NIH and NSF to fund
+these projects. I will continue to publish algorithms as
+free/open-source R packages, in order to facilitate reproducible
+research. In the long term, my research will be focused on other
+statistical models and efficient optimization algorithms for
+interactive analysis and understanding of big data sets. I am
+especially interested to continue collaborating with genomic
+scientists and medical doctors, in order to help understand how the human
+genome influences medical conditions such as cancer.
 
 
 \paragraph{Aim 1: survival models for penalty function learning.} In
