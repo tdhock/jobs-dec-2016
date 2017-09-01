@@ -50,5 +50,9 @@ added Makefile, bibfile, mcgill logo.
 | [[http://jobs.amstat.org/jobs/9155935/assistant-or-associate-professor-none-tenure-line-research-quantitative-sciences-unit][Stanford Biostats]]     | ??           |
 | [[http://jobs.amstat.org/jobs/10136720/faculty-in-biostatistics-and-bioinformatics-assistant-or-associate-members-professors][Buffalo Biostats]]      | ??           |
 | [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]            | ??           |
+| [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]        | 15 Nov 2017  |
+| [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]]           | 16 Oct 2017  |
+| [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]          | 15 Nov 2017  |
+| [[http://jobs.imstat.org/job/assistant-professor-tenure-track/36666803/][UBC data science]]      | 1 Nov 2017   |
 
 
