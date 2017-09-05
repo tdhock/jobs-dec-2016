@@ -125,9 +125,9 @@ penalty function, and provides more accurate changepoint detection
 than the previous univariate penalty. I implemented these algorithms
 in the penaltyLearning R package, which I presented during a
 \emph{useR2017} tutorial on optimal changepoint detection algorithms
-\citep{change-tutorial}. In more recent work under review at
-\emph{NIPS'17}, we proposed a nonlinear decision tree model for
-learning such penalty functions.
+\citep{change-tutorial}. In more recent work which was accepted for
+publication at \emph{NIPS'17} \citep{MMIT}, we proposed a nonlinear
+decision tree model for learning such penalty functions.
 
 \paragraph{Collaborations using an interactive web app for supervised
   changepoint detection.} In work published in \emph{Bioinformatics}
@@ -184,7 +184,7 @@ patterns in different data sets.
 
 We proposed to frame the problem in terms of supervised learning, with
 labels from expert scientists that indicate regions in specific
-samples with peaks or without peaks. We showed that these positive and
+samples with or without peaks. We showed that these positive and
 negative labels can be used to (1) choose appropriate parameters that
 minimize the number of incorrect labels in training data, and (2)
 compare the peak detection accuracy of different algorithms in
@@ -204,7 +204,7 @@ on labels from the same or a different scientist.
 detection model for peak detection in ChIP-seq data. We observed that
 the existing optimal changepoint model could sometimes be interpreted
 in terms of peaks (after up changes) and background (after down
-changes). However, in some data sets the maximum likelihood model
+changes). However, in some data sets this model
 consists of several consecutive up changes, which is not directly
 interpretable in terms of peaks and background. We thus proposed an
 additional constraint that up changes must be followed by down
@@ -241,7 +241,7 @@ in the bioinformatics literature.
 \paragraph{Changepoint model for comparing samples.}
 Rather than modeling the peaks in each sample in isolation, scientists
 often would like to characterize the differences between samples. In
-my collaborations at the McGill genome center, we would like to
+my collaborations at the McGill Genome Center, we would like to
 characterize active and inactive regions in several different human
 cell types (B cells, T cell, monocytes, etc). In ongoing work, I have
 proposed a changepoint detection model that enforces the constraint that peaks
@@ -305,9 +305,9 @@ also presented in an invited session at \emph{Joint Statistical
 \paragraph{Contributions to reproducible research and free/open-source
   software.} For each of my research papers, I have written an R
 package which provides a reference implementation of the corresponding
-algorithm/model. Our paper about a new documentation generation system
-for R was described in our \emph{Journal of Statistical Software}
-\citep{hocking13:inlinedocs} article.
+algorithm/model. Our \emph{Journal of Statistical Software} article
+\citep{hocking13:inlinedocs} describes a new documentation generation
+system for R that simplifies writing documentation for such packages.
 
 \section{Plan for future research}
 
@@ -356,14 +356,17 @@ more complex penalty function learning problem.
 \paragraph{Aim 3: functional pruning algorithms for other constrained
   changepoint models.} My previous research has shown that a
 functional pruning technique can be used to obtain fast and exact
-constrained changepoint detection algorithms. In this project, I will
-investigate generalizing this technique to more complex constrained
-changepoint models than the two-state peak/background model we used
-for ChIP-seq data. For example, neuro spike train data sets could be
-modeled using a changepoint model with three states: flat/constant,
-increasing toward a spike, decreasing after a spike.  Another example
-is an up-down constrained segmented regression model, which would be
-useful for identifying hot spots in genome wide association studies.
+constrained changepoint detection algorithms. In these projects, I
+will investigate generalizing this technique to more complex
+constrained changepoint models than the two-state peak/background
+model we used for ChIP-seq data. For example, neuro spike train data
+sets could be modeled using a changepoint model with three states:
+flat/constant, increasing toward a spike, decreasing after a
+spike. Another example is an up-down constrained segmented regression
+model, which would be useful for identifying hot spots in genome wide
+association studies. Finally, for interactive analysis of labeled
+data sequences, we would like to constrain the model so that it is
+guaranteed to be consistent with the labels.
 
 \paragraph{Aim 4: GenomicLearner platform for interactive analysis and
   collaborations.} My previous research has shown that genomic
