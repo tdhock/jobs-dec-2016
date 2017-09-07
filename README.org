@@ -8,7 +8,6 @@ added Makefile, bibfile, mcgill logo.
 
 | where                 | when         |
 |-----------------------+--------------|
-| [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]        | 3 July 2017  |
 | [[http://www.stat.ufl.edu/jobs/job.php?id%3D13642][Tex Cancer Biostats]]   | immediately  |
 | [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]      | immediately  |
 | [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]              | immediately  |
@@ -28,7 +27,7 @@ added Makefile, bibfile, mcgill logo.
 | [[https://www.mathjobs.org/jobs?joblist--10350][Amherst Stats]]         | 8 Oct 2017   |
 | [[https://emplois.hec.ca/job.php?id=383][HEC Data Anal]]         | 15 Oct 2017  |
 | [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]             | 15 Oct 2017  |
-| [[https://apply.interfolio.com/43537][Middlebury VT]]         | 15 Oct 2017  |
+| [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]]           | 16 Oct 2017  |
 | [[http://jobs.amstat.org/jobs/10125430/assistant-professor][Monmouth]] NJ           | 16 Oct 2017  |
 | [[https://www.mathjobs.org/jobs?joblist--10500][Eau Claire Math]]       | 21 Oct 2017  |
 | [[https://www.mathjobs.org/jobs?joblist--10335][Bucknell Stats]]        | 21 Oct 2017  |
@@ -39,7 +38,12 @@ added Makefile, bibfile, mcgill logo.
 | [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]            | 1 Nov 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10444][South Dak]] Stat        | 1 Nov 2017   |
 | [[https://apply.interfolio.com/43065][Williams Stats]]        | 1 Nov 2017   |
+| [[http://jobs.imstat.org/job/assistant-professor-tenure-track/36666803/][UBC data science]]      | 1 Nov 2017   |
 | [[https://jobs.sciencecareers.org/job/457369/assistant-professor-informatics/?LinkSource%3DPremiumListing][Venter Inst]]           | 10 Nov 2017  |
+| [[http://jobs.amstat.org/jobs/10210059/tenure-track-assistant-professor][Minnesota Stata]]       | 10 Nov 2017  |
+| [[http://jobs.amstat.org/jobs/10171164/college-of-liberal-arts-science-open-rank-faculty-in-statistics-data-science-dept-of-statistics][Illinois]]              | 15 Nov 2017  |
+| [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]        | 15 Nov 2017  |
+| [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]          | 15 Nov 2017  |
 | [[https://jobs.carleton.edu/postings/3269][Carleton MN]]           | 30 Nov 2017  |
 | [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]          | 1 Dec 2017   |
 | [[https://aprecruit.ucsf.edu/apply/JPF00957][UCSF Biostats]]         | 30 Dec 2017  |
@@ -52,9 +56,8 @@ added Makefile, bibfile, mcgill logo.
 | [[http://jobs.amstat.org/jobs/9155935/assistant-or-associate-professor-none-tenure-line-research-quantitative-sciences-unit][Stanford Biostats]]     | ??           |
 | [[http://jobs.amstat.org/jobs/10136720/faculty-in-biostatistics-and-bioinformatics-assistant-or-associate-members-professors][Buffalo Biostats]]      | ??           |
 | [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]            | ??           |
-| [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]        | 15 Nov 2017  |
-| [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]]           | 16 Oct 2017  |
-| [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]          | 15 Nov 2017  |
-| [[http://jobs.imstat.org/job/assistant-professor-tenure-track/36666803/][UBC data science]]      | 1 Nov 2017   |
-
+| DONE AFTER THIS       |              |
+| [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]        | 3 July 2017  |
+| [[https://www.lsuhsc.edu/Administration/hrm/CareerOpportunities/Home/Detail?id=1626][LSU Biostats]]          | 15 Oct 2017  |
+| [[https://apply.interfolio.com/43537][Middlebury VT]]         | 15 Oct 2017  |
 
