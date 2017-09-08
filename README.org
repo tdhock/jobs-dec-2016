@@ -8,13 +8,6 @@ added Makefile, bibfile, mcgill logo.
 
 | where                 | when         |
 |-----------------------+--------------|
-| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13642][Tex Cancer Biostats]]   | immediately  |
-| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]      | immediately  |
-| [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]              | immediately  |
-| [[https://apply.interfolio.com/31595][Tulane CS]]             | immediately  |
-| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][AZ CS]]                 | immediately  |
-| [[http://jobs.amstat.org/jobs/10031375/assistant-associate-biostatistician-position][San Antonio]]           | immediately  |
-| [[http://jobs.amstat.org/jobs/10112364/assistant-associate-or-full-professor][Iowa State]]            | 15 Aug 2017  |
 | [[http://cra.org/job/hofstra-university-assistantassociate-professor-in-computer-science/][Hofstra]]               | 15 Sept 2017 |
 | [[https://www.mathjobs.org/jobs?joblist--10388][Waterloo Stats]]        | 15 Sept 2017 |
 | [[https://umass.interviewexchange.com/jobofferdetails.jsp%3Bjsessionid%3DD27F3B2D62718A3916CBFFC7095BFB9A?JOBID%3D86465][Amherst Biostats]]      | 15 Sept 2017 |
@@ -60,4 +53,9 @@ added Makefile, bibfile, mcgill logo.
 | [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]        | 3 July 2017  |
 | [[https://www.lsuhsc.edu/Administration/hrm/CareerOpportunities/Home/Detail?id=1626][LSU Biostats]]          | 15 Oct 2017  |
 | [[https://apply.interfolio.com/43537][Middlebury VT]]         | 15 Oct 2017  |
-
+| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13642][Tex Cancer Biostats]]   | immediately  |
+| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]      | immediately  |
+| [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]              | immediately  |
+| [[https://apply.interfolio.com/31595][Tulane CS]]             | immediately  |
+| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][AZ CS]]                 | immediately  |
+| [[http://jobs.amstat.org/jobs/10031375/assistant-associate-biostatistician-position][San Antonio]]           | immediately  |
