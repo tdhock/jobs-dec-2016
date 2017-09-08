@@ -43,6 +43,7 @@ added Makefile, bibfile, mcgill logo.
 | [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]                | 15 Nov 2017  |
 | [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]                  | 15 Nov 2017  |
 | [[https://jobs.carleton.edu/postings/3269][Carleton MN]]                   | 30 Nov 2017  |
+| [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]                  | 1 Dec 2017   |
 | [[https://apply.interfolio.com/43943][SDSU CS]]                       | 1 Dec 2017   |
 | [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]                  | 1 Dec 2017   |
 | [[https://aprecruit.ucsf.edu/apply/JPF00957][UCSF Biostats]]                 | 30 Dec 2017  |
