@@ -1,4 +1,4 @@
-% -*- compile-command: "make HOCKING-chip-seq-slides.pdf" -*-
+% -*- compile-command: "make HOCKING-slides.pdf" -*-
 \documentclass{beamer}
 \usepackage{tikz}
 \usepackage[all]{xy}
@@ -34,6 +34,52 @@ understanding big data in
 \maketitle
 
 \begin{frame}
+  \frametitle{my background}
+  \begin{description}
+  \item[2002-2006] UC Berkeley, double major in Molecular Cell Biology
+    and Statistics (honors thesis with Terry Speed).
+  \item[2006-2008] Biochemistry and Statistics at Sangamo BioSciences.
+  \item[2008-2009] Masters in Statistics, Paris 6.
+  \item[2009-2012] PhD in Mathematics from Ecole Normale Superieure de
+    Cachan, machine learning for cancer genomics with JP Vert (Inst Curie)
+    and Francis Bach (INRIA).
+  \item[2013] Postdoc in Computer Science (machine learning) with Masashi Sugiyama at Tokyo
+    Institute of Technology.
+  \item[2014-2017] Postdoc on machine learning for epigenomics
+    at McGill with Guillaume Bourque.
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning problems in genomics}
+  ML is all about learning predictive functions $f(x)\approx y$, where 
+  \begin{itemize}
+  \item inputs $x$ are typically genetic.
+  \item outputs $y$ are what we want to predict (typically phenotypes).
+  \end{itemize}
+  For example my collaborations at the McGill Genome Center:
+  \begin{itemize}
+  \item Predicting which people will respond to the flu vaccine based
+    on SNP data. (with Maiko Narahara)
+  \item Predicting which people have asthma based on SNP
+    data. (with Audrey Grant)
+  \item Predicting which genetic variants are pathogenic based on
+    biochemistry, evolutionary conservation, etc. (with
+    Najmeh Alirezaie)
+  \item Predicting genomic regions with peaks based on ChIP-seq
+    data. (with Guillaume Bourque)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{digits}
+  $f(\includegraphics[height=1cm]{mnist-0})=0$
+  $f(\includegraphics[height=1cm]{mnist-1})=1$
+  $f(\includegraphics[height=1cm]{fashion-mnist-boot})=\text{shoe}$
+  $f(\includegraphics[height=1cm]{fashion-mnist-pants})=\text{pants}$
+\end{frame}
+
+\begin{frame}
   \frametitle{Supervised learning example: image classification}
   \begin{tabular}{cc}
   \includegraphics[width=2in]{fashion-mnist-sprite-some}  &
@@ -64,6 +110,29 @@ understanding big data in
 
 \begin{frame}
   \frametitle{DNA COPY NUMBER ANALYSIS}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cancer cells show chromosomal copy number alterations}
+  Spectral karyotypes show the number of copies of the sex chromosomes
+  (X,Y) and autosomes (1-22). 
+
+  Source: Alberts \emph{et al.} 2002.
+\vskip 0.1in
+  \includegraphics[width=\textwidth]{Karyo-both}
+\vskip 0.1in
+  \begin{minipage}{0.4\linewidth}
+    Normal cell with 2 copies of each autosome.
+  \end{minipage}
+\hskip 0.1\linewidth
+  \begin{minipage}{0.4\linewidth}
+Cancer cell with many copy number alterations.
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Neuroblastoma }
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse}
 \end{frame}
 
 \begin{frame}
@@ -316,13 +385,16 @@ maxIter 20
 \end{frame}
 
 \begin{frame}
-  \frametitle{New labeling step in ChIP-seq pipelines}
-  \includegraphics[width=0.9\textwidth]{GenomicLearner-unsupervised.pdf}
+  \frametitle{Previous work limited to 
+    unsupervised methods
+which are neither interactive nor accurate
+}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-unsupervised.pdf}
 \end{frame}
 
 \begin{frame}
-  \frametitle{New labeling step in ChIP-seq pipelines}
-  \includegraphics[width=0.9\textwidth]{GenomicLearner-both.pdf}
+  \frametitle{GenomicLearner, an public web app for supervised interactive machine learning in genomic data}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-both.pdf}
 \end{frame}
 
 

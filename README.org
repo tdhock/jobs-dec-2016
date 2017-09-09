@@ -4,6 +4,38 @@
 
 added Makefile, bibfile, mcgill logo.
 
+** 23 June 2017
+
+Idea for figure about mathematical optimization.
+
+Usually, directly solve an informal biological problem, e.g. 
+- find peaks in ChIP-seq data, 
+- find clusters in a multivariate data matrix,
+- find changepoints in DNA copy number data,
+- find the regression function that intersects the most intervals?
+- qualitative evaluation on a small number of data sets.
+- outsiders without domain knowledge (e.g. ML researcher) can NOT
+  work on solving these problems.
+
+My approach, convert to formal mathematical optimization problem,
+- define a formal objective function to minimize
+- quantitative evaluation (compute the value of the objective
+  function, smaller is better)
+- benchmark data sets, e.g. neuroblastoma and histone ChIP-seq data
+- outsiders without domain knowledge (e.g. mL researcher) CAN work on
+  solving these problems.
+- e.g. find peaks that minimize the number of incorrectly predicted
+  labels in a specific set of ChIP-seq data.
+- find breakpoints that minimize the number of incorrectly predicted
+  labels in a specific set of DNA copy number data.
+
+Examples of other people working on formal mathematical optimization
+problems that I described.
+- PeakSeg problem, Paul Fearnhead had an idea for solving it exactly.
+- DNA copy number analysis, Alex Drouin expert in tree models, MMIT.
+- Many other papers about solvers for the clusterpath problem. 
+
+
 ** List
 
 | where                         | when         |
