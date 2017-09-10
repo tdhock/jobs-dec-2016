@@ -34,7 +34,7 @@ understanding big data in
 \maketitle
 
 \begin{frame}
-  \frametitle{my background}
+  \frametitle{Toby Dylan Hocking, brief CV}
   \begin{description}
   \item[2002-2006] UC Berkeley, double major in Molecular Cell Biology
     and Statistics (honors thesis with Terry Speed).
@@ -51,61 +51,96 @@ understanding big data in
 \end{frame}
 
 \begin{frame}
-  \frametitle{Machine learning problems in genomics}
-  ML is all about learning predictive functions $f(x)\approx y$, where 
-  \begin{itemize}
-  \item inputs $x$ are typically genetic.
-  \item outputs $y$ are what we want to predict (typically phenotypes).
-  \end{itemize}
-  For example my collaborations at the McGill Genome Center:
-  \begin{itemize}
-  \item Predicting which people will respond to the flu vaccine based
-    on SNP data. (with Maiko Narahara)
-  \item Predicting which people have asthma based on SNP
-    data. (with Audrey Grant)
-  \item Predicting which genetic variants are pathogenic based on
-    biochemistry, evolutionary conservation, etc. (with
-    Najmeh Alirezaie)
-  \item Predicting genomic regions with peaks based on ChIP-seq
-    data. (with Guillaume Bourque)
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{digits}
-  $f(\includegraphics[height=1cm]{mnist-0})=0$
-  $f(\includegraphics[height=1cm]{mnist-1})=1$
-  $f(\includegraphics[height=1cm]{fashion-mnist-boot})=\text{shoe}$
-  $f(\includegraphics[height=1cm]{fashion-mnist-pants})=\text{pants}$
-\end{frame}
-
-\begin{frame}
-  \frametitle{Supervised learning example: image classification}
-  \begin{tabular}{cc}
-  \includegraphics[width=2in]{fashion-mnist-sprite-some}  &
-  \includegraphics[width=2in]{mnist-digits}
-  \end{tabular}
-  
-
-
-  Sources: github.com/zalandoresearch/fashion-mnist, github.com/cazala/mnist
-\end{frame}
-
-\begin{frame}
   \frametitle{Labeling enables supervised machine learning algorithms}
   \begin{tabular}{ccc}
-    Photos & Cell images & Copy number profiles \\
+    Input: Photos & Cell images & Copy number profiles \\
     \includegraphics[width=1.3in]{faces} &
     \includegraphics[width=1.3in]{cellprofiler} &
     \includegraphics[width=1.5in]{regions-axes}\\
-    Labels: names & phenotypes & alterations \\ \\
-    CVPR 2013 & CellProfiler & SegAnnDB \\
-    246 papers & 873 citations & Hocking et al, 2014. \\
+    Labels: boxes, names & phenotypes & alterations \\ \\
+    %CVPR 2013
+CVPR 2017
+ & CellProfiler & SegAnnDB \\
+    %246 papers
+783 papers
+ & 
+%873 citations
+1980 citations
+ & Hocking et al, 2014. \\
      &
   \end{tabular}
   Sources: \url{http://en.wikipedia.org/wiki/Face_detection}\\
   Jones et al PNAS 2009. Scoring diverse cellular morphologies in
   image-based screens with iterative feedback and machine learning.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning in computer vision and biology}
+  ML is all about learning predictive functions $f(x)\approx y$, where 
+  \begin{itemize}
+  \item inputs/features $x$ are numerous (e.g. pixels or SNPs).
+  \item outputs/labels $y$ are what we want to predict (typically
+    phenotypes/classes).
+  \item Input $x$ = image of digit,
+    output $y\in\{0,1,\dots,9\}$,\\
+  $f(\includegraphics[height=1cm]{mnist-0})=0$,
+  $f(\includegraphics[height=1cm]{mnist-1})=1$
+  % \item Input $x$ = image of article of clothing,\\
+  %   output $y\in\{\text{shoe}, \text{pants}, \dots\}$,\\
+  % $f(\includegraphics[height=1cm]{fashion-mnist-boot})=\text{shoe}$,
+  % $f(\includegraphics[height=1cm]{fashion-mnist-pants})=\text{pants}$
+  \item Input $x$ = image of cell, 
+    output $y\in\{\text{yes}, \text{no}\}$,\\
+  $f(\includegraphics[height=1cm]{cellprofiler-yes})=\text{yes}$,
+  $f(\includegraphics[height=1cm]{cellprofiler-no})=\text{no}$
+  \item Input $x$ = genomic profile, output $y\in\{\text{breakpoint}, \text{normal}\}$
+  $f(\includegraphics[height=1cm]{neuroblastoma-changepoint})=\text{breakpoint}$,
+  $f(\includegraphics[height=1cm]{neuroblastoma-nochange})=\text{normal}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classical unsupervised algorithms}
+  \begin{itemize}
+  \item Domain expert with prior knowledge manually writes an
+    algorithm that recognizes the pattern.
+  \item For example, ``if the image $x$ has an O shape then predict $f(x)=0$.''
+  \item Inaccurate: hard to write code that recognizes the pattern.
+  \item Need to write a different algorithm for each pattern (0, 1, 2,
+    %shoe, pants, 
+    dividing cell, 
+    normal cell,
+    etc).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Supervised machine learning }
+
+  \begin{itemize}
+  \item Domain expert labels examples using prior knowledge.
+  \item Supervised algorithm learns $f$ based on labeled training data.
+  \item State-of-the-art accuracy (if there is enough training data).
+  \item Can use same learning algorithm regardless of pattern.
+  \end{itemize}
+
+  \begin{tabular}{cc}
+  \includegraphics[width=2in]{fashion-mnist-sprite-some}  &
+  \includegraphics[width=2in]{mnist-digits}
+  \end{tabular}
+
+  Sources: github.com/zalandoresearch/fashion-mnist, github.com/cazala/mnist
+\end{frame}
+
+\begin{frame}
+  \frametitle{Challenges in machine learning}
+  \begin{itemize}
+  \item How to learn $f$ which is as accurate as possible?
+  \item How many labeled examples are required?
+  \item How to create interpretable models? e.g. $f$ uses a small
+    subset of features.
+  \item Efficient algorithms that scale linearly to huge data sets?
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -416,6 +451,25 @@ which are neither interactive nor accurate
     and the displayed peak predictions.
   \end{itemize}
 \end{frame}
+
+\section{OTHER PROJECTS AND COLLABORATIVE WORK}
+
+\begin{frame}
+  \frametitle{Machine learning problems in genomics}
+  For example my collaborations at the McGill Genome Center:
+  \begin{itemize}
+  \item Predicting which people will respond to the flu vaccine based
+    on SNP data. (with Maiko Narahara)
+  \item Predicting which people have asthma based on SNP
+    data. (with Audrey Grant)
+  \item Predicting which genetic variants are pathogenic based on
+    biochemistry, evolutionary conservation, etc. (with
+    Najmeh Alirezaie)
+  % \item Predicting genomic regions with peaks based on ChIP-seq
+  %   data. (with Guillaume Bourque)
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Thanks for your attention!}
