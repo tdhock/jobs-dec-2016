@@ -100,12 +100,24 @@ CVPR 2017
 \end{frame}
 
 \begin{frame}
-  \frametitle{Classical unsupervised algorithms}
+  \frametitle{Unsupervised algorithms inaccurate for 
+    complex patterns}
   \begin{itemize}
-  \item Domain expert with prior knowledge manually writes an
+  \item Domain expert (biologist?) with prior knowledge manually writes an
     algorithm that recognizes the pattern.
-  \item For example, ``if the image $x$ has an O shape then predict $f(x)=0$.''
-  \item Inaccurate: hard to write code that recognizes the pattern.
+  \item ``if the image $x$ has a dividing cell then predict
+    $f(x)=\text{yes}$.''\\
+    -- how to code that?
+  \item ``if the copy number profile $x$ has a significant change of
+    at least p-value $P$ in bins of size $B$, then predict
+    $f(x)=\text{breakpoint}$.''\\
+    -- sub-optimal parameter choices are inevitable.
+    \end{itemize}
+Disadvantages:
+\begin{itemize}
+  \item Need to find someone with programming experience AND domain expertise!
+  \item Inaccurate: hard/impossible to manually write code that
+    accurately recognizes complex patterns.
   \item Need to write a different algorithm for each pattern (0, 1, 2,
     %shoe, pants, 
     dividing cell, 
@@ -125,22 +137,24 @@ CVPR 2017
   \end{itemize}
 
   \begin{tabular}{cc}
-  \includegraphics[height=1in]{fashion-mnist-sprite-some}  &
-  \includegraphics[height=1in]{mnist-digits}
+  \includegraphics[height=1in]{mnist-digits} &
+  \includegraphics[height=1in]{fashion-mnist-sprite-some}  
   \end{tabular}
 
-  TODO PeakSegFPOP-paper/figure-good-bad
+  \scriptsize Sources: github.com/cazala/mnist, github.com/zalandoresearch/fashion-mnist
 
-  \scriptsize Sources: github.com/zalandoresearch/fashion-mnist, github.com/cazala/mnist
+  \includegraphics[width=\textwidth]{figure-good-bad}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Challenges in machine learning}
+  \frametitle{Main questions in machine learning research}
   \begin{itemize}
   \item How to learn $f$ which is as accurate as possible?
+%\\ Mathematical optimization.
   \item How many labeled examples are required?
-  \item How to create interpretable models? e.g. $f$ uses a small
-    subset of features.
+    %Statistics.\\
+  \item Is $f$ a black box, or can we interpret the model to
+    understand how it makes a decision?
   \item Fast algorithms that scale linearly to huge data sets?
   \end{itemize}
 \end{frame}
@@ -169,6 +183,13 @@ Cancer cell with many copy number alterations.
 
 \begin{frame}
   \frametitle{Neuroblastoma }
+
+  \begin{itemize}
+  \item Childhood cancer, most frequently diagnosed at age 1--2.
+  \item Top three profiles ``ok'' -- no tumors after initial treatment.
+  \item Bottom three ``relapse'' -- aggressive tumor within 5 years.
+  \end{itemize}
+
   \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse}
 \end{frame}
 
