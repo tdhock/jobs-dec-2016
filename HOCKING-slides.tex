@@ -18,6 +18,11 @@
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\NN}{\mathbb N}
+\definecolor{pDPA}{HTML}{1B9E77}
+\definecolor{PELT}{HTML}{D95F02}
+\definecolor{FPOP}{HTML}{7570B3}
+\newcommand{\algo}[1]{\textcolor{#1}{#1}}
+
 
 \begin{document}
 
@@ -99,32 +104,6 @@ CVPR 2017
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Unsupervised algorithms inaccurate for 
-    complex patterns}
-  \begin{itemize}
-  \item Domain expert (biologist?) with prior knowledge manually codes an
-    algorithm that recognizes the pattern.
-  \item ``if the image $x$ has a dividing cell then predict
-    $f(x)=\text{yes}$.''\\
-    -- how to code that?
-  \item ``if the copy number profile $x$ has a significant change of
-    at least p-value $P$ in bins of size $B$, then predict
-    $f(x)=\text{breakpoint}$.''\\
-    -- sub-optimal parameter choices are inevitable.
-    \end{itemize}
-Disadvantages:
-\begin{itemize}
-  \item Need to find someone with programming experience AND domain expertise!
-  \item Inaccurate: hard/impossible to manually write code that
-    accurately recognizes complex patterns.
-  \item Need to write a different algorithm for each pattern (0, 1, 2,
-    %shoe, pants, 
-    dividing cell, 
-    normal cell,
-    etc).
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \frametitle{Supervised machine learning }
@@ -147,24 +126,65 @@ Disadvantages:
 \end{frame}
 
 \begin{frame}
-  \frametitle{My main research directions}
-  Machine learning papers:
+  \frametitle{My main research contributions}
+  Statistics and machine learning literature:
   \begin{itemize}
-  \item How to learn $f$ which is as accurate as possible?
-%\\ Mathematical optimization.
-  \item How many labeled examples are required?
-    %Statistics.\\
+  \item Given features $x_i$, how to learn a function $f(x_i)$ that predicts a
+    label $y_i$, with minimal error $E$? Mathematical optimization.
+    $$
+\min_f
+\sum_{i\in\text{test}}
+E[f(x_i), y_i]
+$$
   \item Fast algorithms that scale linearly to huge data sets?
+  %\item Convex and discrete optimization.
   \end{itemize}
-  Bioinformatics papers:
+  Bioinformatics literature:
   \begin{itemize}
   \item New labeling methods so we can use supervised machine learning
     algorithms for genomics/medicine.
   \item Algorithms that are fast enough for interactive labeling.
+  \item How many labeled examples are required?
+    %Statistics.\\
   \end{itemize}
-  Applications papers (collaborations):
+  Biomedical literature (collaborations):
   \begin{itemize}
   \item What have we learned about the biology? (human learning)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Machine learning setup}
+  \begin{itemize}
+  \item $x$ = indicator of presence of HLA alleles or SNP markers.
+  \item $f(x)\in\{0,1\}$ for predicting disease (1) or not (0).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Both HLA and markers selected in multivariate linear
+    model for predicting asthma }
+
+  \includegraphics[width=0.4\textwidth]{figure-asthma-old}
+  \includegraphics[width=0.7\textheight]{figure-asthma-4folds}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning selects different features for each
+    disease}
+  \includegraphics[width=\textwidth]{screenshot-ankylosing-spondylitis}
+
+  \url{http://members.cbio.ensmp.fr/~thocking/figure-asthma-test-error/}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning setup for variant prioritization}
+  \begin{itemize}
+  \item $x$ = scores from various variant annotation programs (evolutionary
+    conservation, biochemical modeling, etc).
+  \item $f(x)\in\{0,1\}$ for predicting whether the variant is pathogenic (1) or not (0).
   \end{itemize}
 \end{frame}
 
@@ -192,7 +212,7 @@ Cancer cell with many copy number alterations.
 
 \begin{frame}
   \frametitle{Breakpoint detection is important in cancers such as
-    neuroblastoma }
+    neuroblastoma } 
 
   \begin{itemize}
   \item Childhood cancer, most frequently diagnosed at age 1--2.
@@ -206,19 +226,98 @@ Cancer cell with many copy number alterations.
 \end{frame}
 
 \begin{frame}
+  \frametitle{Breakpoint detection as a machine learning problem}
+  
+  \begin{itemize}
+  \item Input $x\in\mathbb R^n$ = noisy copy number signal for $n$
+    probes in one genome subset (chromosome).
+  \item Typical data set sizes $10^2 < n < 10^5$ for microarrays.
+  \item Structured binary classification problem: want to learn
+    $f(x)\in\{0,1\}^{n-1}$ to predict a 
+    \textcolor{green}{breakpoint} (1) or not (0).
+    %after every data point (green lines).
+  \item Previous algorithms: unsupervised learning (no labels).
+  \end{itemize}
+
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-pred}
+\end{frame}
+
+\begin{frame}
   \frametitle{New labeling and training methods for breakpoint detection}
 
   H {\it et al.}, {\it BMC Bioinformatics} 2013.
   \begin{itemize}
-  \item Benchmark data set of 3418 labeled chromosomes.
-  \item Supervised training method: choose scalar significance parameter with
-    minimal incorrect labels.
-  \item Results: most accurate model is maximum likelihood Gaussian
+  \item Create positive/breakpoint and negative/normal labels.
+  \item Quantify/optimize error rate (number of incorrect labels).
+  \item Benchmark data set of 3418 chromosomes from neuroblastoma,
+    labeled via visual inspection.
+  \item Results: most accurate model is maximum Gaussian likelihood 
     changepoint detection (K-fold cross-validation experiments).
   \end{itemize}
 
   \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-supervised}
 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Maximum Gaussian likelihood changepoint detection}
+
+\includegraphics[width=\textwidth]{seg-mean}
+\begin{align*}
+    \minimize_{
+  \mathbf m\in\RR^{n}
+} &\ \ 
+    \underbrace{
+    \sum_{i=1}^n ( m_i - x_i)^2
+}_{\text{fit the data}} + 
+\underbrace{\lambda
+\sum_{i=1}^{n-1} I(m_i\neq m_{i+1})}_{
+\text{penalize number of changes}
+}
+\end{align*}
+
+\begin{itemize}
+\item Optimization variable $\mathbf m$ is the segment mean.
+\item Minimizing the square loss corresponds to maximizing the
+  Gaussian likelihood.
+\item Penalty term encourages a model with few changes.
+\item Penalty $\lambda=0$ means a change after every data point.
+\item Penalty $\lambda=\infty$ means no changes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Log-linear $O(n \log n)$ FPOP algorithm for computing one
+    maximum
+    likelihood changepoint model}
+
+  Maidstone, Hocking, Rigaill, Fearnhead, {\it Stat. and
+    Comp.} 2017.
+
+  \begin{itemize}
+  \item Naively $O(n^K)$ time to compute best model with $K$ segments
+    ($K-1$ changes) for $n$ data points.
+  \item Previous work: inequality pruning for computing 1 model (\algo{PELT}),
+    functional pruning for computing $K$ models (\algo{pDPA}).
+  \item Contribution: two new algorithms, SNIP and
+    \algo{FPOP}.
+  \item Proved that the functional technique prunes at least as many
+    changepoints as the inequality technique (so is faster).
+  \end{itemize}
+
+
+  \begin{minipage}{0.55\linewidth}
+        \begin{tabular}{c|cc}
+      & \multicolumn{2}{c}{Pruning Technique}\\
+      & Functional & Inequality \\ 
+\hline
+      $K$ models & \algo{pDPA} & SNIP \\
+      1 model & \algo{FPOP} & \algo{PELT}
+    \end{tabular}
+  \end{minipage}
+  \begin{minipage}{0.4\linewidth}
+    \includegraphics[width=\textwidth]{figure-systemtime-arrays-bins}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -235,7 +334,9 @@ Cancer cell with many copy number alterations.
     breakpoint detection model.
   \end{itemize}
 
-\includegraphics[width=0.5\textwidth]{SegAnnDB-test-error-decreases}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{SegAnnDB-test-error-decreases}
+  \end{center}
 
 SegAnnDB demo: interactively label chr1 and chrX
   \url{http://bioviz.rocq.inria.fr/profile/GSM313887/}
@@ -257,7 +358,7 @@ SegAnnDB demo: interactively label chr1 and chrX
   \item Chicard {\it et al.}, {\it Clinical Cancer Research} 2016,
     Genomic copy number profiling using circulating free tumor DNA
     highlights heterogeneity in neuroblastoma.
-  \item Ongoing work, other rare alterations in neuroblastoma.
+  \item Ongoing work, characterizing alterations in neuroblastoma.
   \end{itemize}
 \end{frame}
 
@@ -276,18 +377,34 @@ SegAnnDB demo: interactively label chr1 and chrX
   Source: ``ChIP-sequencing,'' Wikipedia.
 \end{frame}
 
+% \begin{frame}
+%   \frametitle{Problem: inaccurate unsupervised peak predictions}
+%   \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
+
+%   Grey profiles are normalized aligned read count signals.
+
+%   Black bars are ``peaks'' called by MACS2 (Zhang {\it et al.}, 2008):
+%   \begin{itemize}
+%   \item many false positives (sometimes false negatives as well).
+%   \item overlapping peaks have different start/end positions.
+%   \end{itemize}
+% \end{frame}
+
 \begin{frame}
-  \frametitle{Problem: inaccurate unsupervised peak predictions}
-  \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
-
-  Grey profiles are normalized aligned read count signals.
-
-  Black bars are ``peaks'' called by MACS2 (Zhang {\it et al.}, 2008):
+  \frametitle{Peak detection as a machine learning problem}
+  
   \begin{itemize}
-  \item many false positives (sometimes false negatives as well).
-  \item overlapping peaks have different start/end positions.
+  \item Input $x\in\mathbb Z_+^n$ = noisy coverage profile for $n$ bases
+    in a chromosome subset between gaps in reference genome.
+  \item Typical data set sizes $10^5 < n < 10^8$ for ChIP-seq.
+  \item Structured binary classification problem: want to learn
+    $f(x)\in\{0,1\}^{n}$ to predict a 
+    peak (1) or not (0).
+  \item Previous algorithms: unsupervised learning (no labels).
   \end{itemize}
-\end{frame}
+ 
+  \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
+\end{frame} 
 
 % \begin{frame}
 %   \frametitle{Previous work in genomic peak detection}
@@ -310,36 +427,36 @@ SegAnnDB demo: interactively label chr1 and chrX
 %   \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{How to choose parameters of unsupervised peak
-    detectors?}
-\scriptsize
-19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang {\it et al.}, 2008.
-\begin{verbatim}
-  [-g GSIZE]
-  [-s TSIZE] [--bw BW] [-m MFOLD MFOLD] [--fix-bimodal]
-  [--nomodel] [--extsize EXTSIZE | --shiftsize SHIFTSIZE]
-  [-q QVALUE | -p PVALUE | -F FOLDENRICHMENT] [--to-large]
-  [--down-sample] [--seed SEED] [--nolambda]
-  [--slocal SMALLLOCAL] [--llocal LARGELOCAL]
-  [--shift-control] [--half-ext] [--broad]
-  [--broad-cutoff BROADCUTOFF] [--call-summits]
-\end{verbatim}
-10 parameters for Histone modifications in cancer (HMCan),
-Ashoor {\it et al.}, 2013.
-\begin{verbatim}
-minLength 145
-medLength 150
-maxLength 155
-smallBinLength 50
-largeBinLength 100000
-pvalueThreshold 0.01
-mergeDistance 200
-iterationThreshold 5
-finalThreshold 0
-maxIter 20
-\end{verbatim}
-\end{frame}
+% \begin{frame}[fragile]
+%   \frametitle{How to choose parameters of unsupervised peak
+%     detectors?}
+% \scriptsize
+% 19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang {\it et al.}, 2008.
+% \begin{verbatim}
+%   [-g GSIZE]
+%   [-s TSIZE] [--bw BW] [-m MFOLD MFOLD] [--fix-bimodal]
+%   [--nomodel] [--extsize EXTSIZE | --shiftsize SHIFTSIZE]
+%   [-q QVALUE | -p PVALUE | -F FOLDENRICHMENT] [--to-large]
+%   [--down-sample] [--seed SEED] [--nolambda]
+%   [--slocal SMALLLOCAL] [--llocal LARGELOCAL]
+%   [--shift-control] [--half-ext] [--broad]
+%   [--broad-cutoff BROADCUTOFF] [--call-summits]
+% \end{verbatim}
+% 10 parameters for Histone modifications in cancer (HMCan),
+% Ashoor {\it et al.}, 2013.
+% \begin{verbatim}
+% minLength 145
+% medLength 150
+% maxLength 155
+% smallBinLength 50
+% largeBinLength 100000
+% pvalueThreshold 0.01
+% mergeDistance 200
+% iterationThreshold 5
+% finalThreshold 0
+% maxIter 20
+% \end{verbatim}
+% \end{frame}
 
 
 \begin{frame}
@@ -353,7 +470,7 @@ maxIter 20
   \item \textbf{peakStart}: exactly one peak start (0=FN, more=FP).
   \item \textbf{peakEnd}: exactly one peak end (0=FN, more=FP).
   \item \textbf{noPeaks}: no overlapping peaks (otherwise FP).
-  \item \textbf{peakEnd}: at least one overlapping peak (otherwise FN).
+  \item \textbf{peaks}: at least one overlapping peak (otherwise FN).
   \end{itemize}
 \end{frame}
 
@@ -380,9 +497,55 @@ predict accurately for another person\\
 \begin{frame}
   \frametitle{Only a few labels are required to train highly accurate models}
   \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
+
+  \begin{itemize}
+  \item Three different ChIP-seq experiments, each with a separate
+    labeled pattern (broad/sharp/etc).
+  \item Test accuracy quickly increases to max after 2--6
+    genomic windows (containing several labeled regions and samples).
+  \item PeakSeg highly accurate in all three patterns.
+  \item Other models only accurate for only one or two patterns.
+  \end{itemize}
 \end{frame}
 
-\section{LEARNING THE PENALTY}
+\begin{frame}
+  \frametitle{TODO}
+\begin{align*}
+    \minimize_{\substack{
+  \mathbf m\in\RR^{n}
+\\
+  \mathbf c\in\{-1,0,1\}^{n-1}
+  }} &\ \ 
+    \sum_{t=1}^n \ell( m_t,  z_t) 
+  \label{PeakSegPDPA}
+\\
+    \text{subject to} &\ \  1+ \sum_{t=1}^{n-1} I(c_t \neq 0) = S, 
+\nonumber\\
+& \ \ c_t = -1 \Rightarrow m_{t} \alert{\geq} m_{t+1} \text{ (change down or no change)}
+\nonumber\\
+& \ \ c_t = 0 \Rightarrow m_{t} = m_{t+1}  \text{ (no change)}
+\nonumber\\
+& \ \ c_t = 1 \Rightarrow m_{t} \alert{\leq} m_{t+1} \text{ (change up or no change)}
+\nonumber\\
+&\ \ \forall t\in\{1, \dots, n-1\},\, P_t(\mathbf c) \in\{0, 1\}.
+\nonumber
+\end{align*}
+\begin{itemize}
+\item The only difference with the \textbf{PeakSeg} problem is that\\
+  \alert{we have changed the strict inequality constraints to non-strict inequality
+constraints}. 
+\item This model has \textbf{at most} $S$ distinct
+  segment means (some may be equal due to the non-strict equality
+  constraints).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{LEARNING THE PENALTY}
+  
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Supervised learning algorithm for breakpoint detection}
@@ -421,11 +584,22 @@ predict accurately for another person\\
 \includegraphics[width=\textwidth]{screenshot-mmit-learned}
 \end{frame}
 
-\section{OTHER PROJECTS AND FUTURE WORK}
+\begin{frame}
+  \frametitle{OTHER PROJECTS AND FUTURE WORK}
+  
+\end{frame}
 
 \begin{frame}
-  \frametitle{Machine learning problems in genomics}
-  For example my collaborations at the McGill Genome Center:
+  \frametitle{Other research projects}
+  Other statistical machine learning algorithms:
+  \begin{itemize}
+  \item Clusterpath for convex hierarchical clustering (highly
+    cited). TODO citation
+  \item Support vector machines for learning a ranking and comparison
+    function. TODO citation
+  \item TODO JCGS animint paper.
+  \end{itemize}
+  Collaborations at the McGill Genome Center:
   \begin{itemize}
   \item Predicting which people will respond to the flu vaccine based
     on SNP data. (with Maiko Narahara)
@@ -436,6 +610,19 @@ predict accurately for another person\\
     Najmeh Alirezaie)
   % \item Predicting genomic regions with peaks based on ChIP-seq
   %   data. (with Guillaume Bourque)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}
+  \item Survival models for penalty function learning.
+  \item Multi-task penalty function learning.
+  \item Functional pruning algorithms for other constrained
+    changepoint models.
+  \item GenomicLearner platform for interactive analysis and
+    collboarations.
+  \item Deep learning for nonparametric changepoint detection.
   \end{itemize}
 \end{frame}
 
@@ -459,18 +646,7 @@ which are neither interactive nor accurate
 
   \vskip 1cm
 
-  R packages:\\
-  \url{https://github.com/tdhock/PeakError}\\
-  \url{https://github.com/tdhock/PeakSegJoint}
-
-  \vskip 1cm
-
-  Source code for slides, figures, paper online!\\
-  \small
-  \url{https://bitbucket.org/mugqic/chip-seq-paper}
-  \vskip 1cm
-
-  Supplementary slides appear after this one.
+  timeline?
 
 \end{frame}
 
@@ -511,5 +687,32 @@ which are neither interactive nor accurate
   \includegraphics[width=1.1\textwidth]{figure-test-TDH-experiments.pdf}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Unsupervised algorithms inaccurate for 
+    complex patterns}
+  \begin{itemize}
+  \item Domain expert (biologist?) with prior knowledge manually codes an
+    algorithm that recognizes the pattern.
+  \item ``if the image $x$ has a dividing cell then predict
+    $f(x)=\text{yes}$.''\\
+    -- how to code that?
+  \item ``if the copy number profile $x$ has a significant change of
+    at least p-value $P$ in bins of size $B$, then predict
+    $f(x)=\text{breakpoint}$.''\\
+    -- sub-optimal parameter choices are inevitable.
+    \end{itemize}
+Disadvantages:
+\begin{itemize}
+  \item Need to find someone with programming experience AND domain expertise!
+  \item Inaccurate: hard/impossible to manually write code that
+    accurately recognizes complex patterns.
+  \item Need to write a different algorithm for each pattern (0, 1, 2,
+    %shoe, pants, 
+    dividing cell, 
+    normal cell,
+    etc).
+  \end{itemize}
+\end{frame}
 
 \end{document}
+
