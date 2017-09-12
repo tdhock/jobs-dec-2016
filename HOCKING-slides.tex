@@ -66,11 +66,11 @@ CVPR 2017
  & 
 %873 citations
 1980 citations
- & Hocking et al, 2014. \\
+ & H {\it et al.}, 2014. \\
      &
   \end{tabular}
   Sources: \url{http://en.wikipedia.org/wiki/Face_detection}\\
-  Jones et al PNAS 2009. Scoring diverse cellular morphologies in
+  Jones {\it et al.} PNAS 2009. Scoring diverse cellular morphologies in
   image-based screens with iterative feedback and machine learning.
 \end{frame}
 
@@ -103,7 +103,7 @@ CVPR 2017
   \frametitle{Unsupervised algorithms inaccurate for 
     complex patterns}
   \begin{itemize}
-  \item Domain expert (biologist?) with prior knowledge manually writes an
+  \item Domain expert (biologist?) with prior knowledge manually codes an
     algorithm that recognizes the pattern.
   \item ``if the image $x$ has a dividing cell then predict
     $f(x)=\text{yes}$.''\\
@@ -147,15 +147,24 @@ Disadvantages:
 \end{frame}
 
 \begin{frame}
-  \frametitle{Main questions in machine learning research}
+  \frametitle{My main research directions}
+  Machine learning papers:
   \begin{itemize}
   \item How to learn $f$ which is as accurate as possible?
 %\\ Mathematical optimization.
   \item How many labeled examples are required?
     %Statistics.\\
-  \item Is $f$ a black box, or can we interpret the model to
-    understand how it makes a decision?
   \item Fast algorithms that scale linearly to huge data sets?
+  \end{itemize}
+  Bioinformatics papers:
+  \begin{itemize}
+  \item New labeling methods so we can use supervised machine learning
+    algorithms for genomics/medicine.
+  \item Algorithms that are fast enough for interactive labeling.
+  \end{itemize}
+  Applications papers (collaborations):
+  \begin{itemize}
+  \item What have we learned about the biology? (human learning)
   \end{itemize}
 \end{frame}
 
@@ -182,26 +191,74 @@ Cancer cell with many copy number alterations.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Neuroblastoma }
+  \frametitle{Breakpoint detection is important in cancers such as
+    neuroblastoma }
 
   \begin{itemize}
   \item Childhood cancer, most frequently diagnosed at age 1--2.
   \item Top three profiles ``ok'' -- no tumors after initial treatment.
   \item Bottom three ``relapse'' -- aggressive tumor within 5 years.
+  \item Previous work: relapse profiles tend to have more breakpoints
+     (Schleiermacher {\it et al.}, 2010).
   \end{itemize}
 
   \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse}
 \end{frame}
 
 \begin{frame}
-  \frametitle{SegAnnDB demo}
-    A good example of false negatives to correct on chr1 and chrX
+  \frametitle{New labeling and training methods for breakpoint detection}
+
+  H {\it et al.}, {\it BMC Bioinformatics} 2013.
+  \begin{itemize}
+  \item Benchmark data set of 3418 labeled chromosomes.
+  \item Supervised training method: choose scalar significance parameter with
+    minimal incorrect labels.
+  \item Results: most accurate model is maximum likelihood Gaussian
+    changepoint detection (K-fold cross-validation experiments).
+  \end{itemize}
+
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-supervised}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Supervised interactive DNA copy number analysis}
+  H {\it et al.}, {\it Bioinformatics} 2014.
+
+  \begin{itemize}
+  \item Previous work: non-interactive command line programs
+    -- collaborators can not correct obvious
+    errors.
+  \item Interactive system: when you edit the labels, the system
+    learns and updates the model.
+  \item Result: only a few labels required to learn a highly accurate
+    breakpoint detection model.
+  \end{itemize}
+
+\includegraphics[width=0.5\textwidth]{SegAnnDB-test-error-decreases}
+
+SegAnnDB demo: interactively label chr1 and chrX
   \url{http://bioviz.rocq.inria.fr/profile/GSM313887/}
 \end{frame}
 
 \begin{frame}
-  \frametitle{copy from here}
-  http://members.cbio.mines-paristech.fr/~thocking/papers/2012-10-12-Learning-penalties-for-change-point-detection/penalty-learning-slides.tgz
+  \frametitle{Cancer biology collaborations}
+  Aichi cancer center, Nagoya, Japan.
+  \begin{itemize}
+  \item Suguro {\it et al.}, {\it Cancer Sci} 2014, Clonal
+    heterogeneity of lymphoid malignancies correlates with poor
+    prognosis.
+  \item Shimada {\it et al.}, {\it Leukemia} 2016, Development and
+    analysis of patient-derived xenograft mouse models in
+    intravascular large B-cell lymphoma.
+  \end{itemize}
+  Institut Curie, Paris, France.
+  \begin{itemize}
+  \item Chicard {\it et al.}, {\it Clinical Cancer Research} 2016,
+    Genomic copy number profiling using circulating free tumor DNA
+    highlights heterogeneity in neuroblastoma.
+  \item Ongoing work, other rare alterations in neuroblastoma.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -211,7 +268,8 @@ Cancer cell with many copy number alterations.
 
 \begin{frame}
   \frametitle{Chromatin immunoprecipitation sequencing (ChIP-seq)}
-  Analysis of DNA-protein interactions.
+  Analysis of DNA-protein interactions: which genomic regions have
+  bound/modified proteins?
 
   \includegraphics[width=\textwidth]{Chromatin_immunoprecipitation_sequencing_wide.png}
 
@@ -219,44 +277,44 @@ Cancer cell with many copy number alterations.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Problem: find peaks in each of several samples}
+  \frametitle{Problem: inaccurate unsupervised peak predictions}
   \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
 
   Grey profiles are normalized aligned read count signals.
 
-  Black bars are ``peaks'' called by MACS2 (Zhang et al, 2008):
+  Black bars are ``peaks'' called by MACS2 (Zhang {\it et al.}, 2008):
   \begin{itemize}
-  \item many false positives.
+  \item many false positives (sometimes false negatives as well).
   \item overlapping peaks have different start/end positions.
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Previous work in genomic peak detection}
-  \begin{itemize}
-  \item Model-based analysis of ChIP-Seq (MACS), Zhang et al, 2008.
-  \item SICER, Zang et al, 2009.
-  \item HOMER, Heinz et al, 2010.
-  \item CCAT, Xu et al, 2010.
-  \item RSEG, Song et al, 2011.
-  \item Triform, Kornacker et al, 2012.
-  \item Histone modifications in cancer (HMCan), Ashoor et al, 2013.
-  \item PeakSeg, Hocking, Rigaill, Bourque, ICML 2015.
-  \item PeakSegJoint Hocking and Bourque, arXiv:1506.01286.
-  \item ... dozens of others.
-  \end{itemize}
-  Two big questions: how to choose the best...
-  \begin{itemize}
-  \item ...algorithm? (testing)
-  \item ...parameters? (training)
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Previous work in genomic peak detection}
+%   \begin{itemize}
+%   \item Model-based analysis of ChIP-Seq (MACS), Zhang et al, 2008.
+%   \item SICER, Zang et al, 2009.
+%   \item HOMER, Heinz et al, 2010.
+%   \item CCAT, Xu et al, 2010.
+%   \item RSEG, Song et al, 2011.
+%   \item Triform, Kornacker et al, 2012.
+%   \item Histone modifications in cancer (HMCan), Ashoor et al, 2013.
+%   \item PeakSeg, Hocking, Rigaill, Bourque, ICML 2015.
+%   \item PeakSegJoint Hocking and Bourque, arXiv:1506.01286.
+%   \item ... dozens of others.
+%   \end{itemize}
+%   Two big questions: how to choose the best...
+%   \begin{itemize}
+%   \item ...algorithm? (testing)
+%   \item ...parameters? (training)
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{How to choose parameters of unsupervised peak
     detectors?}
 \scriptsize
-19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang et al, 2008.
+19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang {\it et al.}, 2008.
 \begin{verbatim}
   [-g GSIZE]
   [-s TSIZE] [--bw BW] [-m MFOLD MFOLD] [--fix-bimodal]
@@ -268,7 +326,7 @@ Cancer cell with many copy number alterations.
   [--broad-cutoff BROADCUTOFF] [--call-summits]
 \end{verbatim}
 10 parameters for Histone modifications in cancer (HMCan),
-Ashoor et al, 2013.
+Ashoor {\it et al.}, 2013.
 \begin{verbatim}
 minLength 145
 medLength 150
@@ -285,7 +343,11 @@ maxIter 20
 
 
 \begin{frame}
-  \frametitle{Training: select parameter with minimal incorrect labels}
+  \frametitle{New labeling method for peak detection in ChIP-seq data}
+
+  H {\it et al.}, {\it Bioinformatics} 2017: choose peak model/parameters
+  which minimize the number of incorrectly predicted labels.
+
   \includegraphics[width=\textwidth]{figure-PeakError.pdf}
   \begin{itemize}
   \item \textbf{peakStart}: exactly one peak start (0=FN, more=FP).
@@ -293,82 +355,6 @@ maxIter 20
   \item \textbf{noPeaks}: no overlapping peaks (otherwise FP).
   \item \textbf{peakEnd}: at least one overlapping peak (otherwise FN).
   \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-  \frametitle{Training: select parameter with minimal incorrect labels}
-  \begin{itemize}
-  \item One ChIP-seq sample with $B$ bases $\mathbf z
-    \in\ZZ_+^{B}$ of count data.
-  \item Set of regions/labels $L$,\\
-    e.g. $\{(100, 200, \text{noPeaks}), (500, 650, \text{peakStart})\}$.
-  \item \textbf{Training}: use parameters $\lambda$ for a peak caller
-    $c_\lambda:\ZZ_+^{B} \rightarrow \{0,1\}^{B}$ such that
-  \begin{equation*}
-    \label{eq:min_train_err}
-    \hat \lambda = 
-    \argmin_\lambda
-    \sum_{i\in\text{\alert{train}}} E[c_\lambda(\mathbf z_i),  L_i],
-  \end{equation*}
-  where $E$ is the number of incorrect labels\\(false positives + false
-  negatives).
-\item \textbf{Not}: use parameters $\lambda$ that recover the ``true'' peaks\\
-  (nobody knows, without further experiments).
-\item \textbf{Instead}: \alert{use parameters $\lambda$ most
-  consistent with the labels in the train set.}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Testing: best algorithm has minimal incorrect labels}
-  \begin{itemize}
-  \item One ChIP-seq sample with $B$ bases $\mathbf z
-    \in\ZZ_+^{B}$ of count data.
-  \item Set of regions/labels $L$,\\
-    e.g. $\{(100, 200, \text{noPeaks}), (500, 650, \text{peakStart})\}$.
-  \item \textbf{Testing}: find a peak caller $c:\ZZ_+^{B} \rightarrow
-    \{0,1\}^{B}$ 
-  \begin{equation*}
-    \label{eq:min_test_err}
-    \minimize_c \sum_{i\in\text{\alert{test}}} E[c(\mathbf z_i),  L_i],
-  \end{equation*}
-  where $E$ is the number of incorrect labels\\(false positives + false
-  negatives).
-\item \textbf{Not}: find the ``true'' peaks\\
-  (nobody knows, without further experiments).
-\item \textbf{Goal}: \alert{consistent peak predictions on a held-out
-    test set\\ (all the genomic regions and/or samples that you do not
-    have time to manually label).}
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-  \frametitle{Accuracy benchmark: 10 manually labeled data sets}
-  \url{http://cbio.ensmp.fr/~thocking/chip-seq-chunk-db/}
-  \begin{itemize}
-  \item We created 12,826 labels in 7 new data sets.
-  \item 4 annotators (AM, TDH, PGP, XJ).
-  \item 8 cell types.
-  \item 37 H3K4me3 samples (sharp peak pattern).
-  \item 29 H3K36me3 samples (broad peak pattern).
-  \end{itemize}
-  \vskip 1cm
-  \url{http://tare.medisin.ntnu.no/chipseqbenchmark/}
-  \begin{itemize}
-  \item 3 data sets from another group's work in 2011.
-  \item 3 transcription factors: SRF, NRSF, MAX.
-  \item 2 replicates per transcription factor.
-  \item Different protocol: label after peak calling.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Train sets of different sizes, test on same set}
-  \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
 \end{frame}
 
 \begin{frame}
@@ -383,99 +369,59 @@ maxIter 20
 \end{frame}
 
 \begin{frame}
-  \frametitle{Train on one person, test on another\\
-(same histone mark and samples)}
+  \frametitle{Models trained on labels from one person\\
+predict accurately for another person\\
+    (same histone mark and samples)}
   \includegraphics[width=1.1\textwidth]{figure-test-H3K4me3-annotators.pdf}
+
+  Test error in four-fold cross-validation.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Train on some samples, test on others\\
-(same histone mark and person)}
-  \includegraphics[width=1.1\textwidth]{figure-test-H3K4me3-types.pdf}
+  \frametitle{Only a few labels are required to train highly accurate models}
+  \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
 \end{frame}
+
+\section{LEARNING THE PENALTY}
 
 \begin{frame}
-  \frametitle{Train on one histone mark, test on another\\
-(same person and samples)}
-  \includegraphics[width=1.1\textwidth]{figure-test-TDH-experiments.pdf}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Unsupervised peak detector input: data + parameters}
-\scriptsize
-19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang et al, 2008.
-\begin{verbatim}
-  [-g GSIZE]
-  [-s TSIZE] [--bw BW] [-m MFOLD MFOLD] [--fix-bimodal]
-  [--nomodel] [--extsize EXTSIZE | --shiftsize SHIFTSIZE]
-  [-q QVALUE | -p PVALUE | -F FOLDENRICHMENT] [--to-large]
-  [--down-sample] [--seed SEED] [--nolambda]
-  [--slocal SMALLLOCAL] [--llocal LARGELOCAL]
-  [--shift-control] [--half-ext] [--broad]
-  [--broad-cutoff BROADCUTOFF] [--call-summits]
-\end{verbatim}
-10 parameters for Histone modifications in cancer (HMCan),
-Ashoor et al, 2013.
-\begin{verbatim}
-minLength 145
-medLength 150
-maxLength 155
-smallBinLength 50
-largeBinLength 100000
-pvalueThreshold 0.01
-mergeDistance 200
-iterationThreshold 5
-finalThreshold 0
-maxIter 20
-\end{verbatim}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Training: select parameter with minimal incorrect labels}
-  \includegraphics[width=\textwidth]{figure-PeakError.pdf}
+  \frametitle{Supervised learning algorithm for breakpoint detection}
+  H {\it et al.}, {\it ICML} 2013.
   \begin{itemize}
-  \item \textbf{peakStart}: exactly one peak start (0=FN, more=FP).
-  \item \textbf{peakEnd}: exactly one peak end (0=FN, more=FP).
-  \item \textbf{noPeaks}: no overlapping peaks (otherwise FP).
-  \item \textbf{peakEnd}: at least one overlapping peak (otherwise FN).
+  \item New method for learning multi-feature linear penalty
+    functions in maximum likehood changepoint models.
+  \item Previous work: AIC/BIC/mBIC/etc (0 learned parameters)
+    and scalar penalties (1 learned parameter).
+  \item Contribution: convex optimization problem and learning
+    algorithm for regression with censored outputs
+    $(\underline L_i, \overline L_i)$.
+  \item Results: improves breakpoint detection accuracy (K-fold
+    cross-validation experiments).
   \end{itemize}
+\includegraphics[width=0.4\textwidth]{screenshot-mmir-crop}
+\includegraphics[width=0.4\textwidth]{screenshot-mmir-test-error}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Previous work limited to 
-    unsupervised methods
-which are neither interactive nor accurate
-}
-  \includegraphics[height=0.5\textheight]{GenomicLearner-unsupervised.pdf}
+  \frametitle{useR2017 tutorial}
+  
 \end{frame}
 
 \begin{frame}
-  \frametitle{GenomicLearner, an public web app for supervised interactive machine learning in genomic data}
-  \includegraphics[height=0.5\textheight]{GenomicLearner-both.pdf}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Conclusions and future work}
+  \frametitle{Nonlinear decision tree model}
+  Drouin, Hocking, Laviolette {\it NIPS} 2017.
   \begin{itemize}
-  \item \textbf{New method}: supervised peak detection.
-  \item \textbf{Benefits}: more user-friendly, accurate.
-  \item \textbf{Fast learning}: only 5-10 labeled genomic windows are
-    necessary for state-of-the-art accuracy.
-  \item \textbf{Generalization} between labels from different people,
-    and samples of different cell types (not different experiments).
-\end{itemize}
- \textbf{TODO}: web app for interactive ChIP-seq data analysis, featuring
-\begin{itemize}
-  \item Simultaneous visualization of coverage, labels, and peak predictions.
-  \item Click to add new labels or delete existing labels.
-  \item After changing the labels, update the machine learning model
-    and the displayed peak predictions.
+  \item Contribution: dynamic programming algorithm for learning a
+    nonlinear decision tree model.
+  \item Results: learns nonlinear patterns, improved
+    breakpoint detection accuracy.
   \end{itemize}
+%\includegraphics[width=\textwidth]{screenshot-mmit}
+
+\includegraphics[width=\textwidth]{screenshot-mmit-learned}
 \end{frame}
 
-\section{OTHER PROJECTS AND COLLABORATIVE WORK}
+\section{OTHER PROJECTS AND FUTURE WORK}
 
 \begin{frame}
   \frametitle{Machine learning problems in genomics}
@@ -491,6 +437,19 @@ which are neither interactive nor accurate
   % \item Predicting genomic regions with peaks based on ChIP-seq
   %   data. (with Guillaume Bourque)
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Previous work limited to 
+    unsupervised methods
+which are neither interactive nor accurate
+}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-unsupervised.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GenomicLearner, an public web app for supervised interactive machine learning in genomic data}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-both.pdf}
 \end{frame}
 
 
@@ -519,5 +478,38 @@ which are neither interactive nor accurate
   \frametitle{Test error in three different experiments}
   \includegraphics[width=1.1\textwidth]{figure-test-error-dots-mean.pdf}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Accuracy benchmark: 10 manually labeled data sets}
+  \url{http://cbio.ensmp.fr/~thocking/chip-seq-chunk-db/}
+  \begin{itemize}
+  \item We created 12,826 labels in 7 new data sets.
+  \item 4 annotators (AM, TDH, PGP, XJ).
+  \item 8 cell types.
+  \item 37 H3K4me3 samples (sharp peak pattern).
+  \item 29 H3K36me3 samples (broad peak pattern).
+  \end{itemize}
+  \vskip 1cm
+  \url{http://tare.medisin.ntnu.no/chipseqbenchmark/}
+  \begin{itemize}
+  \item 3 data sets from another group's work in 2011.
+  \item 3 transcription factors: SRF, NRSF, MAX.
+  \item 2 replicates per transcription factor.
+  \item Different protocol: label after peak calling.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Train on some samples, test on others\\
+(same histone mark and person)}
+  \includegraphics[width=1.1\textwidth]{figure-test-H3K4me3-types.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Train on one histone mark, test on another\\
+(same person and samples)}
+  \includegraphics[width=1.1\textwidth]{figure-test-TDH-experiments.pdf}
+\end{frame}
+
 
 \end{document}
