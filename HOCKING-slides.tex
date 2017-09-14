@@ -6,6 +6,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{algorithmic}
+\usepackage{multirow}
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\Lik}{Lik}
@@ -172,15 +173,18 @@ $$
   genetic variants}
 
 \begin{frame}
-  \frametitle{Machine learning setup}
+  \frametitle{Machine learning for predicting autoimmune disease based on genetic variants}
   \begin{itemize}
-  \item $x\in\{0,1,2\}^m$ = vector of indicators of HLA alleles or SNP markers.
+  \item Collaboration with Audrey Grant and Mark Lathrop.
+  \item $n=120,286$ white UK citizens, aged 40-70.
+  \item Genotyped using microarrays, 32 markers selected using
+    univariate logistic regression test, 328 HLA alleles imputed.
+  \item $x\in\{0,1,2\}^p$ = vector of allele counts and sex indicator.
   \item $f(x)\in\{0,1\}$ for predicting disease (1) or not (0).
-  \item $f(x)=w^\intercal x + \beta$ is a linear model learned using
-    L1-regularized logistic regression (glmnet R package).
-  \item Automatic feature selection via
-    L1-regularization: weights $w_j=0$ mean that the corresponding feature is not
-    used for prediction.
+  \item $f(x)=w^\intercal x + \beta$ L1-regularized logistic
+    regression (glmnet R package), automatic feature selection.
+  \item Scientific questions: which diseases can be predicted by
+    genetics? Are both HLA and SNPs necessary? Are SNPs redundant?
   \item Main novelty: UK BioBank data set.
   \end{itemize}
 \end{frame}
@@ -189,17 +193,30 @@ $$
   \frametitle{Both HLA and markers selected in L1 regularized logistic regression
     model for predicting asthma }
 
-  \includegraphics[width=0.4\textwidth]{figure-asthma-old}
-  \includegraphics[width=0.7\textheight]{figure-asthma-4folds}
-  
+  \begin{minipage}{0.39\linewidth}
+    \begin{itemize}
+    \item Right: many unused HLA alleles in the predictive model, one
+      unused SNP.
+    \item Below: SNP markers more accurate than HLA alleles.
+    \end{itemize}
+  \includegraphics[width=\textwidth]{figure-asthma-old}
+  \end{minipage}
+  \begin{minipage}{0.59\linewidth}
+    \includegraphics[width=\textwidth]{figure-asthma-4folds}
+  \end{minipage}
 \end{frame}
-
+ 
 \begin{frame}
   \frametitle{L1-regularized logistic regression model automatically selects relevant HLA features for each
     disease}
+
+  \begin{itemize}
+  \item HLA features predict some diseases more accurately than others.
+  \item Different number of features selected per disease.
+  \end{itemize}
   \includegraphics[width=\textwidth]{screenshot-ankylosing-spondylitis}
 
-  \url{http://members.cbio.ensmp.fr/~thocking/figure-asthma-test-error/}
+\scriptsize  \url{http://members.cbio.ensmp.fr/~thocking/figure-asthma-test-error/}
 \end{frame}
 
 \section{Learning a predictive pathogenicitity score for genetic variants}
@@ -207,15 +224,32 @@ $$
 \begin{frame}
   \frametitle{Machine learning setup for variant prioritization}
   \begin{itemize}
-  \item $x$ = scores from various variant annotation programs (evolutionary
-    conservation, biochemical modeling, etc).
-  \item $f(x)\in\{0,1\}$ for predicting whether the variant is pathogenic (1) or not (0).
+  \item $x\in\mathbb R^p$ = vector of scores from 
+    annotation programs (evolutionary conservation, biochemical
+    modeling, etc).
+  \item $f(x)\in\{0,1\}$ for predicting whether the variant is
+    pathogenic (1) or benign (0).
   \item Existing methods to learn $f$: L1-regularized logistic
     regression, random forests, boosting.
-  \item Main novelty: use of ClinVar data set for labels. 
+  \item Scientific question: which features are relevant for
+    predicting pathogenicity?
+  \item Main novelty: train on ClinVar data set 2013--2015
+    (common/rare missense variants, 7059 benign, 4023 pathogenic)
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+  \frametitle{Learned scores predict pathogenicity more accurately}
+  \begin{itemize}
+  \item Learned ClinPred scores more accurately predict
+    Pathogenic/Benign status in held-out test sets (ClinVar 2016,
+    four-fold cross-validation).
+  \item Allele frequency feature essential for optimal accuracy.
+  \item All features selected in L1-regularized logistic regression.
+  \end{itemize}
+\includegraphics[width=0.7\textwidth]{Screenshot-clinpred-auc}
+\end{frame}
 \section{Predicting breakpoint positions in DNA copy number profiles}
 
 \begin{frame}
@@ -255,11 +289,11 @@ Cancer cell with many copy number alterations.
   \frametitle{Breakpoint detection as a machine learning problem}
   
   \begin{itemize}
-  \item Input $x\in\mathbb R^n$ = noisy copy number signal for $n$
+  \item Input $x\in\mathbb R^p$ = noisy copy number signal for $p$
     probes in one genome subset (chromosome).
-  \item Typical data set sizes $10^2 < n < 10^5$ for microarrays.
+  \item Typical data set sizes $10^2 < p < 10^5$ for microarrays.
   \item Structured binary classification problem: want to learn
-    $f(x)\in\{0,1\}^{n-1}$ to predict a 
+    $f(x)\in\{0,1\}^{p-1}$ to predict a 
     \textcolor{green}{breakpoint} (1) or not (0).
     %after every data point (green lines).
   \item Previous algorithms: unsupervised learning (no labels).
@@ -286,7 +320,7 @@ Cancer cell with many copy number alterations.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Log-linear $O(n \log n)$ FPOP algorithm for computing one
+  \frametitle{Log-linear $O(p \log p)$ FPOP algorithm for computing one
     maximum
     likelihood changepoint model}
 
@@ -294,8 +328,8 @@ Cancer cell with many copy number alterations.
     Comp.} 2017.
 
   \begin{itemize}
-  \item Naively $O(n^K)$ time to compute best model with $K$ segments
-    ($K-1$ changes) for $n$ data points.
+  \item Naively $O(p^K)$ time to compute best model with $K$ segments
+    ($K-1$ changes) for a sequence of $p$ data.
   \item Previous work: inequality pruning for computing 1 model (\algo{PELT}),
     functional pruning for computing $K$ models (\algo{pDPA}).
   \item Contribution: two new algorithms, SNIP and
@@ -328,16 +362,18 @@ Cancer cell with many copy number alterations.
     errors.
   \item Interactive system: when you edit the labels, the system
     learns and updates the model. (SegAnnDB python module)
+  \item Regression model for predicting the number of segments $K$ (H
+    {\it et al.}, {\it ICML} 2013).
   \item Result: only a few labels required to learn a highly accurate
     breakpoint detection model.
   \end{itemize}
-
-  \begin{center}
-    \includegraphics[width=0.5\textwidth]{SegAnnDB-test-error-decreases}
-  \end{center}
-
-SegAnnDB demo: interactively label chr1 and chrX
+  \begin{minipage}{0.5\linewidth}
+    \includegraphics[width=\textwidth]{SegAnnDB-test-error-decreases}
+  \end{minipage}
+  \begin{minipage}[0.5\linewidth]{0.48\linewidth}
+SegAnnDB demo:\\interactively label chr1 and chrX
   \url{http://bioviz.rocq.inria.fr/profile/GSM313887/}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -544,10 +580,10 @@ H {\it et al.}, {\it ICML} 2015.
   constrained changepoint models, under review at {\it Annals of
     Applied Statistics}.
   \begin{itemize}
-  \item \algo{CDPA}: our constrained, approximate  algo (prev slide).
-  \item \algo{PDPA}: no constraints, exact (Rigaill
-    arXiv:1004.0887).
-  \item \algo{GPDPA}: up-down constrained, exact. {\small (R pkg PeakSegOptimal)}
+  % \item \algo{CDPA}: our constrained, approximate  algo (prev slide).
+  % \item \algo{PDPA}: no constraints, exact (Rigaill
+  %   arXiv:1004.0887).
+  % \item \algo{GPDPA}: up-down constrained, exact. {\small (R pkg PeakSegOptimal)}
   \item Exact optimal solution: for \emph{any} set of $P$ peaks, our
     algorithm finds more (most) likely starts/ends/means.
   \item Time to compute 10 models (0, ..., 9 peaks) for 2752 data
@@ -555,58 +591,105 @@ H {\it et al.}, {\it ICML} 2015.
     \textcolor{CDPA}{156 hours (CDPA)}.
   \end{itemize}
 
+  \input{figure-PDPA-timings-wide-labels}
+
   % \hskip -1cm
   % \parbox{0.53\textwidth}{
   %   \input{figure-PDPA-intervals-log-log}
   % }
-  \parbox{0.49\textwidth}{
-    \input{figure-PDPA-timings-log-log}
-  }
+  % \parbox{0.49\textwidth}{
+  %   \input{figure-PDPA-timings-log-log}
+  % }
 \end{frame}
 
 \begin{frame}
   \frametitle{Ongoing work: joint peak calling pipeline for comparing samples}
-
-TODO 
+\begin{itemize}
+\item PeakSegJoint model predicts presence or absence of a common peak
+  in multiple samples, Hocking and Bourque, arXiv:1506.01286,
+  PeakSegJoint R package.
+\item Characterizing active/inactive regions of the genome
+  specifically for each cell type.
+\end{itemize}
+\includegraphics[width=\textwidth]{PeakSegJoint-monocytes-up}
 \end{frame}
 
 \section{Other projects and future work}
 
 \begin{frame}
-  \frametitle{Other projects}
-  Other statistical machine learning algorithms:
-  \begin{itemize}
-  \item Clusterpath for convex hierarchical clustering (highly
-    cited). TODO citation
-  \item Support vector machines for learning a ranking and comparison
-    function. TODO citation
-  \item TODO JCGS animint paper.
-  \item iregnet.
-  \end{itemize}
-  Collaborations at the McGill Genome Center:
-  \begin{itemize}
-  \item Predicting which people will respond to the flu vaccine based
-    on SNP data. (with Maiko Narahara)
-  \item Predicting which people have asthma based on SNP
-    data. (with Audrey Grant)
-  \item Predicting which genetic variants are pathogenic based on
-    biochemistry, evolutionary conservation, etc. (with
-    Najmeh Alirezaie)
-  % \item Predicting genomic regions with peaks based on ChIP-seq
-  %   data. (with Guillaume Bourque)
-  \end{itemize}
+  \frametitle{My research projects include statistical machine
+    learning algorithms and biomedical applications}
+  \includegraphics[width=\textwidth]{timeline-SteJustine}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Future work}
+  \frametitle{Other research projects}
+  \begin{tabular}{ll}
+Clusterpath for convex & \multirow{4}{*}{
+\includegraphics[height=0.2\textheight]{screenshot-clusterpath}
+}\\
+hierarchical clustering.\\
+H {\it et al.}, {\it ICML} 2011\\
+91 citations. R package clusterpath. \\
+\hline
+Support vector machines & \multirow{4}{*}{
+\includegraphics[height=0.2\textheight]{screenshot-ranksvmcompare}
+}\\
+for ranking and comparison.\\
+H {\it et al.}, arXiv:1401.8008. \\
+R package rankSVMcompare.\\
+\hline
+New interactive keywords& \multirow{5}{*}{
+\includegraphics[height=0.2\textheight]{figure-design}
+}\\
+for the grammar of graphics,\\
+under review at \emph{Journal}\\
+\emph{ of Computational and Graphical}\\
+\emph{Statistics}, R package animint.
+  \end{tabular}
+  % \begin{minipage}{0.3\linewidth}
+  %   Clusterpath for convex hierarchical clustering (H {\it et
+  %     al.}, {\it ICML} 2011, 91 citations). R package clusterpath.
+  %   \includegraphics[width=\linewidth]{screenshot-clusterpath}
+  % \end{minipage}
+  % \begin{minipage}{0.3\linewidth}
+  %   Support vector machines for ranking and comparison. H {\it et
+  %     al.}, arXiv:1401.8008. R package rankSVMcompare.
+  %   \includegraphics[width=\linewidth]{screenshot-ranksvmcompare}
+  % \end{minipage}
+  % \begin{minipage}{0.3\linewidth}
+  %   New interactive keywords for the grammar of graphics, under review
+  %   at \emph{Journal of Computational and Graphical Statistics}, R
+  %   package animint.
+  % \end{minipage}
+
+  % Collaborations at the McGill Genome Center:
+  % \begin{itemize}
+  % \item Predicting which people will respond to the flu vaccine based
+  %   on SNP data. (with Maiko Narahara)
+  % \item Predicting which people have asthma based on SNP
+  %   data. (with Audrey Grant)
+  % \item Predicting which genetic variants are pathogenic based on
+  %   biochemistry, evolutionary conservation, etc. (with
+  %   Najmeh Alirezaie)
+  % % \item Predicting genomic regions with peaks based on ChIP-seq
+  % %   data. (with Guillaume Bourque)
+  % \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Future projects for my research lab}
   \begin{itemize}
-  \item Survival models for penalty function learning.
-  \item Multi-task penalty function learning.
+  \item More collaborations with biomedical scientists.
+  \item Survival models for predicting the number of changepoints: R
+    package iregnet.
   \item Functional pruning algorithms for other constrained
-    changepoint models.
-  \item GenomicLearner platform for interactive analysis and
-    collboarations.
+    changepoint models (neuro spike train data).
+  \item Multi-task learning for predicting the number of changepoints
+    (multiple scientists provide breakpoint or peak labels).
   \item Deep learning for nonparametric changepoint detection.
+  \item GenomicLearner platform for collaborations: interactive
+    labeling and machine learning analysis.
   \end{itemize}
 \end{frame}
 
@@ -626,12 +709,34 @@ which are neither interactive nor accurate
 
 \begin{frame}
   \frametitle{Thanks for your attention!}
-  Write me at \alert{\texttt{toby.hocking@mail.mcgill.ca}} to collaborate!
 
-  \vskip 1cm
+Any questions?
 
-  timeline?
+\hskip 1cm
 
+\includegraphics[width=\textwidth]{timeline-SteJustine}
+
+  % Write me at \alert{\texttt{toby.hocking@mail.mcgill.ca}} to collaborate!
+
+  % \vskip 1cm
+
+  % timeline?
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}
+  \item More collaborations with biomedical scientists.
+  \item Survival models for penalty function learning: R package
+    iregnet.
+  \item Multi-task penalty function learning: how to 
+  \item Functional pruning algorithms for other constrained
+    changepoint models.
+  \item GenomicLearner platform for interactive analysis and
+    collboarations.
+  \item Deep learning for nonparametric changepoint detection.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -711,8 +816,7 @@ Disadvantages:
   \item Contribution: convex optimization problem and learning
     algorithm for regression with censored outputs
     $(\underline L_i, \overline L_i)$.
-  \item Results: improves breakpoint detection accuracy (K-fold
-    cross-validation experiments).
+  \item Results: improves breakpoint detection accuracy (cross-validation experiments).
   \end{itemize}
 \includegraphics[width=0.4\textwidth]{screenshot-mmir-crop}
 \includegraphics[width=0.4\textwidth]{screenshot-mmir-test-error}
@@ -766,3 +870,4 @@ Disadvantages:
 
 \end{document}
 
+ 

@@ -41,12 +41,14 @@ problems that I described.
 | where                         | when         |
 |-------------------------------+--------------|
 | [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Math]]  319416        | immediately  |
+| [[https://www.recruitingsite.com/csbsites/oicr/JobDescription.asp?JobNumber%3D675388][OICR]]                          | immediately  |
 | [[https://www.unrsearch.com/postings/24784][Reno]]                          | 30 Sept 2017 |
 | [[https://apply.interfolio.com/42769][Notre Dame Stat]]               | 1 Oct 2017   |
 | [[https://jobs.newpaltz.edu/postings/721][New Paltz NY]]                  | 1 Oct 2017   |
 | [[https://www.mathjobs.org/jobs/jobs/10467][Reed]]                          | 2 Oct 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10350][Amherst Stats]]                 | 8 Oct 2017   |
 | [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]                     | 15 Oct 2017  |
+| UQAM Stats                    | 15 Oct 2017  |
 | [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]]                   | 16 Oct 2017  |
 | [[http://jobs.amstat.org/jobs/10125430/assistant-professor][Monmouth]] NJ                   | 16 Oct 2017  |
 | [[https://www.mathjobs.org/jobs?joblist--10500][Eau Claire Math]]               | 21 Oct 2017  |
