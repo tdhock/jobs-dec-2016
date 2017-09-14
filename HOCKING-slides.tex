@@ -275,8 +275,8 @@ Cancer cell with many copy number alterations.
   \begin{itemize}
   \item Create positive/breakpoint and negative/normal labels.
   \item Quantify/optimize error rate (number of incorrect labels).
-  \item Benchmark data set of 3418 chromosomes from neuroblastoma,
-    labeled via visual inspection.
+  \item Benchmark data set of 3418 chromosomes,
+    labeled via visual inspection (R package neuroblastoma).
   \item Results: most accurate model is maximum Gaussian likelihood 
     changepoint detection (K-fold cross-validation experiments).
   \end{itemize}
@@ -299,11 +299,10 @@ Cancer cell with many copy number alterations.
   \item Previous work: inequality pruning for computing 1 model (\algo{PELT}),
     functional pruning for computing $K$ models (\algo{pDPA}).
   \item Contribution: two new algorithms, SNIP and
-    \algo{FPOP}.
+    \algo{FPOP} (R package fpop).
   \item Proved that the functional technique prunes at least as many
     changepoints as the inequality technique (so is faster).
   \end{itemize}
-
 
   \begin{minipage}{0.55\linewidth}
         \begin{tabular}{c|cc}
@@ -328,7 +327,7 @@ Cancer cell with many copy number alterations.
     -- collaborators can not correct obvious
     errors.
   \item Interactive system: when you edit the labels, the system
-    learns and updates the model.
+    learns and updates the model. (SegAnnDB python module)
   \item Result: only a few labels required to learn a highly accurate
     breakpoint detection model.
   \end{itemize}
@@ -467,6 +466,7 @@ SegAnnDB demo: interactively label chr1 and chrX
   \item \textbf{peakEnd}: exactly one peak end (0=FN, more=FP).
   \item \textbf{noPeaks}: no overlapping peaks (otherwise FP).
   \item \textbf{peaks}: at least one overlapping peak (otherwise FN).
+  \item R package PeakError.
   \end{itemize}
 \end{frame}
 
@@ -518,7 +518,7 @@ H {\it et al.}, {\it ICML} 2015.
 \\
    0=t_0<t_1<\cdots<t_{K-1}<t_K=n
   }} &\ \ 
-    \sum_{k=1}^K \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
+    \sum_{k=1}^K\  \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
   \label{PeakSegPDPA}
 \\
       \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},}
@@ -532,7 +532,8 @@ H {\it et al.}, {\it ICML} 2015.
 \item Hard optimization problem, naively $O(n^K)$ time.
 \item \alert<2>{Previous unconstrained model: not always up-down changes.}
 \item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
-\item New $O(Kn^2)$ algo based on classic dynamic programming.
+\item New $O(Kn^2)$ algo based on classic dynamic programming (R
+  package PeakSegDP).
 \end{itemize}
 \end{frame} 
 
@@ -546,7 +547,7 @@ H {\it et al.}, {\it ICML} 2015.
   \item \algo{CDPA}: our constrained, approximate  algo (prev slide).
   \item \algo{PDPA}: no constraints, exact (Rigaill
     arXiv:1004.0887).
-  \item \algo{GPDPA}: up-down constrained, exact.
+  \item \algo{GPDPA}: up-down constrained, exact. {\small (R pkg PeakSegOptimal)}
   \item Exact optimal solution: for \emph{any} set of $P$ peaks, our
     algorithm finds more (most) likely starts/ends/means.
   \item Time to compute 10 models (0, ..., 9 peaks) for 2752 data
@@ -572,7 +573,7 @@ TODO
 \section{Other projects and future work}
 
 \begin{frame}
-  \frametitle{Other research projects}
+  \frametitle{Other projects}
   Other statistical machine learning algorithms:
   \begin{itemize}
   \item Clusterpath for convex hierarchical clustering (highly
@@ -580,6 +581,7 @@ TODO
   \item Support vector machines for learning a ranking and comparison
     function. TODO citation
   \item TODO JCGS animint paper.
+  \item iregnet.
   \end{itemize}
   Collaborations at the McGill Genome Center:
   \begin{itemize}
