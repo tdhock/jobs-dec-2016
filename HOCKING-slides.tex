@@ -500,10 +500,13 @@ predict accurately for another person\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Maximum likelihood segmentation with up-down constraints on adjacent segment means (PeakSeg)}
+  \frametitle{Maximum likelihood changepoint detection with up-down constraints on adjacent segment means (PeakSeg)}
 H {\it et al.}, {\it ICML} 2015. 
-
-TODO figure with geometric interpretation, 3 segments.
+   
+\only<1>{\input{figure-PeakSeg}}      
+\only<2>{\input{figure-PeakSeg-unconstrained}}
+\only<3>{\input{figure-PeakSeg-constrained}}
+\vskip -1.5cm
 \begin{align*}
     \minimize_{\substack{
   \mathbf u\in\RR^{K}
@@ -513,19 +516,21 @@ TODO figure with geometric interpretation, 3 segments.
     \sum_{k=1}^K \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
   \label{PeakSegPDPA}
 \\
-      \text{subject to \hskip 0.75cm} &\ \ u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},
+      \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},}
   \nonumber\\
-  &\ \ u_{k-1} \geq u_k\ \forall k\in\{3,5,\dots\}.
-  \nonumber
+  &\ \ \alert<3>{u_{k-1} \geq u_k\ \forall k\in\{3,5,\dots\}.}
+  \nonumber 
 \end{align*}
-\vskip -0.5cm
-\begin{itemize}
+\vskip -0.4cm
+\begin{itemize}  
 \item Simple: 1 parameter = number of segments $K\in\{1,3,\dots\}$.
-\item Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).
 \item Hard optimization problem, naively $O(n^K)$ time.
+\item \alert<2>{Previous unconstrained model: not always up-down changes.}
+\item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
 \item Slow $O(Kn^2)$ heuristic based on classic dynamic programming.
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Fast and exact functional pruning algorithm for PeakSeg}
