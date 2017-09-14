@@ -50,6 +50,7 @@ for(model.i in seq(1, max.segments, by=2)){
 }
 
 dp.fit <- PeakSegDP(compressed, maxPeaks=maxPeaks)
+pdpa <- PeakSegOptimal::PeakSegPDPAchrom(compressed, maxPeaks)
 
 cfac <- function(x)factor(x, c("unconstrained", "constrained"))
 seg.cols <- c("segments", "chromStart", "chromEnd", "mean")
@@ -147,6 +148,11 @@ gg <- ggplot()+
     vjust=0,
             color="green",
     data=three.segs)+
+  geom_text(aes(x, y, label="$K=3$ segments"),
+            data=data.frame(x=118090, y=50),
+            hjust=0,
+            size=3,
+            color="green")+
   geom_vline(aes(
     xintercept=chromEnd/1e3),
     data=three.breaks,
@@ -237,7 +243,7 @@ print(gg)
 dev.off()
 
 
-for(suffix in c("constrained", "unconstrained")){
+>for(suffix in c("constrained", "unconstrained")){
 segs.regions <-
   ggplot()+
   scale_fill_manual("label", values=ann.colors, 

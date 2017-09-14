@@ -22,6 +22,11 @@
 \definecolor{PELT}{HTML}{D95F02}
 \definecolor{FPOP}{HTML}{7570B3}
 \newcommand{\algo}[1]{\textcolor{#1}{#1}}
+\definecolor{PDPA}{HTML}{66C2A5}
+\definecolor{CDPA}{HTML}{FC8D62}
+\definecolor{GPDPA}{HTML}{4D4D4D}
+
+
 
 
 % Set transparency of non-highlighted sections in the table of
@@ -527,14 +532,27 @@ H {\it et al.}, {\it ICML} 2015.
 \item Hard optimization problem, naively $O(n^K)$ time.
 \item \alert<2>{Previous unconstrained model: not always up-down changes.}
 \item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
-\item Slow $O(Kn^2)$ heuristic based on classic dynamic programming.
+\item New $O(Kn^2)$ algo based on classic dynamic programming.
 \end{itemize}
-\end{frame}
+\end{frame} 
 
 
 \begin{frame}
-  \frametitle{Fast and exact functional pruning algorithm for PeakSeg}
-  AOAS under review. Fast and exact $O(K n\log n)$ algorithm.
+  \frametitle{Fast and exact algorithm for PeakSeg}
+  H {\it et al.}, arXiv:1703.03352. New GPDPA for 
+  constrained changepoint models, under review at {\it Annals of
+    Applied Statistics}.
+  \begin{itemize}
+  \item \algo{CDPA}: our constrained, approximate  algo (prev slide).
+  \item \algo{PDPA}: no constraints, exact (Rigaill
+    arXiv:1004.0887).
+  \item \algo{GPDPA}: up-down constrained, exact.
+  \item Exact optimal solution: for \emph{any} set of $P$ peaks, our
+    algorithm finds more (most) likely starts/ends/means.
+  \item Time to compute 10 models (0, ..., 9 peaks) for 2752 data
+    sequences down to \textcolor{GPDPA}{6 hours (GPDPA)} from
+    \textcolor{CDPA}{156 hours (CDPA)}.
+  \end{itemize}
 
   % \hskip -1cm
   % \parbox{0.53\textwidth}{
@@ -543,6 +561,12 @@ H {\it et al.}, {\it ICML} 2015.
   \parbox{0.49\textwidth}{
     \input{figure-PDPA-timings-log-log}
   }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ongoing work: joint peak calling pipeline for comparing samples}
+
+TODO 
 \end{frame}
 
 \section{Other projects and future work}
