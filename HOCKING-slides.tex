@@ -231,8 +231,9 @@ $$
     pathogenic (1) or benign (0).
   \item Existing methods to learn $f$: L1-regularized logistic
     regression, random forests, boosting.
-  \item Scientific question: which features are relevant for
-    predicting pathogenicity?
+  \item Scientific question: is the learned score more accurate than
+    the individual scores? Which features are relevant for predicting
+    pathogenicity?
   \item Main novelty: train on ClinVar data set 2013--2015
     (common/rare missense variants, 7059 benign, 4023 pathogenic)
   \end{itemize}
@@ -245,11 +246,18 @@ $$
   \item Learned ClinPred scores more accurately predict
     Pathogenic/Benign status in held-out test sets (ClinVar 2016,
     four-fold cross-validation).
-  \item Allele frequency feature essential for optimal accuracy.
+  \item AF=Allele Frequency feature essential for optimal accuracy.
   \item All features selected in L1-regularized logistic regression.
   \end{itemize}
 \includegraphics[width=0.7\textwidth]{Screenshot-clinpred-auc}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Learned scores predict accurately for variants in mouse}
+  But so does allele frequency (ExAC\_ALL).
+  \includegraphics[width=0.6\textwidth]{variants-auc-mouse}
+\end{frame}
+ 
 \section{Predicting breakpoint positions in DNA copy number profiles}
 
 \begin{frame}
@@ -429,7 +437,7 @@ SegAnnDB demo:\\interactively label chr1 and chrX
     in a chromosome subset between gaps in reference genome.
   \item Typical data set sizes $10^5 < n < 10^8$ for ChIP-seq.
   \item Structured binary classification problem: want to learn
-    $f(x)\in\{0,1\}^{n}$ to predict a 
+    $f(x)\in\{0,1\}^{n}$ to predict a  
     peak (1) or not (0).
   \item Previous algorithms: unsupervised learning (no labels).
   \end{itemize}
@@ -527,9 +535,9 @@ predict accurately for another person\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Only a few labels are required to train highly accurate models}
+  \frametitle{Only a few labels are required to train highly accurate models to recognize any peak pattern}
   \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
-
+ 
   \begin{itemize}
   \item Three different ChIP-seq experiments, each with a separate
     labeled pattern (broad/sharp/etc).
@@ -568,8 +576,8 @@ H {\it et al.}, {\it ICML} 2015.
 \item Hard optimization problem, naively $O(n^K)$ time.
 \item \alert<2>{Previous unconstrained model: not always up-down changes.}
 \item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
-\item New $O(Kn^2)$ algo based on classic dynamic programming (R
-  package PeakSegDP).
+\item New $O(Kn^2)$ time approximate algorithm based on classic
+  dynamic programming (R package PeakSegDP).
 \end{itemize}
 \end{frame} 
 
