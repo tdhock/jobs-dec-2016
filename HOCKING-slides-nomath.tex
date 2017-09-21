@@ -1,0 +1,1005 @@
+% -*- compile-command: "make HOCKING-slides.pdf" -*-
+\documentclass{beamer}
+\usepackage{tikz}
+\usepackage[all]{xy}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{algorithmic}
+\usepackage{multirow}
+
+\usepackage{appendixnumberbeamer}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\Lik}{Lik}
+\DeclareMathOperator*{\Peaks}{Peaks}
+\DeclareMathOperator*{\Segments}{Segments}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\minimize}{minimize}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\definecolor{pDPA}{HTML}{1B9E77}
+\definecolor{PELT}{HTML}{D95F02}
+\definecolor{FPOP}{HTML}{7570B3}
+\newcommand{\algo}[1]{\textcolor{#1}{#1}}
+\definecolor{PDPA}{HTML}{66C2A5}
+\definecolor{CDPA}{HTML}{FC8D62}
+\definecolor{GPDPA}{HTML}{4D4D4D}
+
+
+
+
+% Set transparency of non-highlighted sections in the table of
+% contents slide.
+\setbeamertemplate{section in toc shaded}[default][100]
+\AtBeginSection[]
+{
+  \setbeamercolor{section in toc}{fg=red} 
+  \setbeamercolor{section in toc shaded}{fg=black} 
+  \begin{frame}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\title{Statistical machine 
+learning algorithms for 
+understanding big data in
+  genomics and medicine}
+\date{29 September 2017}
+\author{
+  Toby Dylan Hocking\\
+  toby.hocking@mail.mcgill.ca
+}
+
+\maketitle
+
+\begin{frame}
+  \frametitle{Toby Dylan Hocking, brief CV}
+  \begin{description}
+  \item[2002-2006] UC Berkeley, double major in Molecular Cell Biology
+    and Statistics (honors thesis with Terry Speed).
+  \item[2006-2008] Biochemistry (DNA-binding specificity of zinc
+    finger proteins) and statistics at Sangamo BioSciences.
+  \item[2008-2009] Masters in Statistics, Paris 6.
+  \item[2009-2012] PhD in Mathematics from Ecole Normale Superieure de
+    Cachan, machine learning for cancer genomics with JP Vert (Inst Curie)
+    and Francis Bach (INRIA).
+  \item[2013] Postdoc in Computer Science (machine learning) with Masashi Sugiyama at Tokyo
+    Institute of Technology.
+  \item[2014-2017] Postdoc on machine learning for epigenomics
+    at McGill with Guillaume Bourque.
+  \end{description}
+\end{frame}
+
+\section{Introduction to machine learning}
+
+\begin{frame}
+  \frametitle{Labeling enables supervised machine learning algorithms}
+  \begin{tabular}{ccc}
+    Input: Photos & Cell images & Copy number profiles \\
+    \includegraphics[width=1.3in]{faces} &
+    \includegraphics[width=1.3in]{cellprofiler} &
+    \includegraphics[width=1.5in]{regions-axes}\\
+    Labels: boxes, names & phenotypes & alterations \\ \\
+    %CVPR 2013
+%CVPR 2017
+Computer vision
+ & CellProfiler & SegAnnDB \\
+    %246 papers
+%783 papers
+ & 
+%873 citations
+1980 citations
+ & H {\it et al.}, 2014. \\
+     &
+  \end{tabular}
+  Sources: \url{http://en.wikipedia.org/wiki/Face_detection}\\
+  Jones {\it et al.} PNAS 2009. Scoring diverse cellular morphologies in
+  image-based screens with iterative feedback and machine learning.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning in computer vision and biology}
+  ML is all about learning predictive functions $f(x)\approx y$, where 
+  \begin{itemize}
+  \item inputs/features $x$ are numerous (e.g. pixels or SNPs).
+  \item outputs/labels $y$ are what we want to predict (typically
+    phenotypes/classes).
+  \item Input $x$ = image of digit,
+    output $y\in\{0,1,\dots,9\}$,\\
+  $f(\includegraphics[height=1cm]{mnist-0})=0$,
+  $f(\includegraphics[height=1cm]{mnist-1})=1$
+  % \item Input $x$ = image of article of clothing,\\
+  %   output $y\in\{\text{shoe}, \text{pants}, \dots\}$,\\
+  % $f(\includegraphics[height=1cm]{fashion-mnist-boot})=\text{shoe}$,
+  % $f(\includegraphics[height=1cm]{fashion-mnist-pants})=\text{pants}$
+  \item Input $x$ = image of cell, 
+    output $y\in\{\text{yes}, \text{no}\}$,\\
+  $f(\includegraphics[height=1cm]{cellprofiler-yes})=\text{yes}$,
+  $f(\includegraphics[height=1cm]{cellprofiler-no})=\text{no}$
+  \item Input $x$ = genomic profile, output $y\in\{\text{breakpoint}, \text{normal}\}$
+  $f(\includegraphics[height=1cm]{neuroblastoma-changepoint})=\text{breakpoint}$,
+  $f(\includegraphics[height=1cm]{neuroblastoma-nochange})=\text{normal}$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Supervised machine learning }
+
+  \begin{itemize}
+  \item Domain expert labels examples using prior knowledge.
+  \item Supervised algorithm learns $f$ based on labeled training data.
+  \item State-of-the-art accuracy (if there is enough training data).
+  \item Can use same learning algorithm regardless of pattern.
+  \end{itemize}
+
+  \begin{center}
+      \begin{tabular}{cc}
+        \includegraphics[height=1in]{mnist-digits} &
+  \includegraphics[height=1in]{fashion-mnist-sprite-some}  
+  \end{tabular}
+  \end{center}
+  
+  \vskip -0.2cm
+  \scriptsize Sources: github.com/cazala/mnist, github.com/zalandoresearch/fashion-mnist
+
+  \includegraphics[width=\textwidth]{figure-good-bad}
+\end{frame}
+
+\begin{frame}
+  \frametitle{My main research interests}
+  Bioinformatics and biomedical literature (applications):
+  \begin{itemize}
+  \item Collaborations: applying machine learning methods to
+    better understand biology/medicine.
+  \item New labeling methods and benchmark data sets to facilitate
+    collaborations between machine learners and genomic/medical
+    scientists.
+  \end{itemize}
+  Statistics and machine learning literature (methods development):
+  \begin{itemize}
+  \item New statistical models for highly accurate pattern
+    recognition.
+  \item Fast optimization algorithms that scale linearly to huge data
+    sets -- important for genomics.
+  \end{itemize}
+\end{frame}
+
+\section{Collaborations: applications of 
+machine learning to genomics}
+
+\begin{frame}
+  \frametitle{Predicting flu vaccine titer response index}
+  \only<1>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap}
+  }
+  \only<2>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap-circled}
+  }
+  \only<2>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-genes}
+  }
+
+\begin{itemize}
+\item Collaboration with Maiko Narahara.
+\item Output: response 90 days after vaccination, $n=270$ people.
+\item Inputs: gene expression on day 7 --- 323 probes (227 genes)
+  different. Which are the most important?
+\item<2> L1-regularized logistic regression model predicts accurately
+  %(AUC=0.81) 
+using only three key genes: SDC1, TXNDC5, CD38.
+\item<2> SDC1=CD138, CD38 identify plasma cells in flow cytometry
+  (machine learning identified known markers).
+\end{itemize}
+
+% http://members.cbio.mines-paristech.fr/~thocking/figure-Ab-intervals-variables-samples.png
+
+% Finally, we identified three key genes (SDC1, TXNDC5, and CD38) that
+% could predict antibody responses at day90 (r=0.61, AUC=0.81, error
+% rate=25.9%).
+
+% We evaluated antibody titer responses in two different methods, binary
+% classification into responders and non-responders (R/NR
+% classification), and titer response index (TRI) 10 . For binary
+% classification, we considered a seroconversion as a positive
+% response. The US Food and Drug Administration (FDA) defined a
+% seroconversion for influenza vaccines as four-fold or more increase
+% from the baseline titer, or when the baseline titer was below the
+% detection limit (<10), post-vaccination titers of x40 or more
+% 26. Then we defined a responder as a subject who exhibited
+% seroconversion to at least one strain at a certain time point, and a
+% non-responder otherwise. TRI is a quantitative index of responsiveness
+% relative to the baseline titers, which aggregates titer changes for
+% three strains and different measurement methods 10 . We calculated
+% titer response index as described previously except that we did not
+% have neutralization titer measurements 10 .  The TRI scores were
+% calculated with the 270 subjects who passed the exclusion criteria
+% above.
+
+% We identified 323 probes, or 227 unique genes, that were significantly
+% associated with at least one of the antibody response phenotypes by
+% FDR < 5%: 22, and 225 genes (DEGs) were associated with Day1 TRI,
+% and Day90 TRI, respectively, and no genes were associated with Day7
+% TRI (Figure 3A, Table S6-S7). 41 out of 44 probes associated with Day1
+% TRI were also associated with Day90 TRI, and the P values for
+% significant probes were correlated (Figure S8). But the signs of
+% effect sizes for these probes were all negative for Day1 TRI (higher
+% TRI scores at day1 were associated with lower expression fold
+% changes at day7), and all positive for Day90 TRI.
+
+% We showed that antibody responses at day90 could be effectively
+% predicted by day7 expression of three genes (SDC1, CD38, and TXNDC5)
+% without using expression data of immunoglobulin genes. These three
+% genes were all also found in the DEGs. CD38 and TXNDC5 were clustered
+% in the cluster 1, and SDC1 was in cluster 2 (Figure 3B). SDC1 is also
+% known as CD138. Interestingly CD138 and CD38 proteins are the cell
+% surface markers that are commonly used to identify plasma cells in
+% flow cytometry. Therefore the machine learning approach successfully
+% identified known markers for plasma cells without using a priori
+% knowledge at all.
+
+% TXNDC5 is known to suppress apoptosis and up-regulated in various
+% cancers 78 ; however, its function in the immune system is
+% unknown. Our results suggest a strong involvement of TXNDC5 in
+% antibody responses.  Because TXNDC5 protein is considered to localize
+% in the endoplasmic reticulum 79 , it might possibly involve in
+% secretion of antibodies or cytokines, or transportation of endogenous
+% antigens to present via Class I MHC. Regarding that TXNDC5 was chosen
+% with two plasma cell marker genes, it might also function in plasma
+% cells, and therefore, we speculate that it plays an important role
+% particularly in antibody secretion in plasma cells.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Predicting autoimmune disease based on genetic variants}
+  \includegraphics[height=0.4\textheight]{Screenshot-asthma-pvalues}
+\only<2>{
+  \includegraphics[height=0.4\textheight]{figure-asthma-old}
+}
+  \begin{itemize}
+  \item Collaboration with Audrey Grant.
+  \item Output: asthma for $n=120286$ UK BioBank participants (genome
+    wide association study).
+  \item Inputs: SNP markers and HLA alleles, which are more
+    predictive?
+  \item<2> SNP markers are more predictive (model trained on HLA only
+    is less accurate).
+  \item<2> 31/32 SNP markers selected in L1-regularized logistic
+    regression model (1 SNP marker not used).
+  % \item white UK citizens, aged 40-70.
+  % \item Genotyped using microarrays, 32 markers selected using
+  %   univariate logistic regression test, 328 HLA alleles imputed.
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Machine learning setup for variant prioritization}
+%   \begin{itemize}
+%   \item $x\in\mathbb R^p$ = vector of scores from 
+%     annotation programs (evolutionary conservation, biochemical
+%     modeling, etc).
+%   \item $f(x)\in\{0,1\}$ for predicting whether the variant is
+%     pathogenic (1) or benign (0).
+%   \item Existing methods to learn $f$: L1-regularized logistic
+%     regression, random forests, boosting.
+%   \item Scientific question: is the learned score more accurate than
+%     the individual scores? Which features are relevant for predicting
+%     pathogenicity?
+%   \item Main novelty: train on ClinVar data set 2013--2015
+%     (common/rare missense variants, 7059 benign, 4023 pathogenic)
+%   \end{itemize}
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Learned scores predict pathogenicity more accurately}
+  \begin{itemize}
+  \item Collaboration with Najmeh Alirezaie.
+  \item Output: pathogenicity of $n=11082$ variants in ClinVar.
+  \item Inputs: scores based on conservation, biochemistry, etc.
+  \item Learned ClinPred scores more accurate than individual scores.
+  \item AF=Allele Frequency feature essential for optimal accuracy.
+  \item All features selected in L1-regularized logistic regression.
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{Screenshot-clinpred-auc}
+  \end{center}
+\end{frame}
+ 
+\section{New machine learning algorithms for predicting breakpoint positions in cancer DNA copy number profiles}
+
+\begin{frame}
+  \frametitle{Cancer cells show chromosomal copy number alterations}
+  Spectral karyotypes show the number of copies of the sex chromosomes
+  (X,Y) and autosomes (1-22). 
+
+  Source: Alberts \emph{et al.} 2002.
+\vskip 0.1in
+  \includegraphics[width=\textwidth]{Karyo-both}
+\vskip 0.1in
+  \begin{minipage}{0.4\linewidth}
+    Normal cell with 2 copies of each autosome.
+  \end{minipage}
+\hskip 0.1\linewidth
+  \begin{minipage}{0.4\linewidth}
+Cancer cell with many copy number alterations.
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakpoint detection is important in cancers such as
+    neuroblastoma } 
+
+  \begin{itemize}
+  \item Childhood cancer, most frequently diagnosed at age 1--2.
+  \item Top three profiles ``ok'' -- no tumors after initial treatment.
+  \item Bottom three ``relapse'' -- aggressive tumor within 5 years.
+  \item Previous work: relapse profiles tend to have more breakpoints
+     (Schleiermacher {\it et al.}, 2010).
+  \end{itemize}
+
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Breakpoint detection as a machine learning problem}
+  
+  \begin{itemize}
+  \item Input = noisy copy number signal for $p$ probes in one genome
+    subset (chromosome).
+  \item Output = predict $f(x)\in\{0,1\}^{p-1}$, either a
+    \textcolor{green}{breakpoint} (1) or not (0),
+    after every data point.
+  \item Previous algorithms: unsupervised learning (no labels) --
+    collaborators unsatisfied with visually obvious errors.
+  \end{itemize}
+
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-pred}
+\end{frame}
+
+\begin{frame}
+  \frametitle{New labeling and training methods for breakpoint detection}
+
+  H {\it et al.}, {\it BMC Bioinformatics} 2013.
+  \begin{itemize}
+  \item Create positive/breakpoint and negative/normal labels.
+  \item Quantify/optimize error rate (number of incorrect labels).
+  \item Benchmark data set of 3418 chromosomes,
+    labeled via visual inspection (R package neuroblastoma).
+  \item Results: most accurate model is maximum Gaussian likelihood 
+    changepoint detection (K-fold cross-validation experiments).
+  \end{itemize}
+
+  \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-supervised}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fast FPOP algorithm for computing the maximum likelihood
+    changepoint model}
+
+  Maidstone, Hocking, Rigaill, Fearnhead, {\it Stat. and
+    Comp.} 2017.
+
+  \begin{itemize}
+  \item Naively exponential $O(p^K)$ time to compute best model with
+    $K$ segments ($K-1$ changes) for a sequence of $p$ data.
+  \item Previous work: other algorithms for computing the model
+    (\algo{PELT} and \algo{pDPA}).
+  \item Contribution: new log-linear $O(p\log p)$ \algo{FPOP}
+    algorithm for computing the same model (R package fpop).
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figure-systemtime-arrays-bins}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Supervised interactive DNA copy number analysis}
+  H {\it et al.}, {\it Bioinformatics} 2014.
+
+  \begin{itemize}
+  \item Previous work: non-interactive command line programs
+    -- collaborators can not correct obvious
+    errors.
+  \item Interactive system: when you edit the labels, the system
+    learns and updates the model. (SegAnnDB python module)
+  \item Result below: only a few labels required to learn a highly accurate
+    breakpoint detection model.
+  \end{itemize}
+  \begin{minipage}{0.5\linewidth}
+    \includegraphics[width=\textwidth]{SegAnnDB-test-error-decreases}
+  \end{minipage}
+  \begin{minipage}[0.5\linewidth]{0.48\linewidth}
+SegAnnDB demo:\\interactively label chr1/chrX
+  \url{http://bioviz.rocq.inria.fr/profile/GSM313887/}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cancer biology collaborations}
+  Aichi cancer center, Nagoya, Japan.
+  \begin{itemize}
+  \item Suguro {\it et al.}, {\it Cancer Sci} 2014, Clonal
+    heterogeneity of lymphoid malignancies correlates with poor
+    prognosis.
+  \item Shimada {\it et al.}, {\it Leukemia} 2016, Development and
+    analysis of patient-derived xenograft mouse models in
+    intravascular large B-cell lymphoma.
+  \end{itemize}
+  Institut Curie, Paris, France.
+  \begin{itemize}
+  \item Chicard {\it et al.}, {\it Clinical Cancer Research} 2016,
+    Genomic copy number profiling using circulating free tumor DNA
+    highlights heterogeneity in neuroblastoma.
+  \item Ongoing work, characterizing alterations in neuroblastoma.
+  \end{itemize}
+\end{frame}
+
+\section{New machine learning algorithms for predicting peaks in ChIP-seq data}
+
+\begin{frame}
+  \frametitle{Chromatin immunoprecipitation sequencing (ChIP-seq)}
+  Analysis of DNA-protein interactions: which genomic regions have
+  bound/modified proteins?
+
+  \includegraphics[width=\textwidth]{Chromatin_immunoprecipitation_sequencing_wide.png}
+
+  Source: ``ChIP-sequencing,'' Wikipedia.
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Problem: inaccurate unsupervised peak predictions}
+%   \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
+
+%   Grey profiles are normalized aligned read count signals.
+
+%   Black bars are ``peaks'' called by MACS2 (Zhang {\it et al.}, 2008):
+%   \begin{itemize}
+%   \item many false positives (sometimes false negatives as well).
+%   \item overlapping peaks have different start/end positions.
+%   \end{itemize}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Peak detection as a machine learning problem}
+
+  \includegraphics[width=\textwidth]{screenshot-ucsc-edited}
+  
+  \begin{itemize}
+  \item Input = noisy coverage profile for $n$ bases
+    on a chromosome.
+  \item Output = predict $f(x)\in\{0,1\}^{n}$ either a peak (1) or not
+    (0), for every base.
+  \item Previous algorithms: unsupervised learning (no labels) --
+    false positives visually obvious.
+  \end{itemize}
+ 
+\end{frame} 
+
+% \begin{frame}
+%   \frametitle{Previous work in genomic peak detection}
+%   \begin{itemize}
+%   \item Model-based analysis of ChIP-Seq (MACS), Zhang et al, 2008.
+%   \item SICER, Zang et al, 2009.
+%   \item HOMER, Heinz et al, 2010.
+%   \item CCAT, Xu et al, 2010.
+%   \item RSEG, Song et al, 2011.
+%   \item Triform, Kornacker et al, 2012.
+%   \item Histone modifications in cancer (HMCan), Ashoor et al, 2013.
+%   \item PeakSeg, Hocking, Rigaill, Bourque, ICML 2015.
+%   \item PeakSegJoint Hocking and Bourque, arXiv:1506.01286.
+%   \item ... dozens of others.
+%   \end{itemize}
+%   Two big questions: how to choose the best...
+%   \begin{itemize}
+%   \item ...algorithm? (testing)
+%   \item ...parameters? (training)
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}[fragile]
+%   \frametitle{How to choose parameters of unsupervised peak
+%     detectors?}
+% \scriptsize
+% 19 parameters for Model-based analysis of ChIP-Seq (MACS), Zhang {\it et al.}, 2008.
+% \begin{verbatim}
+%   [-g GSIZE]
+%   [-s TSIZE] [--bw BW] [-m MFOLD MFOLD] [--fix-bimodal]
+%   [--nomodel] [--extsize EXTSIZE | --shiftsize SHIFTSIZE]
+%   [-q QVALUE | -p PVALUE | -F FOLDENRICHMENT] [--to-large]
+%   [--down-sample] [--seed SEED] [--nolambda]
+%   [--slocal SMALLLOCAL] [--llocal LARGELOCAL]
+%   [--shift-control] [--half-ext] [--broad]
+%   [--broad-cutoff BROADCUTOFF] [--call-summits]
+% \end{verbatim}
+% 10 parameters for Histone modifications in cancer (HMCan),
+% Ashoor {\it et al.}, 2013.
+% \begin{verbatim}
+% minLength 145
+% medLength 150
+% maxLength 155
+% smallBinLength 50
+% largeBinLength 100000
+% pvalueThreshold 0.01
+% mergeDistance 200
+% iterationThreshold 5
+% finalThreshold 0
+% maxIter 20
+% \end{verbatim}
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{New labeling method for peak detection in ChIP-seq data}
+
+  H {\it et al.}, {\it Bioinformatics} 2017: choose peak model/parameters
+  which minimize the number of incorrectly predicted labels.
+
+  \includegraphics[width=\textwidth]{figure-PeakError.pdf}
+  \begin{itemize}
+  \item \textbf{peakStart}: exactly one peak start (0=FN, more=FP).
+  \item \textbf{peakEnd}: exactly one peak end (0=FN, more=FP).
+  \item \textbf{noPeaks}: no overlapping peaks (otherwise FP).
+  \item \textbf{peaks}: at least one overlapping peak (otherwise FN).
+  \item R package PeakError.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Two annotators provide consistent labels, but different
+    precision}
+  \includegraphics[width=1.1\textwidth]{screenshot-several-annotators}
+
+  \begin{itemize}
+  \item TDH peakStart/peakEnd more precise than AM peaks.
+  \item AM noPeaks more precise than TDH no label.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Only a few labels are required to train highly accurate models to recognize any peak pattern}
+  \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
+ 
+  \begin{itemize}
+  \item Three different ChIP-seq experiments, each with a separate
+    labeled pattern (broad/sharp/etc).
+  \item Test accuracy quickly increases to max after 2--6
+    genomic windows (containing several labeled regions and samples).
+  \item PeakSeg highly accurate in all three patterns.
+  \item Other models only accurate for only one or two patterns.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fast and optimal algorithm for PeakSeg}
+  H {\it et al.}, arXiv:1703.03352. New GPDPA for 
+  constrained changepoint models, under review at {\it Annals of
+    Applied Statistics}.
+  \begin{itemize}
+  % \item \algo{CDPA}: our constrained, approximate  algo (prev slide).
+  % \item \algo{PDPA}: no constraints, exact (Rigaill
+  %   arXiv:1004.0887).
+  % \item \algo{GPDPA}: up-down constrained, exact. {\small (R pkg PeakSegOptimal)}
+  \item Optimal solution: for \emph{any} set of $P$ peaks, our
+    algorithm finds more (most) likely starts/ends/means.
+  \item Time to compute 10 models (0, ..., 9 peaks) for 2752 data
+    sequences down to \textcolor{GPDPA}{6 hours (GPDPA)} from
+    \textcolor{CDPA}{156 hours (CDPA)}.
+  \end{itemize}
+
+  \input{figure-PDPA-timings-wide-labels}
+
+  % \hskip -1cm
+  % \parbox{0.53\textwidth}{
+  %   \input{figure-PDPA-intervals-log-log}
+  % }
+  % \parbox{0.49\textwidth}{
+  %   \input{figure-PDPA-timings-log-log}
+  % }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Joint peak calling pipeline for comparing samples}
+\includegraphics[width=\textwidth]{PeakSegJoint-monocytes-up}
+
+\begin{itemize}
+\item Want to characterize active/inactive regions of the genome
+  specifically for each cell type.
+\item PeakSegJoint model predicts presence or absence of a common peak
+  in multiple samples, Hocking and Bourque, arXiv:1506.01286,
+  PeakSegJoint R package.
+\end{itemize}
+\end{frame}
+
+\section{Summary and future work}
+
+\begin{frame}
+  \frametitle{My research focus is new statistical machine learning algorithms and applications to biomedical data analysis}
+  \includegraphics[width=\textwidth]{timeline-SteJustine}
+
+  \begin{itemize}
+  \item ICML = International Conference on Machine Learning.
+  \item NIPS = Neural Information Processing Systems.
+  \item Submit 8-page paper, double-blind peer review, $\approx 20\%$ acceptance
+    rate.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other research projects}
+  \begin{tabular}{ll}
+Unsupervised convex & \multirow{4}{*}{
+\includegraphics[height=0.2\textheight]{screenshot-clusterpath}
+}\\
+hierarchical clustering.\\
+H {\it et al.}, {\it ICML} 2011\\
+%91 citations. 
+R package clusterpath. \\
+\hline
+Predicting the  & \multirow{4}{*}{
+\includegraphics[height=0.25\textheight]{Screenshot-max-margin}
+}\\
+number of changepoints.\\
+H {\it et al.}, {\it ICML} 2013. \\
+R package penaltyLearning.\\
+useR2017 tutorial.\\
+\hline
+New interactive keywords& \multirow{5}{*}{
+\includegraphics[height=0.2\textheight]{figure-design}
+}\\
+for the grammar of graphics,\\
+under review at \emph{Journal}\\
+\emph{of Computational and Graphical}\\
+\emph{Statistics}, R package animint.\\
+useR2016 tutorial.\\
+  \end{tabular}
+  % \begin{minipage}{0.3\linewidth}
+  %   Clusterpath for convex hierarchical clustering (H {\it et
+  %     al.}, {\it ICML} 2011, 91 citations). R package clusterpath.
+  %   \includegraphics[width=\linewidth]{screenshot-clusterpath}
+  % \end{minipage}
+  % \begin{minipage}{0.3\linewidth}
+  %   Support vector machines for ranking and comparison. H {\it et
+  %     al.}, arXiv:1401.8008. R package rankSVMcompare.
+  %   \includegraphics[width=\linewidth]{screenshot-ranksvmcompare}
+  % \end{minipage}
+  % \begin{minipage}{0.3\linewidth}
+  %   New interactive keywords for the grammar of graphics, under review
+  %   at \emph{Journal of Computational and Graphical Statistics}, R
+  %   package animint.
+  % \end{minipage}
+
+  % Collaborations at the McGill Genome Center:
+  % \begin{itemize}
+  % \item Predicting which people will respond to the flu vaccine based
+  %   on SNP data. (with Maiko Narahara)
+  % \item Predicting which people have asthma based on SNP
+  %   data. (with Audrey Grant)
+  % \item Predicting which genetic variants are pathogenic based on
+  %   biochemistry, evolutionary conservation, etc. (with
+  %   Najmeh Alirezaie)
+  % % \item Predicting genomic regions with peaks based on ChIP-seq
+  % %   data. (with Guillaume Bourque)
+  % \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Future projects for my research lab}
+  \begin{itemize}
+  \item More collaborations with biomedical scientists -- analysis of
+    DNA copy number data with Dr. Jacquemont.
+  \item Multi-task learning for predicting the number of changepoints
+    (multiple scientists provide breakpoint or peak labels).
+  % \item Survival models for predicting the number of changepoints: R
+  %   package iregnet.
+  \item Fast algorithms for other constrained changepoint models
+    (neuro spike train data, segmented regression for GWAS, etc).
+  \item Deep learning for nonparametric changepoint detection.
+  \item GenomicLearner platform for collaborations: interactive
+    labeling and machine learning analysis.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Previous work limited to 
+    unsupervised methods
+which are neither interactive nor accurate
+}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-unsupervised.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{GenomicLearner, an public web app for supervised interactive machine learning in genomic data}
+  \includegraphics[height=0.5\textheight]{GenomicLearner-both.pdf}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Thanks for your attention!}
+
+Any questions?
+
+\hskip 1cm
+
+\includegraphics[width=\textwidth]{timeline-SteJustine}
+
+  % Write me at \alert{\texttt{toby.hocking@mail.mcgill.ca}} to collaborate!
+
+  % \vskip 1cm
+
+  % timeline?
+
+\end{frame}
+
+\appendix
+
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}
+  \item More collaborations with biomedical scientists.
+  \item Survival models for penalty function learning: R package
+    iregnet.
+  \item Multi-task penalty function learning: how to 
+  \item Functional pruning algorithms for other constrained
+    changepoint models.
+  \item GenomicLearner platform for interactive analysis and
+    collboarations.
+  \item Deep learning for nonparametric changepoint detection.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Test error in three different experiments}
+  \includegraphics[width=1.1\textwidth]{figure-test-error-dots-mean.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Accuracy benchmark: 10 manually labeled data sets}
+  \url{http://cbio.ensmp.fr/~thocking/chip-seq-chunk-db/}
+  \begin{itemize}
+  \item We created 12,826 labels in 7 new data sets.
+  \item 4 annotators (AM, TDH, PGP, XJ).
+  \item 8 cell types.
+  \item 37 H3K4me3 samples (sharp peak pattern).
+  \item 29 H3K36me3 samples (broad peak pattern).
+  \end{itemize}
+  \vskip 1cm
+  \url{http://tare.medisin.ntnu.no/chipseqbenchmark/}
+  \begin{itemize}
+  \item 3 data sets from another group's work in 2011.
+  \item 3 transcription factors: SRF, NRSF, MAX.
+  \item 2 replicates per transcription factor.
+  \item Different protocol: label after peak calling.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Train on some samples, test on others\\
+(same histone mark and person)}
+  \includegraphics[width=1.1\textwidth]{figure-test-H3K4me3-types.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Train on one histone mark, test on another\\
+(same person and samples)}
+  \includegraphics[width=1.1\textwidth]{figure-test-TDH-experiments.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unsupervised algorithms inaccurate for 
+    complex patterns}
+  \begin{itemize}
+  \item Domain expert (e.g. biologist) with prior knowledge manually codes an
+    algorithm that recognizes the pattern.
+  \item ``if the image $x$ has a dividing cell then predict
+    $f(x)=\text{yes}$.''\\
+    -- how to code that?
+  \item ``if the copy number profile $x$ has a significant change of
+    at least p-value $P$ in bins of size $B$, then predict
+    $f(x)=\text{breakpoint}$.''\\
+    -- sub-optimal parameter choices are inevitable.
+    \end{itemize}
+Disadvantages:
+\begin{itemize}
+  \item Need to find someone with programming experience AND domain expertise!
+  \item Inaccurate: hard/impossible to manually write code that
+    accurately recognizes complex patterns.
+  \item Need to write a different algorithm for each pattern (0, 1, 2,
+    %shoe, pants, 
+    dividing cell, 
+    normal cell,
+    etc).
+  \end{itemize}
+\end{frame}
+
+\section*{Learning a penalty function in maximum likelihood changepoint models}
+
+\begin{frame}
+  \frametitle{Supervised learning algorithm for breakpoint detection}
+  H {\it et al.}, {\it ICML} 2013.
+  \begin{itemize}
+  \item New method for learning multi-feature linear penalty
+    functions in maximum likehood changepoint models.
+  \item Previous work: AIC/BIC/mBIC/etc (0 learned parameters)
+    and scalar penalties (1 learned parameter).
+  \item Contribution: convex optimization problem and learning
+    algorithm for regression with censored outputs
+    $(\underline L_i, \overline L_i)$.
+  \item Results: improves breakpoint detection accuracy (cross-validation experiments).
+  \end{itemize}
+\includegraphics[width=0.4\textwidth]{screenshot-mmir-crop}
+\includegraphics[width=0.4\textwidth]{screenshot-mmir-test-error}
+\end{frame}
+
+\begin{frame}
+  \frametitle{useR2017 tutorial}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nonlinear decision tree model}
+  Drouin, Hocking, Laviolette {\it NIPS} 2017.
+  \begin{itemize}
+  \item Contribution: dynamic programming algorithm for learning a
+    nonlinear decision tree model.
+  \item Results: learns nonlinear patterns, improved
+    breakpoint detection accuracy.
+  \end{itemize}
+%\includegraphics[width=\textwidth]{screenshot-mmit}
+
+\includegraphics[width=\textwidth]{screenshot-mmit-learned}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Maximum Gaussian likelihood changepoint detection}
+
+\includegraphics[width=\textwidth]{seg-mean}
+\begin{align*}
+    \minimize_{
+  \mathbf m\in\RR^{n}
+} &\ \ 
+    \underbrace{
+    \sum_{i=1}^n ( m_i - x_i)^2
+}_{\text{fit the data}} + 
+\underbrace{\lambda
+\sum_{i=1}^{n-1} I(m_i\neq m_{i+1})}_{
+\text{penalize number of changes}
+}
+\end{align*}
+
+\begin{itemize}
+\item Optimization variable $\mathbf m$ is the segment mean.
+\item Minimizing the square loss corresponds to maximizing the
+  Gaussian likelihood.
+\item Penalty term encourages a model with few changes.
+\item Penalty $\lambda=0$ means a change after every data point.
+\item Penalty $\lambda=\infty$ means no changes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Both HLA and markers selected in L1 regularized logistic regression
+    model for predicting asthma }
+
+  \begin{minipage}{0.39\linewidth}
+    \begin{itemize}
+    \item Right: many unused HLA alleles in the predictive model, one
+      unused SNP.
+    \item Below: SNP markers more accurate than HLA alleles.
+    \end{itemize}
+    \includegraphics[width=\textwidth]{figure-asthma-old}
+  \end{minipage}
+  \begin{minipage}{0.59\linewidth}
+    \includegraphics[width=\textwidth]{figure-asthma-4folds}
+  \end{minipage}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{L1-regularized logistic regression model automatically selects relevant HLA features for each
+    disease}
+
+  \begin{itemize}
+  \item HLA features predict some diseases more accurately than others.
+  \item Different number of features selected per disease.
+  \end{itemize}
+  \includegraphics[width=\textwidth]{screenshot-ankylosing-spondylitis}
+
+\scriptsize  \url{http://members.cbio.ensmp.fr/~thocking/figure-asthma-test-error/}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Models trained on labels from one person\\
+predict accurately for another person\\
+    (same histone mark and samples)}
+  \includegraphics[width=1.1\textwidth]{figure-test-H3K4me3-annotators.pdf}
+
+  Test error in four-fold cross-validation.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Maximum likelihood changepoint detection with up-down constraints on adjacent segment means (PeakSeg)}
+H {\it et al.}, {\it ICML} 2015. 
+   
+\only<1>{\input{figure-PeakSeg}}      
+\only<2>{\input{figure-PeakSeg-unconstrained}}
+\only<3>{\input{figure-PeakSeg-constrained}}
+\vskip -1.5cm
+\begin{align*}
+    \minimize_{\substack{
+  \mathbf u\in\RR^{K}
+\\
+   0=t_0<t_1<\cdots<t_{K-1}<t_K=n
+  }} &\ \ 
+    \sum_{k=1}^K\  \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
+  \label{PeakSegPDPA}
+\\
+      \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},}
+  \nonumber\\
+  &\ \ \alert<3>{u_{k-1} \geq u_k\ \forall k\in\{3,5,\dots\}.}
+  \nonumber 
+\end{align*}
+\vskip -0.4cm
+\begin{itemize}  
+\item Simple: 1 parameter = number of segments $K\in\{1,3,\dots\}$.
+\item Hard optimization problem, naively $O(n^K)$ time.
+\item \alert<2>{Previous unconstrained model: not always up-down changes.}
+\item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
+\item New $O(Kn^2)$ time approximate algorithm based on classic
+  dynamic programming (R package PeakSegDP).
+\end{itemize}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{Heartbeat mp3}
+  \includegraphics[width=\textwidth]{figure-heartbeat-data-only}
+
+  \scriptsize
+  \url{https://github.com/tdhock/heartbeat/blob/master/heartbeat.mp3}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unconstrained 
+model does not satisfy up-down constraint}
+  \includegraphics[width=\textwidth]{figure-heartbeat-unconstrained}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Up-down
+model interpretable in terms of heartbeats}
+  \includegraphics[width=\textwidth]{figure-heartbeat-PeakSeg}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Can measure heartbeat duration}
+  \includegraphics[width=\textwidth]{figure-heartbeat}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Multi-state changepoint model for neuro spike train
+    data}
+  Autoregressive single-state changepoint detection model (always
+  decreasing) Jewell and Witten, arXiv:1703.08644.
+
+  \includegraphics[width=0.45\textwidth]{Screenshot-neuro-spike-train}
+  \includegraphics[width=0.45\textwidth]{Screenshot-three-states}
+\end{frame}
+
+
+\end{document}
+
+ 

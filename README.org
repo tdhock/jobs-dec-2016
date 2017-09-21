@@ -61,7 +61,7 @@ problems that I described.
 | [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]                    | 1 Nov 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10444][South Dak]] Stat                | 1 Nov 2017   |
 | [[https://apply.interfolio.com/43065][Williams Stats]]                | 1 Nov 2017   |
-| [[http://jobs.imstat.org/job/assistant-professor-tenure-track/36666803/][UBC data science]]              | 1 Nov 2017   |
+| [[https://www.stat.ubc.ca/assistant-professor-tenure-track-statistics][UBC stats/data science]]        | 1 Nov 2017   |
 | [[https://jobs.sciencecareers.org/job/457369/assistant-professor-informatics/?LinkSource%3DPremiumListing][Venter Inst]]                   | 10 Nov 2017  |
 | [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Stats]] 318928 311795 | 10 Nov 2017  |
 | [[https://apply.interfolio.com/43597][SDSU Stats]]                    | 15 Nov 2017  |
