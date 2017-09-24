@@ -1,0 +1,410 @@
+\documentclass{article}
+
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage[cm]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\setlength{\headheight}{9.2pt}
+\setlength{\headsep}{5.2pt}
+\pagestyle{fancyplain}
+\pagenumbering{gobble}
+\lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
+\chead{{\LARGE \bf Research Statement} }
+\rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
+
+\begin{document}
+
+\mbox{ }
+% \vspace{ -0.5cm}
+
+%\section*{\centering Research Statement}
+
+% During 2009-2012, I completed my PhD degree in applied mathematics
+% from the Ecole Normale Sup\'erieure de Cachan, France. I studied
+% statistical machine learning algorithms for biology and medicine, under the
+% supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
+% Vert (Institut Curie, Mines ParisTech). I am currently a
+% postdoctoral research associate under the supervision of Dr. Guillaume
+% Bourque, in the McGill University Department of Human Genetics.
+
+% With recent advances in technology, more data are being generated and
+% recorded than ever before in human history. For example, in scientific
+% fields such as medicine and biology, new sensors and DNA sequencing
+% machines are being used to generate many high-dimensional data
+% sets. This has led to a need to develop new statistical models and
+% machine learning algorithms to understand patterns in these data, i.e.
+% to generate knowledge about how the human genome influences medical
+% conditions. 
+
+I create new statistical machine learning algorithms for solving big
+data analysis problems in cancer genomics, so I think the Ontario
+Institute for Cancer Research would be an ideal setting for my
+research. I work in close collaboration with biomedical scientists on
+developing appropriate models, and I work with other statisticians and
+machine learners on fast and accurate optimization algorithms. So far
+my research has been focused on proposing new statistical machine
+learning models for clustering, regression, changepoint detection,
+ranking, and classification. My contributions to the statistics and
+machine learning literature are algorithms for efficiently solving
+these discrete and convex optimization problems. I am particularly
+interested in developing algorithms that are fast enough to support
+interactive labeling and supervised machine learning in large genomic
+data sets, which are increasingly being used to understand and
+diagnose cancer. The following is a summary of my previous research
+projects, and my future research plan.
+
+\section{Changepoint detection and regression algorithms for DNA copy
+  number data}
+
+During my PhD in Paris, I worked in collaboration with medical doctors
+at the Institut Curie on statistical machine learning methods for
+diagnosing neuroblastoma, a cancer that most frequently occurs in
+small children. The doctors wanted to give targeted treatments based
+on the number of abrupt changes in DNA copy number data from the
+patient's tumor. Previous heuristic algorithms for changepoint
+detection in these data provided insufficient accuracy with respect to
+the doctors' interpretation of the signal/noise in these data. My
+contribution was to develop new statistical machine learning
+algorithms based on labels provided by the doctors.
+
+\paragraph{New labeling method for supervised changepoint detection.}
+
+In work published in \emph{BMC Bioinformatics}
+\citep{HOCKING-breakpoints}, we proposed to re-frame the changepoint
+detection problem in terms of supervised learning. In our framework,
+the doctors first labeled a subset of their data with positive regions
+that contain changepoints, and negative regions that contain no
+changepoints. 
+% We thus have a set of labeled data sequences, and the
+% goal is to learn a model that provides accurate changepoint predictions
+% on a set of un-labeled data sequences. 
+The main contributions of our
+paper were to show that existing algorithms can be (1) trained by
+learning parameters that minimize the number of
+incorrect training labels, and (2) compared by computing the number of
+incorrect test labels in a held-out data set. We performed a
+comparison study which showed that the most accurate existing method
+was a Gaussian maximum likelihood changepoint detection model. 
+%This result was somewhat expected, because this model is the sparsest
+% Each
+% data sequence is modeled by a piecewise constant segment mean, and a
+% dynamic programming algorithm finds the most likely changepoint
+% positions, subject to an L0 sparsity constraint on the number of
+% changes. 
+In this paper we selected the number of changes using a
+simple univariate penalty function that depends on the number of data
+points, and in our next paper we investigated generalizing that to
+multivariate penalty functions.
+
+\paragraph{Regression models for supervised penalty function
+  learning.}
+
+In work published at \emph{ICML'13} \citep{HOCKING-penalties}, we
+proposed a fast and accurate supervised statistical learning algorithm
+that exploits the structure of the labeled changepoint detection
+problem. We showed that learning a penalty function for selecting the
+number of changepoints is in fact a regression problem with censored
+outputs. 
+% For each data sequence in which we would like to detect
+% changepoints, the input is a feature vector of statistics (number of
+% data points in the sequence, variance estimates, quantiles, etc), and
+% the output is an interval of log(penalty) values that achieves the
+% minimum number of incorrect labels. We showed that a data sequence
+% with a negative label results in a right-censored output (when the
+% penalty is too small, there are too many changepoints); a positive
+% label results in a left-censored output (when the penalty is too
+% large, there are not enough changepoints). When a data sequence has
+% both positive and negative labels, the output is interval-censored.
+We proposed a margin-based convex loss function that exploits the
+structure of the censored outputs, and an L1 penalty for
+regularization and sparsity. Our main contribution was a new convex
+optimization algorithm that minimizes the resulting convex objective
+function. We showed that our algorithm learns a multivariate linear
+penalty function, and provides more accurate changepoint detection
+than the previous univariate penalty. I implemented these algorithms
+in the penaltyLearning R package, which I presented during a
+\emph{useR2017} tutorial on optimal changepoint detection algorithms
+\citep{change-tutorial}. In more recent work which was accepted for
+publication at \emph{NIPS'17} \citep{MMIT}, we proposed a nonlinear
+decision tree model for learning such penalty functions.
+
+\paragraph{Collaborations using an interactive web app for supervised
+  changepoint detection.} In work published in \emph{Bioinformatics}
+\citep{hocking-SegAnnDB}, we proposed a web application that
+facilitates interactive labeling and supervised statistical learning
+analysis of DNA copy number data. On the practical side, our system
+was novel because it allows genomic scientists to not only view the
+data but also label obvious signal and noise patterns. This
+functionality is essential for collaborations, because when a domain
+expert sees an incorrect prediction, he/she can
+immediately correct it by adding appropriate labels. Our main
+statistical contribution was an efficient dynamic programming
+algorithm for computing the most likely K changepoints for a given set
+of K positive labels. This algorithm was essential in order to provide a model
+which fits any set of labels provided by an expert user. We have used
+this system to facilitate collaborations with scientists at Intitute
+Curie, Paris, France \citep{Chicard}; and Aichi Cancer Center, Nagoya,
+Japan \citep{Hocking-Leukemia-2016,m14:clonal}.
+
+
+\paragraph{Pruning algorithms for optimal changepoint detection.} In
+work published in \emph{Statistics and Computing} \citep{fpop}, we
+studied two previous optimal changepoint detection algorithms, and
+generalized their pruning techniques to other optimization
+problems. One previous algorithm used an inequality pruning technique
+for the penalized optimization problem, and we showed that a
+functional pruning technique can also be used to solve the penalized
+optimization problem. Our mathematical analysis showed that every
+changepoint pruned by the inequality technique will also be pruned by
+the functional technique. This theoretical result suggested that the functional
+pruning algorithm should be faster, and we observed that it is indeed
+faster in an empirical analysis of the algorithm on several real DNA
+copy number data sets from neuroblastoma tumors. My main contribution
+to this paper was to conduct the empirical analysis of speed and
+accuracy of the algorithm. In a comparison with other changepoint
+detection algorithms, we showed that our proposed algorithm achieves
+state-of-the-art speed and changepoint detection accuracy.
+
+\section{Statistical machine learning models for peak detection in ChIP-seq data}
+
+\paragraph{Reframing peak detection as supervised binary
+  classification.} In work published in \emph{Bioinformatics}
+\citep{HOCKING-chipseq}, we proposed a labeling method and supervised
+learning framework for peak detection in genomic data such as
+ChIP-seq. These experiments characterize active and inactive regions
+of the genome in different individuals and cell types. In these data,
+the main analysis task is classify each position of the genome as
+either peaks (with large values) or background noise (with small
+values). Although there are dozens of unsupervised heuristic
+algorithms for this task in the bioinformatics literature, they all
+suffer from inaccurate peak detection because there is no method to
+systematically adapt tuning parameter values to the different peak
+patterns in different data sets.
+
+We proposed to frame the problem in terms of supervised learning, with
+labels from expert scientists that indicate regions in specific
+samples with or without peaks. We showed that these positive and
+negative labels can be used to (1) choose appropriate parameters that
+minimize the number of incorrect labels in training data, and (2)
+compare the peak detection accuracy of different algorithms in
+held-out test data. In our cross-validation experiments, we trained a
+single significance threshold parameter of each unsupervised
+algorithm, then computed predicted peaks and the number of incorrectly
+predicted labels in a held-out test set. We observed that different
+algorithms achieved maximum peak detection accuracy in different data
+sets; there was no single algorithm which was most accurate in all
+data sets. We also showed that labels from different scientists are
+highly consistent, by observing similar test error rates when training
+on labels from the same or a different scientist.
+
+\paragraph{Up-down constrained changepoint detection model for peak
+  detection.} In work published at \emph{ICML'15}
+\citep{HOCKING-PeakSeg}, we proposed a constrained changepoint
+detection model for peak detection in ChIP-seq data. We observed that
+the existing optimal changepoint model could sometimes be interpreted
+in terms of peaks (after up changes) and background (after down
+changes). However, in some data sets this model
+consists of several consecutive up changes, which is not directly
+interpretable in terms of peaks and background. We thus proposed an
+additional constraint that up changes must be followed by down
+changes, which results in a more interpretable model (with lower
+likelihood). Our main contribution in this paper was to adapt the
+classical quadratic time dynamic programming algorithm to this new
+constraint. Another contribution was to demonstrate that we can
+efficiently learn a penalty function, using the same censored
+regression algorithm that we previously used to predict the number of
+changes in the unconstrained changepoint detection model. We showed
+that this method achieves state-of-the-art peak detection accuracy in
+all of the labeled data sets that we created, thereby proving that a
+single algorithm can adapt to peak patterns in different data sets.
+
+Our quadratic time dynamic programming algorithm has two issues: it is
+slow for large data sets, and it does not necessarily compute the
+optimal solution to the constrained problem. In work under review in
+\emph{Annals of Applied Statistics}
+\citep{Hocking-constrained-changepoint-detection}, we proposed a new
+algorithm that resolves both issues. We described how a functional
+pruning technique can be generalized to changepoint problems with
+constraints between adjacent segment means (e.g. second segment mean
+must be greater than or equal to first segment mean). This results in a fast
+log-linear time algorithm, because it immediately prunes changements
+which result in a sub-optimal cost. The algorithm is also guaranteed
+to compute the optimal solution to the constrained changepoint detection
+problem. We applied this algorithm to our benchmark of labeled
+ChIP-seq data sets. We observed the same state-of-the-art peak
+detection accuracy as our previous quadratic time algorithm, and
+orders of magnitude faster run-times -- about as fast as the
+sub-optimal unsupervised heuristic algorithms that are common 
+in the bioinformatics literature.
+
+\paragraph{Changepoint model for comparing samples.}
+Rather than modeling the peaks in each sample in isolation, scientists
+often would like to characterize the differences between samples. In
+my collaborations at the McGill Genome Center, we would like to
+characterize active and inactive regions in several different human
+cell types (B cells, T cell, monocytes, etc). In ongoing work, I have
+proposed a changepoint detection model that enforces the constraint that peaks
+should occur in the same positions across samples
+\citep{HOCKING-PeakSegJoint}.
+
+\section{Other research projects}
+
+% \paragraph{Convex clustering.} In work published at \emph{ICML'11}
+% \citep{HOCKING-clusterpath}, we described efficient algorithms for
+% hierarchical clustering using convex fusion penalties. This
+% influential paper has over 80 citations
+% including theoretical, algorithmic, and applications papers.
+
+% \paragraph{Bayesian model of evolution.} In work that we published in
+% \emph{PLOS ONE} \citep{HOCKING-evolution}, we proposed to identify
+% genetic markers under selection using a hierarchical Bayesian model of
+% evolution.
+
+% \paragraph{The inlinedocs documentation generation system} for R was
+% described in our \emph{Journal of Statistical Software}
+% \citep{hocking13:inlinedocs} article.
+
+% \paragraph{Adding interactivity to the grammar of graphics.} In work
+% under review in \emph{Journal of Computational and Graphical
+%   Statistics} \citep{animint}, we described new keywords for
+% interactivity and animation in the grammar of graphics. This work was
+% also presented in an invited session at \emph{Joint Statistical
+%   Meetings 2015} and in a tutorial at \emph{useR2016}.
+
+% \paragraph{Support vector machines for ranking and comparing.} In my
+% 2013 postdoc at Tokyo Institute of Technology, I studied a support
+% vector machine algorithm for ranking and comparing
+% \citep{svmcompare}. In ongoing work which we plan to publish in
+% \emph{Journal of Machine Learning Research}, we train this
+% algorithm on historical data of chess matches, and use it to predict
+% player rankings and future game outcomes.
+
+\paragraph{Statistical machine learning models for big data.} In work
+published at \emph{ICML'11} \citep{HOCKING-clusterpath}, we described
+efficient algorithms for hierarchical clustering using convex fusion
+penalties. This influential paper has over 90 citations including
+theoretical, algorithmic, and applications papers. In work for my
+Masters thesis that we published in \emph{PLOS ONE}
+\citep{HOCKING-evolution}, we proposed to identify genetic markers
+under selection using a hierarchical Bayesian model of evolution. In
+my 2013 postdoc at Tokyo Institute of Technology, I studied a support
+vector machine algorithm for ranking and comparing
+\citep{svmcompare}. In ongoing work which we plan to publish in
+\emph{Journal of Machine Learning Research}, we train this algorithm
+on historical data of chess matches, and use it to predict player
+rankings and future game outcomes.
+
+\paragraph{Adding interactivity to the grammar of graphics.} In work
+under review in \emph{Journal of Computational and Graphical
+  Statistics} \citep{animint}, we described new keywords for
+interactivity and animation in the grammar of graphics. This work was
+also presented in an invited session at \emph{Joint Statistical
+  Meetings 2015} and in a tutorial at \emph{useR2016}.
+
+\paragraph{Contributions to reproducible research and free/open-source
+  software.} For each of my research papers, I have written an R
+package which provides a reference implementation of the corresponding
+algorithm/model. Our \emph{Journal of Statistical Software} article
+\citep{hocking13:inlinedocs} describes a new documentation generation
+system for R that simplifies writing documentation for such packages.
+
+\section{Plan for future research}
+
+My future research plan involves developing new statistical machine
+learning algorithms for cancer genomics, in close collaboration with
+biomedical scientists. I thus feel that the Ontario Institute for
+Cancer Research would be an ideal place to continue my research. In
+the short term, I plan to continue research projects related to
+optimal changepoint detection, which has proven to be very effective
+for genomic data. In particular, I plan to assign the research Aims
+below as projects for my future graduate students. I will submit grant
+applications to NSERC and CIHR to fund these projects. I will
+continue to publish algorithms as free/open-source R packages, in
+order to facilitate reproducible research. In the long term, my
+research will be focused on deep learning and other statistical models
+for interactive analysis of data sets from cancer genomics. I am
+especially interested to continue collaborating with genomic
+scientists and medical doctors, in order to help understand how the
+human genome influences cancer.
+
+\paragraph{Aim 1: survival models for penalty function learning.} In
+previous work I have showed that learning a penalty function for
+changepoint detection can be cast as a regression problem with
+censored outputs, a problem that has been extensively studied in the
+survival literature. In this project, I will use regularized Accelerated Failure
+Time models from the survival literature to learn a multivariate
+linear penalty function. The main difference with my previous work is
+that these models assume a parametric distribution for the penalty values
+(e.g. maximum Gaussian likelihood), whereas my previous
+work used a discriminative model (minimizing a margin-based loss
+function).
+
+\paragraph{Aim 2: multi-task penalty function learning.} My previous
+work has shown that labels from a single genomic scientist can be used
+to learn a penalty function for changepoint detection. But in
+practice, several different genomic scientists provide separate
+labels for a given data set. Some pairs of scientists provide similar
+labels, and others provide different labels, for the same data
+sequence. In this setting, we would like to learn a different penalty
+function for each scientist, under the assumption that there will be
+clusters of similar scientists. In this project I will investigate
+adapting techniques from the multi-task learning literature to this
+more complex penalty function learning problem.
+
+
+\paragraph{Aim 3: functional pruning algorithms for other constrained
+  changepoint models.} My previous research has shown that a
+functional pruning technique can be used to obtain fast and exact
+constrained changepoint detection algorithms. In these projects, I
+will investigate generalizing this technique to more complex
+constrained changepoint models than the two-state peak/background
+model we used for ChIP-seq data. For example, neuro spike train data
+sets could be modeled using a changepoint model with three states:
+flat/constant, increasing toward a spike, decreasing after a
+spike. Another example is an up-down constrained segmented regression
+model, which would be useful for identifying hot spots in genome wide
+association studies. Finally, for interactive analysis of labeled
+data sequences, we would like to constrain the model so that it is
+guaranteed to be consistent with the labels.
+
+\paragraph{Aim 4: GenomicLearner platform for interactive analysis and
+  collaborations.} My previous research has shown that genomic
+scientists can label some obvious signal/noise patterns in their data
+sets, and these labels can be used to train supervised learning
+algorithms for highly accurate pattern recognition. However, existing
+genomic data visualization software (e.g. UCSC genome browser)
+supports neither interactive labeling nor supervised learning
+algorithms. The goal of this project will be to develop
+GenomicLearner, a extensible platform for interactive labeling and
+statistical machine learning analysis of genomic data. The biggest
+theoretical challenge is that most existing algorithms are meant for
+non-interactive analysis, and so are not fast enough for interactive
+use. We will develop new statistical models with real-time inference
+algorithms in order to provide immediate feedback to our collaborators
+and the general public who will be using the platform. I have already
+written a grant proposal, which I plan to submit to NIH or NSF.
+
+% \paragraph{Aim 3: other labeling and supervised learning in data
+%   sequences.}
+% My collaborations with genomic scientists have revealed that
+% algorithms. Multivariate patterns in histone marks (chromatin
+% states). Labeling confidence bands.
+
+\paragraph{Aim 5: Deep learning for nonparametric changepoint
+  detection.} My previous work on supervised changepoint detection has
+been limited to learning a penalty function that predicts the number
+of changes in maximum likelihood segmentation models. These models
+work quite well in relatively small data sets (thousands of labels),
+but I expect they will not be flexible enough to learn accurate models
+in the larger data sets that GenomicLearner will generate
+(millions of labels). In this project I will explore training deep
+convolutional neural networks, which should provide more accurate
+predictions in these larger data sets.
+%\small
+\bibliographystyle{plain}
+\bibliography{TDH-refs}
+
+\end{document}

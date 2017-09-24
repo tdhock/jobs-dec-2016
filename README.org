@@ -1,5 +1,7 @@
 ** TODOs
 
+pdfunite 1.pdf 2.pdf both.pdf
+
 ** 17 Aug 2017
 
 added Makefile, bibfile, mcgill logo.
@@ -38,65 +40,66 @@ problems that I described.
 
 ** List
 
-| where                         | when         |
-|-------------------------------+--------------|
-| [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Math]]  319416        | immediately  |
-| [[https://www.recruitingsite.com/csbsites/oicr/JobDescription.asp?JobNumber%3D675388][OICR]]                          | immediately  |
-| [[https://www.unrsearch.com/postings/24784][Reno]]                          | 30 Sept 2017 |
-| [[https://apply.interfolio.com/42769][Notre Dame Stat]]               | 1 Oct 2017   |
-| [[https://jobs.newpaltz.edu/postings/721][New Paltz NY]]                  | 1 Oct 2017   |
-| [[https://www.mathjobs.org/jobs/jobs/10467][Reed]]                          | 2 Oct 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10350][Amherst Stats]]                 | 8 Oct 2017   |
-| [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]                     | 15 Oct 2017  |
-| UQAM Stats                    | 15 Oct 2017  |
-| [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]]                   | 16 Oct 2017  |
-| [[http://jobs.amstat.org/jobs/10125430/assistant-professor][Monmouth]] NJ                   | 16 Oct 2017  |
-| [[https://www.mathjobs.org/jobs?joblist--10500][Eau Claire Math]]               | 21 Oct 2017  |
-| [[https://www.mathjobs.org/jobs?joblist--10335][Bucknell Stats]]                | 21 Oct 2017  |
-| [[http://jobs.imstat.org/jobseeker/job/35565026/assistantassociate-professor/naval-postgraduate-school/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][Naval Monterey]]                | 31 Oct 2017  |
-| [[https://aprecruit.ucmerced.edu/apply/JPF00522][Merced Math]]                   | 1 Nov 2017   |
-| [[https://recruit.ucdavis.edu/apply/JPF01680][Davis Stats]]                   | 1 Nov 2017   |
-| [[http://jobs.amstat.org/jobs/10152921/assistant-professor][Hamilton NY]]                   | 1 Nov 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10479][Michigan stats]]                | 1 Nov 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]                    | 1 Nov 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10444][South Dak]] Stat                | 1 Nov 2017   |
-| [[https://apply.interfolio.com/43065][Williams Stats]]                | 1 Nov 2017   |
-| [[https://www.stat.ubc.ca/assistant-professor-tenure-track-statistics][UBC stats/data science]]        | 1 Nov 2017   |
-| [[https://jobs.sciencecareers.org/job/457369/assistant-professor-informatics/?LinkSource%3DPremiumListing][Venter Inst]]                   | 10 Nov 2017  |
-| [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Stats]] 318928 311795 | 10 Nov 2017  |
-| [[https://apply.interfolio.com/43597][SDSU Stats]]                    | 15 Nov 2017  |
-| [[http://jobs.amstat.org/jobs/10171164/college-of-liberal-arts-science-open-rank-faculty-in-statistics-data-science-dept-of-statistics][Illinois]]                      | 15 Nov 2017  |
-| [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]                | 15 Nov 2017  |
-| [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]                  | 15 Nov 2017  |
-| [[https://jobs.carleton.edu/postings/3269][Carleton MN]]                   | 30 Nov 2017  |
-| [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]                  | 1 Dec 2017   |
-| [[https://apply.interfolio.com/43943][SDSU CS]]                       | 1 Dec 2017   |
-| [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]                  | 1 Dec 2017   |
-| [[https://aprecruit.ucsf.edu/apply/JPF00957][UCSF Biostats]]                 | 30 Dec 2017  |
-| [[https://www.mathjobs.org/jobs?joblist--10504][OK stats]]                      | 31 Jan 2018  |
-| [[https://www.mathjobs.org/jobs?joblist--10329][Lawrence Stats]]                | 1 Feb 2018   |
-| [[https://aprecruit.ucsf.edu/apply/JPF01218][UCSF Comp Health Sci]]          | 3 July 2018  |
-| [[https://utah.peopleadmin.com/postings/65870][Utah Biostats]]                 | ??           |
-| [[http://jobs.amstat.org/jobs/10064031/methodologist-assistant-associate-professor-research][Colorado]]                      | ??           |
-| [[http://jobs.amstat.org/jobs/10125453/assistant-associate-research-professor-in-biostatistics-hematology][City of Hope Biostats]]         | ??           |
-| [[http://jobs.amstat.org/jobs/9155935/assistant-or-associate-professor-none-tenure-line-research-quantitative-sciences-unit][Stanford Biostats]]             | ??           |
-| [[http://jobs.amstat.org/jobs/10136720/faculty-in-biostatistics-and-bioinformatics-assistant-or-associate-members-professors][Buffalo Biostats]]              | ??           |
-| [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]                    | ??           |
-| DONE AFTER THIS               |              |
-| [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]                | 3 July 2017  |
-| [[https://www.lsuhsc.edu/Administration/hrm/CareerOpportunities/Home/Detail?id=1626][LSU Biostats]]                  | 15 Oct 2017  |
-| [[https://apply.interfolio.com/43537][Middlebury VT]]                 | 15 Oct 2017  |
-| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13642][Tex Cancer Biostats]]           | immediately  |
-| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]              | immediately  |
-| [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]                      | immediately  |
-| [[https://apply.interfolio.com/31595][Tulane CS]]                     | immediately  |
-| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][AZ CS]]                         | immediately  |
-| [[http://jobs.amstat.org/jobs/10031375/assistant-associate-biostatistician-position][San Antonio]]                   | immediately  |
-| [[https://main.hercjobs.org/jobs/10248441/assistant-associate-professor][Oregon Health Veterans]]        | immedaitely  |
-| [[https://apply.interfolio.com/42856][SDSU ECE]]                      | immediately  |
-| [[http://cra.org/job/hofstra-university-assistantassociate-professor-in-computer-science/][Hofstra]]                       | 15 Sept 2017 |
-| [[https://miamioh.hiretouch.com/job-details?jobid%3D4581][Miami, OH Business]]            | 15 Sept 2017 |
-| [[http://jobs.imstat.org/jobseeker/job/36083040/assistant-professor-of-statistics-biostatistics-data-science/california-state-university-east-bay/?str%3D1&max%3D25&t731%3D47729&keywords%3Dtenure%252Dtrack&vnet%3D0][CSUEB]]                         | 18 Sept 2017 |
-| [[https://umass.interviewexchange.com/jobofferdetails.jsp%3Bjsessionid%3DD27F3B2D62718A3916CBFFC7095BFB9A?JOBID%3D86465][Amherst Biostats]]              | 15 Sept 2017 |
-| [[https://www.mathjobs.org/jobs?joblist--10388][Waterloo Stats]]                | 15 Sept 2017 |
-| [[https://ais.ohsu.edu/OA_HTML/OA.jsp?page=/oracle/apps/irc/candidateSelfService/webui/VisVacDispPG&OAHP=IRC_EXT_SITE_VISITOR_APPL&OASF=IRC_VIS_VAC_DISPLAY&akRegionApplicationId=821&transactionid=892711404&retainAM=N&addBreadCrumb=RP&p_spid=85715&oapc=9&oas=9IYQQUtQxgsmi5VvasFClg..&p_svid=54682][OHSU]]                          | immediately  |
+| where                  | when         |
+|------------------------+--------------|
+| [[https://jobs.newpaltz.edu/postings/721][New Paltz NY]]           | 1 Oct 2017   |
+| [[https://www.mathjobs.org/jobs/jobs/10467][Reed]]                   | 2 Oct 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10350][Amherst Stats]]          | 8 Oct 2017   |
+| [[https://apol-recruit.ucsd.edu/apply/JPF01557][UCSD Biostats]]          | 15 Oct 2017  |
+| [[https://academicjobsonline.org/ajo/jobs/9654][Cornell OR]]             | 15 Oct 2017  |
+| [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]              | 15 Oct 2017  |
+| UQAM Stats             | 15 Oct 2017  |
+| [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]] Math       | 16 Oct 2017  |
+| [[http://jobs.amstat.org/jobs/10125430/assistant-professor][Monmouth]] NJ            | 16 Oct 2017  |
+| [[https://www.mathjobs.org/jobs?joblist--10500][Eau Claire Math]]        | 21 Oct 2017  |
+| [[https://www.mathjobs.org/jobs?joblist--10335][Bucknell Stats]]         | 21 Oct 2017  |
+| [[http://jobs.imstat.org/jobseeker/job/35565026/assistantassociate-professor/naval-postgraduate-school/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][Naval Monterey]]         | 31 Oct 2017  |
+| [[https://aprecruit.ucmerced.edu/apply/JPF00522][Merced Math]]            | 1 Nov 2017   |
+| [[https://recruit.ucdavis.edu/apply/JPF01680][Davis Stats]]            | 1 Nov 2017   |
+| [[http://jobs.amstat.org/jobs/10152921/assistant-professor][Hamilton NY]]            | 1 Nov 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10479][Michigan stats]]         | 1 Nov 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]             | 1 Nov 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10444][South Dak]] Stat         | 1 Nov 2017   |
+| [[https://apply.interfolio.com/43065][Williams Stats]]         | 1 Nov 2017   |
+| [[https://www.stat.ubc.ca/assistant-professor-tenure-track-statistics][UBC stats/data science]] | 1 Nov 2017   |
+| [[https://jobs.sciencecareers.org/job/457369/assistant-professor-informatics/?LinkSource%3DPremiumListing][Venter Inst]]            | 10 Nov 2017  |
+| [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Stats]] 318928 | 10 Nov 2017  |
+| [[https://apply.interfolio.com/43597][SDSU Stats]]             | 15 Nov 2017  |
+| [[http://jobs.amstat.org/jobs/10171164/college-of-liberal-arts-science-open-rank-faculty-in-statistics-data-science-dept-of-statistics][Illinois]]               | 15 Nov 2017  |
+| [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]         | 15 Nov 2017  |
+| [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]           | 15 Nov 2017  |
+| [[https://jobs.carleton.edu/postings/3269][Carleton MN]]            | 30 Nov 2017  |
+| [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]             | 1 Dec 2017   |
+| [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]           | 1 Dec 2017   |
+| [[https://apply.interfolio.com/43943][SDSU CS]]                | 1 Dec 2017   |
+| [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]           | 1 Dec 2017   |
+| [[https://aprecruit.ucsf.edu/apply/JPF00957][UCSF Biostats]]          | 30 Dec 2017  |
+| [[https://www.mathjobs.org/jobs?joblist--10504][OK stats]]               | 31 Jan 2018  |
+| [[https://www.mathjobs.org/jobs?joblist--10329][Lawrence Stats]]         | 1 Feb 2018   |
+| [[https://aprecruit.ucsf.edu/apply/JPF01218][UCSF Comp Health Sci]]   | 3 July 2018  |
+| [[https://utah.peopleadmin.com/postings/65870][Utah Biostats]]          | ??           |
+| [[http://jobs.amstat.org/jobs/10064031/methodologist-assistant-associate-professor-research][Colorado]]               | ??           |
+| [[http://jobs.amstat.org/jobs/10125453/assistant-associate-research-professor-in-biostatistics-hematology][City of Hope Biostats]]  | ??           |
+| [[http://jobs.amstat.org/jobs/9155935/assistant-or-associate-professor-none-tenure-line-research-quantitative-sciences-unit][Stanford Biostats]]      | ??           |
+| DONE AFTER THIS        |              |
+| [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]         | 3 July 2017  |
+| [[https://www.lsuhsc.edu/Administration/hrm/CareerOpportunities/Home/Detail?id=1626][LSU Biostats]]           | 15 Oct 2017  |
+| [[https://apply.interfolio.com/43537][Middlebury VT]]          | 15 Oct 2017  |
+| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13642][Tex Cancer Biostats]]    | immediately  |
+| [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]       | immediately  |
+| [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]               | immediately  |
+| [[https://apply.interfolio.com/31595][Tulane CS]]              | immediately  |
+| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][AZ CS]]                  | immediately  |
+| [[http://jobs.amstat.org/jobs/10031375/assistant-associate-biostatistician-position][San Antonio]]            | immediately  |
+| [[https://main.hercjobs.org/jobs/10248441/assistant-associate-professor][Oregon Health Veterans]] | immedaitely  |
+| [[https://apply.interfolio.com/42856][SDSU ECE]]               | immediately  |
+| [[http://cra.org/job/hofstra-university-assistantassociate-professor-in-computer-science/][Hofstra]]                | 15 Sept 2017 |
+| [[https://miamioh.hiretouch.com/job-details?jobid%3D4581][Miami, OH Business]]     | 15 Sept 2017 |
+| [[http://jobs.imstat.org/jobseeker/job/36083040/assistant-professor-of-statistics-biostatistics-data-science/california-state-university-east-bay/?str%3D1&max%3D25&t731%3D47729&keywords%3Dtenure%252Dtrack&vnet%3D0][CSUEB]]                  | 18 Sept 2017 |
+| [[https://umass.interviewexchange.com/jobofferdetails.jsp%3Bjsessionid%3DD27F3B2D62718A3916CBFFC7095BFB9A?JOBID%3D86465][Amherst Biostats]]       | 15 Sept 2017 |
+| [[https://www.mathjobs.org/jobs?joblist--10388][Waterloo Stats]]         | 15 Sept 2017 |
+| [[https://ais.ohsu.edu/OA_HTML/OA.jsp?page=/oracle/apps/irc/candidateSelfService/webui/VisVacDispPG&OAHP=IRC_EXT_SITE_VISITOR_APPL&OASF=IRC_VIS_VAC_DISPLAY&akRegionApplicationId=821&transactionid=892711404&retainAM=N&addBreadCrumb=RP&p_spid=85715&oapc=9&oas=9IYQQUtQxgsmi5VvasFClg..&p_svid=54682][OHSU]]                   | immediately  |
+| [[https://www.recruitingsite.com/csbsites/oicr/JobDescription.asp?JobNumber%3D675388][OICR]]                   | immediately  |
+| [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Math]]  319416 | immediately  |
+| [[https://www.unrsearch.com/postings/24784][Reno]]                   | 30 Sept 2017 |
+| [[https://apply.interfolio.com/42769][Notre Dame Stat]]        | 1 Oct 2017   |

@@ -101,7 +101,7 @@ Computer vision
 %783 papers
  & 
 %873 citations
-1980 citations
+%1980 citations
  & H {\it et al.}, 2014. \\
      &
   \end{tabular}
@@ -182,7 +182,7 @@ Computer vision
 machine learning to genomics}
 
 \begin{frame}
-  \frametitle{Predicting flu vaccine titer response index}
+  \frametitle{Predicting flu vaccine response from gene expression}
   \only<1>{
     \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap}
   }
@@ -194,7 +194,7 @@ machine learning to genomics}
   }
 
 \begin{itemize}
-\item Collaboration with Maiko Narahara.
+\item Collaboration with Maiko Narahara (Kyoto University).
 \item Output: response 90 days after vaccination, $n=270$ people.
 \item Inputs: gene expression on day 7 --- 323 probes (227 genes)
   different. Which are the most important?
@@ -271,7 +271,7 @@ using only three key genes: SDC1, TXNDC5, CD38.
   \includegraphics[height=0.4\textheight]{figure-asthma-old}
 }
   \begin{itemize}
-  \item Collaboration with Audrey Grant.
+  \item Collaboration with Audrey Grant (McGill University).
   \item Output: asthma for $n=120286$ UK BioBank participants (genome
     wide association study).
   \item Inputs: SNP markers and HLA alleles, which are more
@@ -306,9 +306,9 @@ using only three key genes: SDC1, TXNDC5, CD38.
 
 
 \begin{frame}
-  \frametitle{Learned scores predict pathogenicity more accurately}
+  \frametitle{Predicting pathogenicity of genetic variants}
   \begin{itemize}
-  \item Collaboration with Najmeh Alirezaie.
+  \item Collaboration with Najmeh Alirezaie (McGill University).
   \item Output: pathogenicity of $n=11082$ variants in ClinVar.
   \item Inputs: scores based on conservation, biochemistry, etc.
   \item Learned ClinPred scores more accurate than individual scores.
@@ -381,7 +381,7 @@ Cancer cell with many copy number alterations.
   \item Benchmark data set of 3418 chromosomes,
     labeled via visual inspection (R package neuroblastoma).
   \item Results: most accurate model is maximum Gaussian likelihood 
-    changepoint detection (K-fold cross-validation experiments).
+    changepoint detection (cross-validation experiments).
   \end{itemize}
 
   \includegraphics[width=\textwidth]{neuroblastoma-ok-relapse-supervised}
@@ -431,7 +431,7 @@ SegAnnDB demo:\\interactively label chr1/chrX
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cancer biology collaborations}
+  \frametitle{Cancer biology applications}
   Aichi cancer center, Nagoya, Japan.
   \begin{itemize}
   \item Suguro {\it et al.}, {\it Cancer Sci} 2014, Clonal
@@ -701,8 +701,8 @@ useR2016 tutorial.\\
 \begin{frame}
   \frametitle{Future projects for my research lab}
   \begin{itemize}
-  \item More collaborations with biomedical scientists -- analysis of
-    DNA copy number data with Dr. Jacquemont.
+  \item More collaborations with biomedical scientists (e.g. copy
+    number calling and variant prioritization).
   \item Multi-task learning for predicting the number of changepoints
     (multiple scientists provide breakpoint or peak labels).
   % \item Survival models for predicting the number of changepoints: R
