@@ -42,7 +42,6 @@ problems that I described.
 
 | where                  | when         |
 |------------------------+--------------|
-| [[https://jobs.newpaltz.edu/postings/721][New Paltz NY]]           | 1 Oct 2017   |
 | [[https://www.mathjobs.org/jobs/jobs/10467][Reed]]                   | 2 Oct 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10350][Amherst Stats]]          | 8 Oct 2017   |
 | [[https://apol-recruit.ucsd.edu/apply/JPF01557][UCSD Biostats]]          | 15 Oct 2017  |
@@ -103,3 +102,4 @@ problems that I described.
 | [[https://www.myu.umn.edu/psp/psprd/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][Minnesota Math]]  319416 | immediately  |
 | [[https://www.unrsearch.com/postings/24784][Reno]]                   | 30 Sept 2017 |
 | [[https://apply.interfolio.com/42769][Notre Dame Stat]]        | 1 Oct 2017   |
+| [[https://jobs.newpaltz.edu/postings/721][New Paltz NY]]           | 1 Oct 2017   |

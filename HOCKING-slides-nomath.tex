@@ -626,6 +626,41 @@ SegAnnDB demo:\\interactively label chr1/chrX
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Example of peaks in heartbeat time series data}
+  \includegraphics[width=0.4\textwidth]{Basil} B\'eb\'e Basil.
+  \only<2>{
+  \includegraphics[width=\textwidth]{figure-heartbeat-data-only}
+
+  \scriptsize
+  \url{https://github.com/tdhock/heartbeat/blob/master/heartbeat.mp3}
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unconstrained maximum likelihood changepoint
+model does not satisfy up-down constraint}
+  \includegraphics[width=\textwidth]{figure-heartbeat-unconstrained}
+
+Optimal changepoints and means for $K=35$ segments.
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Up-down constrained changepoint
+model (PeakSeg) is interpretable in terms of heartbeats}
+  \includegraphics[width=\textwidth]{figure-heartbeat-PeakSeg}
+
+Optimal changepoints and means for $K=35$ up-down segments.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Can measure heartbeat duration}
+  \includegraphics[width=\textwidth]{figure-heartbeat}
+
+
+
+\end{frame}
+ 
 \section{Summary and future work}
 
 \begin{frame}
@@ -703,6 +738,8 @@ useR2016 tutorial.\\
   \begin{itemize}
   \item More collaborations with biomedical scientists (e.g. copy
     number calling and variant prioritization).
+  \item Supervising UdeM/MILA students who want to work on algorithms
+    for solving important biomedical problems.
   \item Multi-task learning for predicting the number of changepoints
     (multiple scientists provide breakpoint or peak labels).
   % \item Survival models for predicting the number of changepoints: R
@@ -964,31 +1001,6 @@ H {\it et al.}, {\it ICML} 2015.
 \end{itemize}
 \end{frame} 
 
-\begin{frame}
-  \frametitle{Heartbeat mp3}
-  \includegraphics[width=\textwidth]{figure-heartbeat-data-only}
-
-  \scriptsize
-  \url{https://github.com/tdhock/heartbeat/blob/master/heartbeat.mp3}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Unconstrained 
-model does not satisfy up-down constraint}
-  \includegraphics[width=\textwidth]{figure-heartbeat-unconstrained}
-\end{frame}
- 
-\begin{frame}
-  \frametitle{Up-down
-model interpretable in terms of heartbeats}
-  \includegraphics[width=\textwidth]{figure-heartbeat-PeakSeg}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Can measure heartbeat duration}
-  \includegraphics[width=\textwidth]{figure-heartbeat}
-\end{frame}
- 
 \begin{frame}
   \frametitle{Multi-state changepoint model for neuro spike train
     data}
