@@ -83,7 +83,7 @@ problems that I described.
 | [[http://www.stat.ufl.edu/jobs/job.php?id%3D13631][Baltimore Epidem]]            | immediately  |
 | [[https://jobs.uth.tmc.edu/applicants/jsp/shared/position/JobDetails_css.jsp][UTHealth]]                    | immediately  |
 | [[https://apply.interfolio.com/31595][Tulane CS]]                   | immediately  |
-| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][NAU CS]]                      | immediately  |
+| [[https://jobs.sciencecareers.org/job/457520/assistant-associate-professor-tenure-track-multiple-positions/][NAU CS]]    [[https://hr.peoplesoft.nau.edu/psp/ph92prta/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?FOCUS=Applicant&Siteid=2&FolderPath=PORTAL_ROOT_OBJECT.HC_HRS_CE_GBL2&IsFolder=false&IgnoreParamTempl=FolderPath%252cIsFolder][ml]]                | immediately  |
 | [[http://jobs.amstat.org/jobs/10031375/assistant-associate-biostatistician-position][San Antonio]]                 | immediately  |
 | [[https://main.hercjobs.org/jobs/10248441/assistant-associate-professor][Oregon Health Veterans]]      | immedaitely  |
 | [[https://apply.interfolio.com/42856][SDSU ECE]]                    | immediately  |

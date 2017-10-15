@@ -1,3 +1,27 @@
+\documentclass{article}
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage[cm]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\setlength{\headheight}{9.2pt}
+\setlength{\headsep}{5.2pt}
+\pagestyle{fancyplain}
+\pagenumbering{gobble}
+\lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
+\chead{{\LARGE \bf Projet de Recherche} }
+\rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
+
+\begin{document}
+
+\mbox{ }
+
 Je crée de nouveaux algorithmes d'apprentissage statistique pour
 résoudre des problèmes d'analyse de données dans des domaines
 scientifiques tels que la médecine la biologie. Mes recherches
@@ -12,7 +36,7 @@ interactif et l'apprentissage automatique supervisé dans les grands
 ensembles de données. Ce qui suit est un résumé de mes recherches
 antérieures, et mon plan de recherche pour l'avenir.
 
-\section{Algorithmes de détection de rupture avec applications aux données de nombre de copies d'ADN}
+\section{Algorithmes de détection de rupture pour les données de nombre de copies d'ADN}
 
 Pendant mon doctorat à Paris, j'ai travaillé en collaboration avec des
 médecins de l'Institut Curie sur les méthodes d'apprentissage
@@ -62,7 +86,51 @@ algorithme apprend une fonction de pénalité multivariée, et fournit
 des taux d'erreur moins élevé que la pénalité univariée
 précédente. J'ai implémenté ces algorithmes dans le paquetage
 penaltyLearning dans R, que j'ai présenté lors d'un tutoriel à
-\emph{useR2017} \citep{change-tutoriel}. Dans des travaux plus récents
+\emph{useR2017} \citep{change-tutorial}. Dans des travaux plus récents
 qui ont été acceptés pour publication à \emph{NIPS'17} \citep{MMIT},
 nous avons proposé un algorithme pour apprendre une fonction de
 penalité non-linéaire grâce à un arbre de décision.
+
+\paragraph{Collaborations utilisant une application Web pour la
+  détection supervisée de ruptures} Dans notre papier publié dans
+\emph{Bioinformatics} \citep{hocking-SegAnnDB}, nous avons proposé une
+application web qui facilite l'étiquetage interactif et
+l'apprentissage supervisé pour l'analyse des données sur le nombre de
+copies d'ADN. Du côté pratique, notre système était novateur parce
+qu'il permet aux chercheurs en génomique non seulement de visualiser
+leurs données, mais aussi de les étiqueter. Cette fonctionnalité est
+essentielle pour les collaborations, car lorsqu'on voit une prédiction
+incorrecte, on peut la corriger immédiatement en ajoutant des
+étiquettes appropriées. Notre principal contribution statistique était
+une algorithme de programmation dynamique efficace pour calculer les K
+ruptures les plus probables pour un ensemble donné de K étiquettes
+positives. Cet algorithme était essentiel pour fournir un modèle qui
+correspond à n'importe quel ensemble d'étiquettes fournies par un
+utilisateur. Nous avons utilisé ce système pour faciliter les
+collaborations avec les scientifiques de l'Institut Curie, Paris,
+France \citep{Chicard}; et Aichi Cancer Center, Nagoya, Japon
+\citep{Hocking-Leukemia-2016,m14:clonal}.
+
+\paragraph{Algorithmes optimales avec élagage des ruptures
+  candidates.} Dans notre papier publié dans \emph{Statistics and
+  Computing} \citep{fpop}, nous avons étudié deux techniques pour
+l'élagage des ruptures candidates dans les algorithmes de détection de
+ruptures optimales. Ces techniques sont très intéressantes du point de
+vue computationnel : elles permettent un temps de calcul très rapide
+(linéaire dans la quantité de données). Une technique est basée sur
+les fonctions, et l'autre technique est basée sur les inégalités. Nous
+voulions étudier quelle méthode est plus efficace. Nous avons démontré
+mathématiquement que la technique fonctionnelle élague toutes les
+candidates élaguées par la technique d'inégalités. Ce résultat
+théorique a suggéré que l'algorithme d'élagage fonctionnel devrait
+être plus rapide. Nous avons proposé le nouveau algorithme FPOP, basé
+sur la technique fonctionnelle. Dans nos tests empiriques, nous avons
+observé que FPOP est nettement plus rapide que plusieurs d'autres
+algorithmes pour la détection de ruptures. Nous avons aussi étudié le
+taux d'erreur pour la détection de ruptures, ce qui était le même que
+les autres algorithmes optimales.
+  
+\bibliographystyle{plain}
+\bibliography{TDH-refs}
+
+\end{document}
