@@ -101,12 +101,14 @@ qu'il permet aux chercheurs en génomique non seulement de visualiser
 leurs données, mais aussi de les étiqueter. Cette fonctionnalité est
 essentielle pour les collaborations, car lorsqu'on voit une prédiction
 incorrecte, on peut la corriger immédiatement en ajoutant des
-étiquettes appropriées. Notre principal contribution statistique était
-une algorithme de programmation dynamique efficace pour calculer les K
-ruptures les plus probables pour un ensemble donné de K étiquettes
-positives. Cet algorithme était essentiel pour fournir un modèle qui
-correspond à n'importe quel ensemble d'étiquettes fournies par un
-utilisateur. Nous avons utilisé ce système pour faciliter les
+étiquettes appropriées. 
+% Notre principal contribution statistique était
+% une algorithme de programmation dynamique efficace pour calculer les K
+% ruptures les plus probables pour un ensemble donné de K étiquettes
+% positives. Cet algorithme était essentiel pour fournir un modèle qui
+% correspond à n'importe quel ensemble d'étiquettes fournies par un
+% utilisateur. 
+Nous avons utilisé ce système pour faciliter les
 collaborations avec les scientifiques de l'Institut Curie, Paris,
 France \citep{Chicard}; et Aichi Cancer Center, Nagoya, Japon
 \citep{Hocking-Leukemia-2016,m14:clonal}.
@@ -123,13 +125,206 @@ voulions étudier quelle méthode est plus efficace. Nous avons démontré
 mathématiquement que la technique fonctionnelle élague toutes les
 candidates élaguées par la technique d'inégalités. Ce résultat
 théorique a suggéré que l'algorithme d'élagage fonctionnel devrait
-être plus rapide. Nous avons proposé le nouveau algorithme FPOP, basé
-sur la technique fonctionnelle. Dans nos tests empiriques, nous avons
-observé que FPOP est nettement plus rapide que plusieurs d'autres
-algorithmes pour la détection de ruptures. Nous avons aussi étudié le
-taux d'erreur pour la détection de ruptures, ce qui était le même que
-les autres algorithmes optimales.
+être plus rapide. Nous avons proposé un nouveau algorithme, basé sur
+la technique fonctionnelle, qui calcule le modèle optimale, nettement
+plus vite que plusieurs d'autres algorithmes dans nos tests
+empiriques.
+
+\section{Algorithmes pour la détection de pics dans les données ChIP-seq}
+Le ChIP-seq est une expérience biochimique qui caractérise les
+régions actives et inactives du génome chez différents individus et
+types de cellules. Dans ces données, la principale tâche d'analyse est
+de classer chaque position du génome : soit un pic (avec grandes
+valeurs), soit du bruit (avec petits valeurs).
+
+\paragraph{Un cadre supervisé pour la détection de pics.} Dans notre
+papier publié dans \emph{Bioinformatics}\citep{HOCKING-chipseq}, nous
+avons proposé une méthode d'étiquetage qui permet l'apprentissage
+supervisé pour la détection de pics dans des données génomiques telles
+que ChIP-seq. Nous avons proposé d'étiqueter des régions
+avec ou sans pics. Nous avons démontré que ces étiquettes positives et
+négatives peuvent être utilisées pour (1) choisir les paramètres
+appropriés en minimisant le nombre d'étiquettes incorrectes dans les
+données d'entraînement, et (2) comparer les taux d'erreur de détection
+des pics des différents algorithmes dans les données de test. Dans nos
+expériences de validation croisée, nous avons observé que différents
+algorithmes ont atteint le taux d'erreur minimale pour chaque jeu de
+données; il n'y avait aucun algorithme avec un taux d'erreur minimale
+dans tous les jeux de données. Nous avons également démontré que les
+étiquettes créées visuellement par différents chercheurs sont très
+cohérentes.
+
+\paragraph{Modèle d'optimisation sous contraintes pour la détection de
+  pics.} Dans notre papier publié à \emph{ICML'15}
+\citep{HOCKING-PeakSeg}, nous avons proposé un modèle d'optimisation
+sous contraintes pour la détection de pics dans les données
+ChIP-seq. Nous avons observé que le modèle existant pour la détection
+de ruptures optimales peut parfois être interprété en termes de pics
+(après une rupture croissante) et du bruit (aptrès une rupture
+décroissante). Cependant, dans certains ensembles de données, ce
+modèle contient plusieurs ruptures croissantes consécutifs, qui ne
+sont pas directement interprétable en termes de pics et du bruit. Nous
+avons donc proposé une contrainte supplémentaire : chaque rupture
+croissante doit être suivi par une rupture décroissante, ce qui
+garantit un modèle plus interprétable. Notre contribution principale
+dans ce document était d'adapter l'algorithme classique de
+programmation dynamique à cette nouvelle contrainte. Une autre
+contribution était de démontrer que nous pouvons apprendre
+efficacement une fonction de pénalité, en utilisant le même algorithme
+de régression censurée que nous avons utilisé pour prédire le nombre
+de ruptures dans le modèle sans contrainte. Nous avons démontré que
+cette méthode permet d'atteindre un taux d'erreur minimale dans tous
+nos jeux de données, prouvant ainsi qu'un seul algorithme peut
+s'adapter aux différents jeux de données.
+
+Notre algorithme de programmation dynamique classique a deux
+problèmes: son temps de calcul est quadratique dans le nombre de
+données (ce qui est très lent pour les grands jeux de données), et il
+ne calcule pas nécessairement la solution optimale du problème
+d'optimisation. Dans notre papier soumis à \emph{Annals of Applied
+  Statistics} \citep{Hocking-constrained-changepoint-detection}, nous
+avons proposé un nouveau algorithme qui résout ces deux
+problèmes. Nous avons généralisé la technique d'élagage fonctionnel
+aux problèmes d'optimisation sous contraintes.  Nous avons proposé un
+algorithme qui calcule la solution optimale, avec un temps de calcul
+log-linéaire (ce qui est beaucoup plus rapide que quadratique pour les
+grands jeux de données). Dans nos tests empiriques, nous avons observé
+le même taux d'erreur que notre algorithme précedant, mais avec un
+temps de calcul beaucoup plus rapide -- à peu près aussi vite que les
+algorithmes sous-optimaux qui sont souvent utilisés dans la littérature
+bioinformatique.
   
+\paragraph{Modèle pour comparer des échantillons.} Plutôt que de
+modéliser les pics de chaque échantillon en isolation, les
+scientifiques s'intéressent à caractériser les différences entre les
+échantillons. Dans mes collaborations au centre de séquençage
+génomique de McGill, nous aimerions caractériser les régions actives
+et inactives chez plusieurs types de cellules humains (lymphocyte B,
+lymphocyte T, monocytes, etc.). Pour faire cela, j'ai
+proposé un modèle de détection de ruptures avec la contrainte que les
+pics doivent se trouver dans les mêmes positions à travers les
+échantillons \citep{HOCKING-PeakSegJoint}.
+
+\section{Autres projets de recherche}
+
+\paragraph{D'autres algorithmes d'apprentissage statistiques pour les grands jeux de données.} Au travail
+publié dans \emph{ICML'11} \citep{HOCKING-clusterpath}, nous avons proposé plusieurs
+algorithmes efficaces pour la classification hiérarchique utilisant des pénalités convexes de fusion. Cet article influent a garni plus de 80 citations, dont
+papiers théoriques, algorithmiques et d'applications. Dans un autre travail pour mon
+mémoire de master que nous avons publié dans \emph{PLOS ONE}
+\citep{HOCKING-evolution}, nous avons proposé d'identifier les marqueurs génétiques
+sous sélection en utilisant un modèle bayésien d'évolution. Dans
+mon post-doc à Tokyo Institute of Technology, j'ai étudié un 
+algorithme de séparateur à vaste marge (SVM) pour classer et comparer
+\citep{svmcompare}. Dans les travaux en cours que nous prévoyons de publier dans
+\emph{Journal of Machine Learning Research}, nous utilisons cet algorithme
+sur les données d'échecs, pour prédire les
+classements des jouers et les résultats des matchs.
+
+\paragraph{Ajout d'interactivité à la grammaire des graphiques.} Dans notre papier
+soumis à \emph{Journal of Computational and Graphical
+  Statistics} \citep{animint}, nous avons proposé deux nouveaux mots-clés pour
+l'interactivité et l'animation dans la grammaire des graphiques. Ce travail était
+également présenté lors d'une session invitée pendant \emph{Joint Statistical
+  Meetings 2015} et dans un tutoriel pendant \emph{useR2016}.
+
+\paragraph{Contributions à la recherche reproductible et le logiciel
+  libre.} Pour chacun de mes articles de recherche, j'ai aussi écrit
+un paquetage R qui fournit une implémentation de référence du
+algorithme décrit dans l'article. Notre article \emph{Journal of
+  Statistical Software} \citep{hocking13:inlinedocs} propose un
+nouveau système pour la génération de documentation dans R, ce qui
+simplifie l'écriture de documentation pour mes paquetages.
+
+\section{Plan pour mon projet de recherche}
+
+À court terme, je prévois poursuivre des projets de recherche liés à
+la détection optimale des ruptures et l'apprentissage des fonctions de
+pénalité. Ces algorithmes se sont révélés très efficaces pour les
+données génomiques et je poursuivra des collaborations pour étudier
+d'autres applications (neurosciences, audio, suivi médical,
+etc.). Plus précisement, je prévois de trouver des doctorants et
+post-docs pour travailler sur les Objectifs ci-dessous. Je soumettrai
+des demandes de subvention au CSRNG et à la IRSC pour financer ces
+projets. Je continuerai à publier des paquetages R pour accompagner
+mes articles, afin de faciliter la reproductibilité de mes
+recherches. À long terme, mes recherches seront axées sur d'autres
+modèles statistiques et algorithmes d'optimisation efficaces pour
+l'analyse interactive et la compréhension des grands jeux de
+données. Je suis particulièrement intéressé à continuer de collaborer
+avec des chercheurs dans la domaine biomédicale, afin d'aider à
+comprendre comment le rôle des variations génomiques dans divers
+conditions médicales telles que le cancer.
+
+\paragraph{Objectif 1: modèles de survie pour l'apprentissage de la
+  fonction de pénalité.} Dans mes travaux précédents j'ai étudié la
+régression avec sorties censurées, un problème qui a été largement
+étudié dans la littérature de survie. Dans ce projet, j'utiliserai ces
+modèles de survie pour apprendre une fonction de pénalité linéaire. La
+différence avec mon travail précédent est que ces modèles supposent
+une distribution paramétrique pour les valeurs de pénalité (par
+exemple maximiser la vraisemblance gaussienne), alors que mon travail
+précédent a utilisé un modèle discriminant (minimisant une fonction de
+perte fondée sur la marge).
+
+\paragraph{Objectif 2: apprentissage multi-tâches de la fonction de
+  pénalité.} Mes travaux précédents ont démontré que les étiquettes
+d'un seul biologiste peuvent être utilisées pour apprendre une
+fonction de pénalité pour la détection de ruptures. Mais en pratique,
+plusieurs biologiste fourniront des étiquettes différentes pour un jeu
+de données. Certaines paires de biologistes fournissent des étiquettes
+similaires, et d'autres fournissent des étiquettes différentes, pour
+le même jeu de données. Dans ce contexte, nous aimerions apprendre une
+fonction de pénalité pour chaque biologiste, sous l'hypothèse qu'il y
+a des groupes de biologistes similaires. Dans ce projet, je vais
+adapter les techniques de la littérature d'apprentissage multi-tâches
+à cette problème.
+
+\paragraph{Objectif 3: algorithmes d'élagage fonctionnel pour
+  d'autres modèles de rupture.} Mes recherches antérieures ont
+démontré que la technique d'élagage fonctionnelle peut être utilisée
+pour calculer rapidement et exactement les ruptures dans les grands
+séquences de données. Dans ces projets, je vais étudier la
+généralisation de cette technique à d'autres modèles. Par exemple, les
+données de neuroscience pourraient être modélisés en utilisant un
+modèle de avec trois états : plat / constant, croissant vers un pic,
+décroissant après un pic. Un autre exemple est une régression
+segmentée sous contraintes, ce qui serait utile pour identifier les
+régions du génome avec associations fortes dans les données de
+Genome-Wide Association Studies (étude d'association sur le génome
+entier). Enfin, pour l'étiquetage interactive, nous voudrions
+contraindre le modèle afin qu'il soit garanti pour être compatible
+avec les étiquettes.
+
+\paragraph{Objectif 4: GenomicLearner pour l'analyse interactive et
+  collaborations.} Mes recherches antérieures ont démontré que les
+biologistes peuvent étiqueter certains signaux dans leurs données, et
+ces étiquettes peuvent être utilisées pour l'apprentissage
+supervisé. Cependant, les logiciels existants pour la visualisation de
+données génomiques (par exemple l'UCSC Genome Browser) ne font ni
+l'étiquetage interactif ni l'apprentissage supervisé. Le but de ce
+projet sera de développer GenomicLearner, un application web pour
+l'étiquetage interactif et l'apprentissage automatique des données
+génomiques. Le plus grand défi théorique est que la plupart des
+algorithmes existants sont destinés à l'analyse non interactive, et ne
+sont donc pas assez rapide pour l'utilisation interactif. Nous
+développerons des nouveaux modèles statistiques avec algorithmes
+d'inférence en temps réel afin de fournir un retour immédiat à nos
+collaborateurs et le grand public qui utilisera GenomicLearner. J'ai
+déjà écrit une proposition de subvention, que je prévois de soumettre
+à CSRNG ou IRSC.
+
+\paragraph{Objectif 5: Apprentissage profond pour la détection de
+  ruptures non-paramètrique.} Mon travail précédent sur la détection
+de ruptures est limité aux modèles paramètriques (maximum de
+vraisemblance). Ces modèles fonctionnent assez bien dans des ensembles
+de données relativement simples et petits (des milliers d'étiquettes),
+mais je pense qu'ils ne seront pas suffisamment flexibles pour
+apprendre des bons modèles dans les grands jeux de données générés par
+GenomicLearner (millions d'étiquettes). Dans ce projet, je vais
+explorer les réseaux de neurones convolutifs, qui devraient fournir
+des très bons resultats dans ces grands jeux de données.
+ 
 \bibliographystyle{plain}
 \bibliography{TDH-refs}
 

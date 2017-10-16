@@ -58,19 +58,20 @@ and underfitting. Finally I will discuss several non-linear methods
 of convex relaxation (e.g. regularized linear models, support vector
 machines), and unsupervised learning algorithms.
 
-\paragraph{Plan for class about biostatistics and/or machine learning for
-  bioinformatics.}
-I could also teach a class about applications of biostatistics and/or
-machine learning in bioinformatics. I will use a less technical
-approach, as in \emph{Introduction to Statistical Learning} by James,
-\emph{et al}. I will focus on interpretable methods for regression and
-classification (linear models, decision trees), evaluating models
-(cross-validation), clustering (k-means, mixture models, hierarchical
-clustering), feature selection (greedy stepwise variable selection,
-L1-regularization), analysis of survival data (accelerated failure
-time and Cox models), genomic segmentation (dynamic programming,
-HMMs), and model selection using penalty functions (information
-criteria such as AIC, BIC).
+% \paragraph{Plan for class about biostatistics and/or machine learning for
+%   bioinformatics.}
+% I could also teach a class about applications of biostatistics and/or
+% machine learning in bioinformatics. I will use a less technical
+% approach, as in \emph{Introduction to Statistical Learning} by James,
+% \emph{et al}. I will focus on interpretable methods for regression and
+% classification (linear models, decision trees), evaluating models
+% (cross-validation), clustering (k-means, mixture models, hierarchical
+% clustering), feature selection (greedy stepwise variable selection,
+% L1-regularization), analysis of survival data (accelerated failure
+% time and Cox models), genomic segmentation (dynamic programming,
+% HMMs), and model selection using penalty functions (information
+% criteria such as AIC, BIC).
+
 
 \paragraph{Plan for class about programming for data analysis.} I will
 use Paul Murrell's book \emph{Introduction to Data Technologies} to
@@ -83,22 +84,25 @@ distribution system with respect to GitHub. For an advanced class I
 will also include a few lectures about the relative strengths of C,
 C++, and Python.
 
-\paragraph{Syllabus for class about data visualization.} In this class
-about data visualization we will focus on how to visualize real data
-sets using free/open-source programming tools (R+ggplot2 and
-JavaScript+D3). Before mentioning any details about writing code for
-graphic design, I will start by showing a few motivating examples of
-data sets and informative visualizations. I will emphasize graphic
-design using Wilkinson's ``Grammar of Graphics,'' and how it can be
-used in practice for non-interactive data visualization (the ggplot2
-package in R). I will also include a discussion of research into
-methods for optimal perception of data visualizations (e.g. Cynthia
-Brewer's color palettes). Finally, I will explain how to create
-interactive data visualizations using JavaScript and the Data-Driven
-Documents (D3) library.
+\paragraph{Syllabus for class about data visualization.} I have taught
+an advanced tutorial on interactive data visualization at useR2016,
+the international conference about R. In a longer class about data
+visualization I will focus on how to visualize real data sets using
+free/open-source programming tools (R+ggplot2 and JavaScript+D3). I
+will start by showing a few motivating examples of data sets and
+informative visualizations. I will emphasize graphic design using
+Wilkinson's ``Grammar of Graphics,'' and how it can be used in
+practice for non-interactive data visualization (the ggplot2 package
+in R). I will also include a discussion of research into methods for
+optimal perception of data visualizations (e.g. Cynthia Brewer's color
+palettes). Finally, I will explain how to create interactive data
+visualizations using several R packages, and JavaScript with the
+Data-Driven Documents (D3) library. A sample plan for a 12-week class
+is below.
 
 \begin{itemize}
-\item Week 1: intro to data visualization, R, ggplot2.
+\item Week 1: intro to data visualization, grammar of graphics, plot
+  sketching, R, ggplot2.
 \item Week 2: Transforming data into plottable form. R package
   data.table.
 \item Week 3: advanced grammar of graphics: multiple layers, multiple
@@ -112,14 +116,17 @@ Documents (D3) library.
   eliminate visual clutter, etc). Chartjunk and other techniques to
   avoid (multiple pies, 3d bars, etc).
 \item Week 7: Visualizing node and edge graphs. Graph layout algorithms.
-\item 3D graphics and dimensionality reduction techniques. Linear
+\item Week 8: 3D graphics and dimensionality reduction techniques. Linear
   (PCA, LDA) and non-linear (kernelized PCA/LDA, t-SNE, SOM, principal
   curves, autoencoders).
-\item Week 8: Interactive and/or animated graphics. shiny, plotly, animint2 in R,
-  D3.js in JavaScript.
-\item Week Visualizing models and algorithms: regression, SVM, Nearest
-  Neighbors, Lasso, K-means, hierarchical clustering, root finding,
-  changepoint detection.
+\item Week 9: Animated graphics. R packages: animation, gganimint.
+% \item Week 12: Visualizing models and algorithms: regression, SVM, Nearest
+%   Neighbors, Lasso, K-means, hierarchical clustering, root finding,
+%   changepoint detection.
+\item Week 10: Interactive grammar of graphics: R package animint2.
+\item Week 11: Client-server graphics for data analysis using shiny
+  and plotly in R.
+\item Week 12: Advanced web graphics: D3.js in JavaScript.
 \end{itemize}
 
 \section{Summary of experience teaching classes} 
@@ -159,7 +166,7 @@ students in research projects.
   censored outputs (accepted at \emph{NIPS'17}).
 \item Carson Sievert, PhD student, Iowa State University, statistics
   paper about new keywords for interactivity in the grammar of
-  graphics (under review \emph{Journal of Computational and Graphical
+  graphics (under review at \emph{Journal of Computational and Graphical
     Statistics}).
 \item David Venuto, Research Assistant, McGill University, machine
   learning paper about learning ranking functions in data such as

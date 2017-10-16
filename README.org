@@ -42,16 +42,16 @@ problems that I described.
 
 | where                       | when         |
 |-----------------------------+--------------|
-| [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]                   | 15 Oct 2017  |
-| UQAM Stats                  | 15 Oct 2017  |
 | [[https://www.mathjobs.org/jobs?joblist--10335][Bucknell Stats]]              | 21 Oct 2017  |
+| [[https://www.mathjobs.org/jobs?joblist--10479][Michigan stats]]              | 1 Nov 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]                  | 1 Nov 2017   |
+|-----------------------------+--------------|
+| UQAM Stats                  | 15 Oct 2017  |
 | [[http://jobs.imstat.org/jobseeker/job/35565026/assistantassociate-professor/naval-postgraduate-school/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][Naval Monterey]]              | 31 Oct 2017  |
 | Florida [[http://explore.jobs.ufl.edu/cw/en-us/job/504708/assistant-professor-statisticalmachine-learning][ML]] [[http://explore.jobs.ufl.edu/cw/en-us/job/504709/assistant-professor-computational-statistics][CompStat]]         | 1 Nov 2017   |
 | [[https://aprecruit.ucmerced.edu/apply/JPF00522][Merced Math]]                 | 1 Nov 2017   |
 | [[https://recruit.ucdavis.edu/apply/JPF01680][Davis Stats]]                 | 1 Nov 2017   |
 | [[http://jobs.amstat.org/jobs/10152921/assistant-professor][Hamilton NY]]                 | 1 Nov 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10479][Michigan stats]]              | 1 Nov 2017   |
-| [[https://www.mathjobs.org/jobs?joblist--10443][WUSTL MAth]]                  | 1 Nov 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10444][South Dak]] Stat              | 1 Nov 2017   |
 | [[https://apply.interfolio.com/43065][Williams Stats]]              | 1 Nov 2017   |
 | [[https://www.stat.ubc.ca/assistant-professor-tenure-track-statistics][UBC stats/data science]]      | 1 Nov 2017   |
@@ -105,3 +105,4 @@ problems that I described.
 | [[https://www.mathjobs.org/jobs/jobs/10507][UCSD1]] [[https://www.mathjobs.org/jobs/jobs/10523][UCSD2]] Math            | 16 Oct 2017  |
 | [[https://hr.peoplesoft.nau.edu/psp/ph92prta/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_JBPST&Action=U&FOCUS=Applicant&SiteId=2&JobOpeningId=603390&PostingSeq=1][NAU Stats]]                   | 2 Oct 2017   |
 | [[https://www.mathjobs.org/jobs?joblist--10500][Eau Claire Math]]             | 21 Oct 2017  |
+| [[https://emplois.hec.ca/job.php?id=375][HEC Stats]]                   | 15 Oct 2017  |
