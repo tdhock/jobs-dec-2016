@@ -23,7 +23,7 @@
 \mbox{ }
 
 Je crée de nouveaux algorithmes d'apprentissage statistique pour
-résoudre des problèmes d'analyse de données dans des domaines
+résoudre des problèmes d'analyse de données dans plusieurs domaines
 scientifiques tels que la médecine la biologie. Mes recherches
 précédantes étaient axées sur des nouveaux modèles d'apprentissage
 pour le regroupement (clustering), la régression, la détection des
@@ -98,7 +98,7 @@ application web qui facilite l'étiquetage interactif et
 l'apprentissage supervisé pour l'analyse des données sur le nombre de
 copies d'ADN. Du côté pratique, notre système était novateur parce
 qu'il permet aux chercheurs en génomique non seulement de visualiser
-leurs données, mais aussi de les étiqueter. Cette fonctionnalité est
+leurs données, mais aussi de les étiqueter, et d'utiliser nos algorithmes d'apprentissage automatique. Cette fonctionnalité est
 essentielle pour les collaborations, car lorsqu'on voit une prédiction
 incorrecte, on peut la corriger immédiatement en ajoutant des
 étiquettes appropriées. 
@@ -159,11 +159,11 @@ cohérentes.
 \citep{HOCKING-PeakSeg}, nous avons proposé un modèle d'optimisation
 sous contraintes pour la détection de pics dans les données
 ChIP-seq. Nous avons observé que le modèle existant pour la détection
-de ruptures optimales peut parfois être interprété en termes de pics
+de ruptures optimales peut parfois être interprété comme des pics
 (après une rupture croissante) et du bruit (aptrès une rupture
 décroissante). Cependant, dans certains ensembles de données, ce
-modèle contient plusieurs ruptures croissantes consécutifs, qui ne
-sont pas directement interprétable en termes de pics et du bruit. Nous
+modèle contient plusieurs ruptures croissantes consécutives, qui ne
+sont pas directement interprétables comme des pics et du bruit. Nous
 avons donc proposé une contrainte supplémentaire : chaque rupture
 croissante doit être suivi par une rupture décroissante, ce qui
 garantit un modèle plus interprétable. Notre contribution principale
@@ -238,7 +238,7 @@ simplifie l'écriture de documentation pour mes paquetages.
 
 \section{Plan pour mon projet de recherche}
 
-À court terme, je prévois poursuivre des projets de recherche liés à
+À court terme, je prévois de poursuivre des projets de recherche liés à
 la détection optimale des ruptures et l'apprentissage des fonctions de
 pénalité. Ces algorithmes se sont révélés très efficaces pour les
 données génomiques et je poursuivra des collaborations pour étudier
@@ -251,9 +251,9 @@ mes articles, afin de faciliter la reproductibilité de mes
 recherches. À long terme, mes recherches seront axées sur d'autres
 modèles statistiques et algorithmes d'optimisation efficaces pour
 l'analyse interactive et la compréhension des grands jeux de
-données. Je suis particulièrement intéressé à continuer de collaborer
-avec des chercheurs dans la domaine biomédicale, afin d'aider à
-comprendre comment le rôle des variations génomiques dans divers
+données. Je suis très intéressé à continuer de collaborer
+avec des chercheurs dans le domaine biomédical, afin d'aider à
+comprendre le rôle des variations génomiques dans diverses
 conditions médicales telles que le cancer.
 
 \paragraph{Objectif 1: modèles de survie pour l'apprentissage de la
@@ -292,7 +292,7 @@ décroissant après un pic. Un autre exemple est une régression
 segmentée sous contraintes, ce qui serait utile pour identifier les
 régions du génome avec associations fortes dans les données de
 Genome-Wide Association Studies (étude d'association sur le génome
-entier). Enfin, pour l'étiquetage interactive, nous voudrions
+entier). Enfin, pour l'étiquetage interactif, nous voudrions
 contraindre le modèle afin qu'il soit garanti pour être compatible
 avec les étiquettes.
 
@@ -317,9 +317,9 @@ déjà écrit une proposition de subvention, que je prévois de soumettre
 \paragraph{Objectif 5: Apprentissage profond pour la détection de
   ruptures non-paramètrique.} Mon travail précédent sur la détection
 de ruptures est limité aux modèles paramètriques (maximum de
-vraisemblance). Ces modèles fonctionnent assez bien dans des ensembles
+vraisemblance). Ces modèles fonctionnent assez bien dans les jeux
 de données relativement simples et petits (des milliers d'étiquettes),
-mais je pense qu'ils ne seront pas suffisamment flexibles pour
+mais ils ne seront pas suffisamment flexibles pour
 apprendre des bons modèles dans les grands jeux de données générés par
 GenomicLearner (millions d'étiquettes). Dans ce projet, je vais
 explorer les réseaux de neurones convolutifs, qui devraient fournir

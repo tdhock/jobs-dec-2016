@@ -62,6 +62,7 @@ problems that I described.
 | [[http://jobs.amstat.org/jobs/10171164/college-of-liberal-arts-science-open-rank-faculty-in-statistics-data-science-dept-of-statistics][Illinois]]                    | 15 Nov 2017  |
 | [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]              | 15 Nov 2017  |
 | [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]                | 15 Nov 2017  |
+| [[https://apply.interfolio.com/45498][Amherst CS]]                  | 15 Nov 2017  |
 | [[https://jobs.carleton.edu/postings/3269][Carleton MN]]                 | 30 Nov 2017  |
 | [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]                  | 1 Dec 2017   |
 | [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]                | 1 Dec 2017   |
@@ -75,7 +76,9 @@ problems that I described.
 | [[http://jobs.amstat.org/jobs/10064031/methodologist-assistant-associate-professor-research][Colorado]]                    | ??           |
 | [[http://jobs.amstat.org/jobs/10125453/assistant-associate-research-professor-in-biostatistics-hematology][City of Hope Biostats]]       | ??           |
 | [[http://jobs.amstat.org/jobs/9155935/assistant-or-associate-professor-none-tenure-line-research-quantitative-sciences-unit][Stanford Biostats]]           | ??           |
+|-----------------------------+--------------|
 | DONE AFTER THIS             |              |
+|-----------------------------+--------------|
 | [[http://jobs.imstat.org/jobseeker/job/35944825/assistant-professor-of-mathematics-statistician/saint-michaels-college/?str%3D1&max%3D25&keywords%3Dtenure%252Dtrack&vnet%3D0][StMich VT Stat]]              | 3 July 2017  |
 | [[https://www.lsuhsc.edu/Administration/hrm/CareerOpportunities/Home/Detail?id=1626][LSU Biostats]]                | 15 Oct 2017  |
 | [[https://apply.interfolio.com/43537][Middlebury VT]]               | 15 Oct 2017  |
@@ -90,7 +93,7 @@ problems that I described.
 | [[http://cra.org/job/hofstra-university-assistantassociate-professor-in-computer-science/][Hofstra]]                     | 15 Sept 2017 |
 | [[https://miamioh.hiretouch.com/job-details?jobid%3D4581][Miami, OH Business]]          | 15 Sept 2017 |
 | [[http://jobs.imstat.org/jobseeker/job/36083040/assistant-professor-of-statistics-biostatistics-data-science/california-state-university-east-bay/?str%3D1&max%3D25&t731%3D47729&keywords%3Dtenure%252Dtrack&vnet%3D0][CSUEB]]                       | 18 Sept 2017 |
-| [[https://umass.interviewexchange.com/jobofferdetails.jsp%3Bjsessionid%3DD27F3B2D62718A3916CBFFC7095BFB9A?JOBID%3D86465][Amherst Biostats]]            | 15 Sept 2017 |
+| [[https://umass.interviewexchange.com/jobofferdetails.jsp%3Bjsessionid%3DD27F3B2D62718A3916CBFFC7095BFB9A?JOBID%3D86465][UMass Amherst Biostats]]      | 15 Sept 2017 |
 | [[https://www.mathjobs.org/jobs?joblist--10388][Waterloo Stats]]              | 15 Sept 2017 |
 | [[https://ais.ohsu.edu/OA_HTML/OA.jsp?page=/oracle/apps/irc/candidateSelfService/webui/VisVacDispPG&OAHP=IRC_EXT_SITE_VISITOR_APPL&OASF=IRC_VIS_VAC_DISPLAY&akRegionApplicationId=821&transactionid=892711404&retainAM=N&addBreadCrumb=RP&p_spid=85715&oapc=9&oas=9IYQQUtQxgsmi5VvasFClg..&p_svid=54682][OHSU]]                        | immediately  |
 | [[https://www.recruitingsite.com/csbsites/oicr/JobDescription.asp?JobNumber%3D675388][OICR]]                        | immediately  |
