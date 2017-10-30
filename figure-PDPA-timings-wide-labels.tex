@@ -1,4 +1,4 @@
-% Created by tikzDevice version 0.10.1 on 2017-09-14 15:08:29
+% Created by tikzDevice version 0.10.1 on 2017-09-15 12:49:06
 % !TEX encoding = UTF-8 Unicode
 \begin{tikzpicture}[x=1pt,y=1pt]
 \definecolor{fillColor}{RGB}{255,255,255}
@@ -468,8 +468,8 @@
 
 \path[draw=drawColor,line width= 0.4pt,line join=round,line cap=round,fill=fillColor] (187.21,112.23) --
 	(190.06,100.57) --
-	(329.63,100.57) --
-	(329.63, 74.36) --
+	(330.74,100.57) --
+	(330.74, 74.36) --
 	(190.06, 74.36) --
 	cycle;
 \definecolor{fillColor}{RGB}{102,194,165}
@@ -484,27 +484,27 @@
 
 \path[draw=drawColor,line width= 0.4pt,line join=round,line cap=round,fill=fillColor] (187.21,146.24) --
 	(190.06,152.99) --
-	(331.33,152.99) --
-	(331.33,126.78) --
+	(331.88,152.99) --
+	(331.88,126.78) --
 	(190.06,126.78) --
 	cycle;
 \definecolor{drawColor}{RGB}{255,255,255}
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06, 93.83) {GPDPA = Generalized PDPA};
 
-\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06, 85.19) {Up-down constrained, optimal solution, $O(n \log n)$};
+\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06, 85.19) {Up-down constrained, optimal solution, $O(d \log d)$};
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06, 76.55) {Proposed, R pkg PeakSegOptimal};
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,120.04) {PDPA = Pruned Dynamic Programming Algorithm};
 
-\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,111.40) {Unconstrained, optimal solution, $O(n \log n)$};
+\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,111.40) {Unconstrained, optimal solution, $O(d \log d)$};
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,102.76) {Cleynen {\it et al.} 2014, R pkg Segmentor3IsBack};
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,146.25) {CDPA = Constrained Dynamic Programming Algo};
 
-\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,137.61) {Up-down constrained, approximate solution, $O(n^2)$};
+\node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,137.61) {Up-down constrained, approximate solution, $O(d^2)$};
 
 \node[text=drawColor,anchor=base west,inner sep=0pt, outer sep=0pt, scale=  0.60] at (190.06,128.97) {H {\it et al.} 2015, R pkg PeakSegDP};
 \definecolor{drawColor}{gray}{0.50}
@@ -566,7 +566,7 @@
 \path[clip] (  0.00,  0.00) rectangle (361.35,158.99);
 \definecolor{drawColor}{RGB}{0,0,0}
 
-\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  1.20] at (205.75,  8.40) {$n$ = data points to segment};
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  1.20] at (205.75,  8.40) {$d$ = data points to segment};
 \end{scope}
 \begin{scope}
 \path[clip] (  0.00,  0.00) rectangle (361.35,158.99);

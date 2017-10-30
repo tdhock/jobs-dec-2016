@@ -1,3 +1,4 @@
+library(data.table)
 library(PeakSegDP)
 library(PeakError)
 library(Segmentor3IsBack)
@@ -130,7 +131,7 @@ gg <- ggplot()+
     "",
     ##"position on chr11 (kilo bases)",
     breaks=three.segs[, c(chromStart, chromEnd[.N])]/1e3,
-    labels=sprintf("$t_%s$", paste0(0:3, c("=1", "", "", "=n")))
+    labels=sprintf("$t_%s$", paste0(0:3, c("=0", "", "", "=n")))
   )+
   theme_bw()+
   theme(panel.margin=grid::unit(0, "cm"))+
@@ -148,7 +149,7 @@ gg <- ggplot()+
     vjust=0,
             color="green",
     data=three.segs)+
-  geom_text(aes(x, y, label="$K=3$ segments"),
+  geom_text(aes(x, y, label="$S=3$ segments"),
             data=data.frame(x=118090, y=50),
             hjust=0,
             size=3,
@@ -189,7 +190,7 @@ gg <- ggplot()+
                    xend=(chromEnd+1/2)/1e3, yend=mean),
                data=five.segs,
                color="green", alpha=3/4, size=2)+
-  geom_text(aes(x, y, label="$K=5$ segments\nunconstrained"),
+  geom_text(aes(x, y, label="$S=5$ segments\nunconstrained"),
             data=lab.loc,
             hjust=0,
             size=3,
@@ -228,7 +229,7 @@ gg <- ggplot()+
                    xend=(chromEnd+1/2)/1e3, yend=mean),
                data=five.segs,
                color="green", alpha=3/4, size=2)+
-  geom_text(aes(x, y, label="$K=5$ segments\nconstrained"),
+  geom_text(aes(x, y, label="$S=5$ segments\nconstrained"),
             data=lab.loc,
             hjust=0,
             size=3,

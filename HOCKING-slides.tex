@@ -72,6 +72,191 @@ understanding big data in
     at McGill with Guillaume Bourque.
   \end{description}
 \end{frame}
+
+\section{Introduction to machine learning}
+
+\begin{frame}
+  \frametitle{Labeling enables supervised machine learning algorithms}
+  \begin{tabular}{ccc}
+    Input: Photos & Cell images & Copy number profiles \\
+    \includegraphics[width=1.3in]{faces} &
+    \includegraphics[width=1.3in]{cellprofiler} &
+    \includegraphics[width=1.5in]{regions-axes}\\
+    Labels: boxes, names & phenotypes & alterations \\ \\
+    %CVPR 2013
+CVPR 2017
+ & CellProfiler & SegAnnDB \\
+    %246 papers
+783 papers
+ & 
+%873 citations
+1980 citations
+ & H {\it et al.}, 2014. \\
+     &
+  \end{tabular}
+  Sources: \url{http://en.wikipedia.org/wiki/Face_detection}\\
+  Jones {\it et al.} PNAS 2009. Scoring diverse cellular morphologies in
+  image-based screens with iterative feedback and machine learning.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Machine learning in computer vision and biology}
+  ML is all about learning predictive functions $f(x)\approx y$, where 
+  \begin{itemize}
+  \item inputs/features $x$ are numerous (e.g. pixels or SNPs).
+  \item outputs/labels $y$ are what we want to predict (typically
+    phenotypes/classes).
+  \item Input $x$ = image of digit,
+    output $y\in\{0,1,\dots,9\}$,\\
+  $f(\includegraphics[height=1cm]{mnist-0})=0$,
+  $f(\includegraphics[height=1cm]{mnist-1})=1$
+  % \item Input $x$ = image of article of clothing,\\
+  %   output $y\in\{\text{shoe}, \text{pants}, \dots\}$,\\
+  % $f(\includegraphics[height=1cm]{fashion-mnist-boot})=\text{shoe}$,
+  % $f(\includegraphics[height=1cm]{fashion-mnist-pants})=\text{pants}$
+  \item Input $x$ = image of cell, 
+    output $y\in\{\text{yes}, \text{no}\}$,\\
+  $f(\includegraphics[height=1cm]{cellprofiler-yes})=\text{yes}$,
+  $f(\includegraphics[height=1cm]{cellprofiler-no})=\text{no}$
+  \item Input $x$ = genomic profile, output $y\in\{\text{breakpoint}, \text{normal}\}$
+  $f(\includegraphics[height=1cm]{neuroblastoma-changepoint})=\text{breakpoint}$,
+  $f(\includegraphics[height=1cm]{neuroblastoma-nochange})=\text{normal}$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Supervised machine learning }
+
+  \begin{itemize}
+  \item Domain expert labels examples using prior knowledge.
+  \item Supervised algorithm learns $f$ based on labeled training data.
+  \item State-of-the-art accuracy (if there is enough training data).
+  \item Can use same learning algorithm regardless of pattern.
+  \end{itemize}
+
+  \begin{tabular}{cc}
+  \includegraphics[height=1in]{mnist-digits} &
+  \includegraphics[height=1in]{fashion-mnist-sprite-some}  
+  \end{tabular}
+
+  \scriptsize Sources: github.com/cazala/mnist, github.com/zalandoresearch/fashion-mnist
+
+  \includegraphics[width=\textwidth]{figure-good-bad}
+\end{frame}
+
+\begin{frame}
+  \frametitle{My main research interests}
+  Statistics and machine learning literature (methods development):
+  \begin{itemize}
+  \item Given features $x_i$, how to learn a function $f(x_i)$ that predicts a
+    label $y_i$, with minimal error $E$ with respect to test data? 
+    $$
+\min_f
+\sum_{i\in\text{test}}
+E[f(x_i), y_i]
+$$
+\item Fast convex and discrete optimization algorithms that scale
+  linearly to huge data sets -- important for genomics.
+  %\item Convex and discrete optimization.
+  \end{itemize}
+  Bioinformatics and biomedical literature (applications):
+  \begin{itemize}
+  \item New labeling methods to facilitate collaborations between
+    machine learners and genomic/medical scientists.
+  \item Collaborations: applying machine learning methods to
+    better understand biology/medicine.
+  \end{itemize}
+\end{frame}
+
+\section{Predicting asthma and other autoimmune diseases based on
+  genetic variants}
+
+\begin{frame}
+  \frametitle{Machine learning for predicting autoimmune disease based on genetic variants}
+  \begin{itemize}
+  \item Collaboration with Audrey Grant and Mark Lathrop.
+  \item $n=120,286$ white UK citizens, aged 40-70.
+  \item Genotyped using microarrays, 32 markers selected using
+    univariate logistic regression test, 328 HLA alleles imputed.
+  \item $x\in\{0,1,2\}^d$ = vector of allele counts and sex indicator.
+  \item $f(x)\in\{0,1\}$ for predicting disease (1) or not (0).
+  \item $f(x)=w^\intercal x + \beta$ L1-regularized logistic
+    regression (glmnet R package), automatic feature selection.
+  \item Scientific questions: which diseases can be predicted by
+    genetics? Are both HLA and SNPs necessary? Are SNPs redundant?
+  \item Main novelty: UK BioBank data set.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Both HLA and markers selected in L1 regularized logistic regression
+    model for predicting asthma }
+
+  \begin{minipage}{0.39\linewidth}
+    \begin{itemize}
+    \item Right: many unused HLA alleles in the predictive model, one
+      unused SNP.
+    \item Below: SNP markers more accurate than HLA alleles.
+    \end{itemize}
+  \includegraphics[width=\textwidth]{figure-asthma-old}
+  \end{minipage}
+  \begin{minipage}{0.59\linewidth}
+    \includegraphics[width=\textwidth]{figure-asthma-4folds}
+  \end{minipage}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{L1-regularized logistic regression model automatically selects relevant HLA features for each
+    disease}
+
+  \begin{itemize}
+  \item HLA features predict some diseases more accurately than others.
+  \item Different number of features selected per disease.
+  \end{itemize}
+  \includegraphics[width=\textwidth]{screenshot-ankylosing-spondylitis}
+
+\scriptsize  \url{http://members.cbio.ensmp.fr/~thocking/figure-asthma-test-error/}
+\end{frame}
+
+\section{Learning a predictive pathogenicitity score for genetic variants}
+
+\begin{frame}
+  \frametitle{Machine learning setup for variant prioritization}
+  \begin{itemize}
+  \item $x\in\mathbb R^d$ = vector of scores from 
+    annotation programs (evolutionary conservation, biochemical
+    modeling, etc).
+  \item $f(x)\in\{0,1\}$ for predicting whether the variant is
+    pathogenic (1) or benign (0).
+  \item Existing methods to learn $f$: L1-regularized logistic
+    regression, random forests, boosting.
+  \item Scientific question: is the learned score more accurate than
+    the individual scores? Which features are relevant for predicting
+    pathogenicity?
+  \item Main novelty: train on ClinVar data set 2013--2015
+    (common/rare missense variants, 7059 benign, 4023 pathogenic)
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Learned scores predict pathogenicity more accurately}
+  \begin{itemize}
+  \item Learned ClinPred scores more accurately predict
+    Pathogenic/Benign status in held-out test sets (ClinVar 2016,
+    four-fold cross-validation).
+  \item AF=Allele Frequency feature essential for optimal accuracy.
+  \item All features selected in L1-regularized logistic regression.
+  \end{itemize}
+\includegraphics[width=0.7\textwidth]{Screenshot-clinpred-auc}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Learned scores predict accurately for variants in mouse}
+  But so does allele frequency (ExAC\_ALL).
+  \includegraphics[width=0.6\textwidth]{variants-auc-mouse}
+\end{frame}
  
 \section{Predicting breakpoint positions in DNA copy number profiles}
 
@@ -112,11 +297,11 @@ Cancer cell with many copy number alterations.
   \frametitle{Breakpoint detection as a machine learning problem}
   
   \begin{itemize}
-  \item Input $x\in\mathbb R^p$ = noisy copy number signal for $p$
+  \item Input $x\in\mathbb R^d$ = noisy copy number signal for $d$
     probes in one genome subset (chromosome).
-  \item Typical data set sizes $10^2 < p < 10^5$ for microarrays.
+  \item Typical data set sizes $10^2 < d < 10^5$ for microarrays.
   \item Structured binary classification problem: want to learn
-    $f(x)\in\{0,1\}^{p-1}$ to predict a 
+    $f(x)\in\{0,1\}^{d-1}$ to predict a 
     \textcolor{green}{breakpoint} (1) or not (0).
     %after every data point (green lines).
   \item Previous algorithms: unsupervised learning (no labels).
@@ -132,7 +317,7 @@ Cancer cell with many copy number alterations.
   \begin{itemize}
   \item Create positive/breakpoint and negative/normal labels.
   \item Quantify/optimize error rate (number of incorrect labels).
-  \item Benchmark data set of 3418 chromosomes,
+  \item Benchmark data set of $n=3418$ chromosomes,
     labeled via visual inspection (R package neuroblastoma).
   \item Results: most accurate model is maximum Gaussian likelihood 
     changepoint detection (K-fold cross-validation experiments).
@@ -143,7 +328,7 @@ Cancer cell with many copy number alterations.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Log-linear $O(p \log p)$ FPOP algorithm for computing one
+  \frametitle{Log-linear $O(d \log d)$ FPOP algorithm for computing one
     maximum
     likelihood changepoint model}
 
@@ -151,10 +336,10 @@ Cancer cell with many copy number alterations.
     Comp.} 2017.
 
   \begin{itemize}
-  \item Naively $O(p^K)$ time to compute best model with $K$ segments
-    ($K-1$ changes) for a sequence of $p$ data.
+  \item Naively $O(d^S)$ time to compute best model with $S$ segments
+    ($S-1$ changes) for a sequence of $d$ data.
   \item Previous work: inequality pruning for computing 1 model (\algo{PELT}),
-    functional pruning for computing $K$ models (\algo{pDPA}).
+    functional pruning for computing $S$ models (\algo{pDPA}).
   \item Contribution: two new algorithms, SNIP and
     \algo{FPOP} (R package fpop).
   \item Proved that the functional technique prunes at least as many
@@ -166,7 +351,7 @@ Cancer cell with many copy number alterations.
       & \multicolumn{2}{c}{Pruning Technique}\\
 *=new      & Functional & Inequality \\ 
 \hline
-      $K$ models & \algo{pDPA} & SNIP* \\
+      $S$ models & \algo{pDPA} & SNIP* \\
       1 model & \algo{FPOP}* & \algo{PELT}
     \end{tabular}
   \end{minipage}
@@ -502,11 +687,11 @@ Disadvantages:
   \frametitle{Peak detection as a machine learning problem}
   
   \begin{itemize}
-  \item Input $x\in\mathbb Z_+^n$ = noisy coverage profile for $n$ bases
+  \item Input $x\in\mathbb Z_+^d$ = noisy coverage profile for $n$ bases
     in a chromosome subset between gaps in reference genome.
-  \item Typical data set sizes $10^5 < n < 10^8$ for ChIP-seq.
+  \item Typical data set sizes $10^5 < d < 10^8$ for ChIP-seq.
   \item Structured binary classification problem: want to learn
-    $f(x)\in\{0,1\}^{n}$ to predict a  
+    $f(x)\in\{0,1\}^{d}$ to predict a  
     peak (1) or not (0).
   \item Previous algorithms: unsupervised learning (no labels).
   \end{itemize}
@@ -627,11 +812,11 @@ H {\it et al.}, {\it ICML} 2015.
 \vskip -1.5cm
 \begin{align*}
     \minimize_{\substack{
-  \mathbf u\in\RR^{K}
+  \mathbf u\in\RR^{S}
 \\
-   0=t_0<t_1<\cdots<t_{K-1}<t_K=n
+   0=t_0<t_1<\cdots<t_{S-1}<t_S=d
   }} &\ \ 
-    \sum_{k=1}^K\  \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
+    \sum_{k=1}^S\  \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
   \label{PeakSegPDPA}
 \\
       \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},}
@@ -641,11 +826,11 @@ H {\it et al.}, {\it ICML} 2015.
 \end{align*}
 \vskip -0.4cm
 \begin{itemize}  
-\item Simple: 1 parameter = number of segments $K\in\{1,3,\dots\}$.
-\item Hard optimization problem, naively $O(n^K)$ time.
+\item Simple: 1 parameter = number of segments $S\in\{1,3,\dots\}$.
+\item Hard optimization problem, naively $O(d^S)$ time.
 \item \alert<2>{Previous unconstrained model: not always up-down changes.}
-\item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
-\item New $O(Kn^2)$ time approximate algorithm based on classic
+\item \alert<3>{Interpretable: $P=(S-1)/2$ peaks (segments 2, 4, ...).}
+\item New $O(Sd^2)$ time approximate algorithm based on classic
   dynamic programming (R package PeakSegDP).
 \end{itemize}
 \end{frame} 
