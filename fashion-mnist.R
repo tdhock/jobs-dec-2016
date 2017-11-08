@@ -8,7 +8,7 @@ some <- fashion[first.each,first.each,]
 rasterImage(some, 0, 0, 1, 1)
 writePNG(some, "fashion-mnist-sprite-some.png")
 
-class.name.vec <- c(
+class.name.vec <- if(TRUE)c( #my guess at class names
   "blouse",
   "pants",
   "sweater",
@@ -16,6 +16,16 @@ class.name.vec <- c(
   "jacket",
   "sandal",
   "top",
+  "sneaker",
+  "bag",
+  "boot") else c(# guesses from friends.
+  "blouse", #tops #sport top ete short
+  "pants", #pants 
+  "sweater",  #gilet manche long
+  "dress", #robe
+  "jacket",
+  "sandal",
+  "top",  #hiver long
   "sneaker",
   "bag",
   "boot")

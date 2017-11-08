@@ -57,7 +57,7 @@
 learning algorithms for 
 understanding big data in
   genomics and medicine}
-\date{29 September 2017}
+\date{27 October 2017}
 \author{
   Toby Dylan Hocking\\
   toby.hocking@mail.mcgill.ca
@@ -161,165 +161,23 @@ Computer vision
 
 \begin{frame}
   \frametitle{My main research interests}
-  Bioinformatics and biomedical literature (applications):
+  Applications of machine learning in collaboration with domain experts:
   \begin{itemize}
-  \item Collaborations: applying machine learning methods to
-    better understand biology/medicine.
+  \item Collaborations: applying machine learning methods to better
+    understand/model data from various fields (especially biology and
+    medicine).
   \item New labeling methods and benchmark data sets to facilitate
-    collaborations between machine learners and genomic/medical
-    scientists.
+    collaborations between machine learners and domain experts.
   \end{itemize}
   Statistics and machine learning literature (methods development):
   \begin{itemize}
   \item New statistical models for highly accurate pattern
     recognition.
   \item Fast optimization algorithms that scale linearly to huge data
-    sets -- important for genomics.
+    sets -- important in application domains such as genomics.
   \end{itemize}
 \end{frame}
 
-\section{Collaborations: applications of 
-machine learning to genomics}
-
-\begin{frame}
-  \frametitle{Predicting flu vaccine response from gene expression}
-  \only<1>{
-    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap}
-  }
-  \only<2>{
-    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap-circled}
-  }
-  \only<2>{
-    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-genes}
-  }
-
-\begin{itemize}
-\item Collaboration with Maiko Narahara (Kyoto University).
-\item Output: response 90 days after vaccination, $n=270$ people.
-\item Inputs: gene expression on day 7 --- 323 probes (227 genes)
-  different. Which are the most important?
-\item<2> L1-regularized logistic regression model predicts accurately
-  %(AUC=0.81) 
-using only three key genes: SDC1, TXNDC5, CD38.
-\item<2> SDC1=CD138, CD38 identify plasma cells in flow cytometry
-  (machine learning identified known markers).
-\end{itemize}
-
-% http://members.cbio.mines-paristech.fr/~thocking/figure-Ab-intervals-variables-samples.png
-
-% Finally, we identified three key genes (SDC1, TXNDC5, and CD38) that
-% could predict antibody responses at day90 (r=0.61, AUC=0.81, error
-% rate=25.9%).
-
-% We evaluated antibody titer responses in two different methods, binary
-% classification into responders and non-responders (R/NR
-% classification), and titer response index (TRI) 10 . For binary
-% classification, we considered a seroconversion as a positive
-% response. The US Food and Drug Administration (FDA) defined a
-% seroconversion for influenza vaccines as four-fold or more increase
-% from the baseline titer, or when the baseline titer was below the
-% detection limit (<10), post-vaccination titers of x40 or more
-% 26. Then we defined a responder as a subject who exhibited
-% seroconversion to at least one strain at a certain time point, and a
-% non-responder otherwise. TRI is a quantitative index of responsiveness
-% relative to the baseline titers, which aggregates titer changes for
-% three strains and different measurement methods 10 . We calculated
-% titer response index as described previously except that we did not
-% have neutralization titer measurements 10 .  The TRI scores were
-% calculated with the 270 subjects who passed the exclusion criteria
-% above.
-
-% We identified 323 probes, or 227 unique genes, that were significantly
-% associated with at least one of the antibody response phenotypes by
-% FDR < 5%: 22, and 225 genes (DEGs) were associated with Day1 TRI,
-% and Day90 TRI, respectively, and no genes were associated with Day7
-% TRI (Figure 3A, Table S6-S7). 41 out of 44 probes associated with Day1
-% TRI were also associated with Day90 TRI, and the P values for
-% significant probes were correlated (Figure S8). But the signs of
-% effect sizes for these probes were all negative for Day1 TRI (higher
-% TRI scores at day1 were associated with lower expression fold
-% changes at day7), and all positive for Day90 TRI.
-
-% We showed that antibody responses at day90 could be effectively
-% predicted by day7 expression of three genes (SDC1, CD38, and TXNDC5)
-% without using expression data of immunoglobulin genes. These three
-% genes were all also found in the DEGs. CD38 and TXNDC5 were clustered
-% in the cluster 1, and SDC1 was in cluster 2 (Figure 3B). SDC1 is also
-% known as CD138. Interestingly CD138 and CD38 proteins are the cell
-% surface markers that are commonly used to identify plasma cells in
-% flow cytometry. Therefore the machine learning approach successfully
-% identified known markers for plasma cells without using a priori
-% knowledge at all.
-
-% TXNDC5 is known to suppress apoptosis and up-regulated in various
-% cancers 78 ; however, its function in the immune system is
-% unknown. Our results suggest a strong involvement of TXNDC5 in
-% antibody responses.  Because TXNDC5 protein is considered to localize
-% in the endoplasmic reticulum 79 , it might possibly involve in
-% secretion of antibodies or cytokines, or transportation of endogenous
-% antigens to present via Class I MHC. Regarding that TXNDC5 was chosen
-% with two plasma cell marker genes, it might also function in plasma
-% cells, and therefore, we speculate that it plays an important role
-% particularly in antibody secretion in plasma cells.
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Predicting autoimmune disease based on genetic variants}
-  \includegraphics[height=0.4\textheight]{Screenshot-asthma-pvalues}
-\only<2>{
-  \includegraphics[height=0.4\textheight]{figure-asthma-old}
-}
-  \begin{itemize}
-  \item Collaboration with Audrey Grant (McGill University).
-  \item Output: asthma for $n=120286$ UK BioBank participants (genome
-    wide association study).
-  \item Inputs: SNP markers and HLA alleles, which are more
-    predictive?
-  \item<2> SNP markers are more predictive (model trained on HLA only
-    is less accurate).
-  \item<2> 31/32 SNP markers selected in L1-regularized logistic
-    regression model (1 SNP marker not used).
-  % \item white UK citizens, aged 40-70.
-  % \item Genotyped using microarrays, 32 markers selected using
-  %   univariate logistic regression test, 328 HLA alleles imputed.
-  \end{itemize}
-\end{frame}
-
-% \begin{frame}
-%   \frametitle{Machine learning setup for variant prioritization}
-%   \begin{itemize}
-%   \item $x\in\mathbb R^p$ = vector of scores from 
-%     annotation programs (evolutionary conservation, biochemical
-%     modeling, etc).
-%   \item $f(x)\in\{0,1\}$ for predicting whether the variant is
-%     pathogenic (1) or benign (0).
-%   \item Existing methods to learn $f$: L1-regularized logistic
-%     regression, random forests, boosting.
-%   \item Scientific question: is the learned score more accurate than
-%     the individual scores? Which features are relevant for predicting
-%     pathogenicity?
-%   \item Main novelty: train on ClinVar data set 2013--2015
-%     (common/rare missense variants, 7059 benign, 4023 pathogenic)
-%   \end{itemize}
-% \end{frame}
-
-
-\begin{frame}
-  \frametitle{Predicting pathogenicity of genetic variants}
-  \begin{itemize}
-  \item Collaboration with Najmeh Alirezaie (McGill University).
-  \item Output: pathogenicity of $n=11082$ variants in ClinVar.
-  \item Inputs: scores based on conservation, biochemistry, etc.
-  \item Learned ClinPred scores more accurate than individual scores.
-  \item AF=Allele Frequency feature essential for optimal accuracy.
-  \item All features selected in L1-regularized logistic regression.
-  \end{itemize}
-  \begin{center}
-    \includegraphics[width=0.6\textwidth]{Screenshot-clinpred-auc}
-  \end{center}
-\end{frame}
- 
 \section{New machine learning algorithms for predicting breakpoint positions in cancer DNA copy number profiles}
 
 \begin{frame}
@@ -561,17 +419,6 @@ SegAnnDB demo:\\interactively label chr1/chrX
 \end{frame}
 
 \begin{frame}
-  \frametitle{Two annotators provide consistent labels, but different
-    precision}
-  \includegraphics[width=1.1\textwidth]{screenshot-several-annotators}
-
-  \begin{itemize}
-  \item TDH peakStart/peakEnd more precise than AM peaks.
-  \item AM noPeaks more precise than TDH no label.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
   \frametitle{Only a few labels are required to train highly accurate models to recognize any peak pattern}
   \includegraphics[width=1.1\textwidth]{figure-test-error-decreases-mean.pdf}
  
@@ -580,7 +427,7 @@ SegAnnDB demo:\\interactively label chr1/chrX
     labeled pattern (broad/sharp/etc).
   \item Test accuracy quickly increases to max after 2--6
     genomic windows (containing several labeled regions and samples).
-  \item PeakSeg highly accurate in all three patterns.
+  \item PeakSeg highly accurate in all three patterns (H ICML 2015).
   \item Other models only accurate for only one or two patterns.
   \end{itemize}
 \end{frame}
@@ -613,67 +460,19 @@ SegAnnDB demo:\\interactively label chr1/chrX
   % }
 \end{frame}
 
-\begin{frame}
-  \frametitle{Joint peak calling pipeline for comparing samples}
-\includegraphics[width=\textwidth]{PeakSegJoint-monocytes-up}
-
-\begin{itemize}
-\item Want to characterize active/inactive regions of the genome
-  specifically for each cell type.
-\item PeakSegJoint model predicts presence or absence of a common peak
-  in multiple samples, Hocking and Bourque, arXiv:1506.01286,
-  PeakSegJoint R package.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Example of peaks in heartbeat time series data}
-  \includegraphics[width=0.4\textwidth]{Basil} B\'eb\'e Basil.
-  \only<2>{
-  \includegraphics[width=\textwidth]{figure-heartbeat-data-only}
-
-  \scriptsize
-  \url{https://github.com/tdhock/heartbeat/blob/master/heartbeat.mp3}
-}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Unconstrained maximum likelihood changepoint
-model does not satisfy up-down constraint}
-  \includegraphics[width=\textwidth]{figure-heartbeat-unconstrained}
-
-Optimal changepoints and means for $K=35$ segments.
-\end{frame}
- 
-\begin{frame}
-  \frametitle{Up-down constrained changepoint
-model (PeakSeg) is interpretable in terms of heartbeats}
-  \includegraphics[width=\textwidth]{figure-heartbeat-PeakSeg}
-
-Optimal changepoints and means for $K=35$ up-down segments.
-\end{frame}
-
-\begin{frame}
-  \frametitle{Can measure heartbeat duration}
-  \includegraphics[width=\textwidth]{figure-heartbeat}
-
-
-
-\end{frame}
- 
 \section{Summary and future work}
 
-\begin{frame}
-  \frametitle{My research focus is new statistical machine learning algorithms and applications to biomedical data analysis}
-  \includegraphics[width=\textwidth]{timeline-SteJustine}
+% \begin{frame}
+%   \frametitle{My research focus is new statistical machine learning algorithms and applications to biomedical data analysis}
+%   \includegraphics[width=\textwidth]{timeline-SteJustine}
 
-  \begin{itemize}
-  \item ICML = International Conference on Machine Learning.
-  \item NIPS = Neural Information Processing Systems.
-  \item Submit 8-page paper, double-blind peer review, $\approx 20\%$ acceptance
-    rate.
-  \end{itemize}
-\end{frame}
+%   \begin{itemize}
+%   \item ICML = International Conference on Machine Learning.
+%   \item NIPS = Neural Information Processing Systems.
+%   \item Submit 8-page paper, double-blind peer review, $\approx 20\%$ acceptance
+%     rate.
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Other research projects}
@@ -694,6 +493,13 @@ H {\it et al.}, {\it ICML} 2013. \\
 R package penaltyLearning.\\
 useR2017 tutorial.\\
 \hline
+Support vector machines & \multirow{4}{*}{ 
+    \includegraphics[height=0.2\textheight]{screenshot-ranksvmcompare}
+}\\
+for ranking and comparison. \\
+H {\it et al.}, arXiv:1401.8008. \\
+R package rankSVMcompare.\\
+\hline
 New interactive keywords& \multirow{5}{*}{
 \includegraphics[height=0.2\textheight]{figure-design}
 }\\
@@ -701,7 +507,7 @@ for the grammar of graphics,\\
 under review at \emph{Journal}\\
 \emph{of Computational and Graphical}\\
 \emph{Statistics}, R package animint.\\
-useR2016 tutorial.\\
+%useR2016 tutorial.\\
   \end{tabular}
   % \begin{minipage}{0.3\linewidth}
   %   Clusterpath for convex hierarchical clustering (H {\it et
@@ -736,16 +542,15 @@ useR2016 tutorial.\\
 \begin{frame}
   \frametitle{Future projects for my research lab}
   \begin{itemize}
-  \item More collaborations with biomedical scientists (e.g. copy
-    number calling and variant prioritization).
-  \item Supervising UdeM/MILA students who want to work on algorithms
-    for solving important biomedical problems.
+  \item Collaborations with experts from other scientific domains.
+  \item Supervising Polytechnique/MILA students who want to work on algorithms
+    for solving important scientific problems.
   \item Multi-task learning for predicting the number of changepoints
     (multiple scientists provide breakpoint or peak labels).
   % \item Survival models for predicting the number of changepoints: R
   %   package iregnet.
   \item Fast algorithms for other constrained changepoint models
-    (neuro spike train data, segmented regression for GWAS, etc).
+    (neuro spike train data, segmented regression, etc).
   \item Deep learning for nonparametric changepoint detection.
   \item GenomicLearner platform for collaborations: interactive
     labeling and machine learning analysis.
@@ -1011,6 +816,204 @@ H {\it et al.}, {\it ICML} 2015.
   \includegraphics[width=0.45\textwidth]{Screenshot-three-states}
 \end{frame}
 
+\section*{Collaborations: applications of 
+machine learning to genomics}
+
+\begin{frame}
+  \frametitle{Predicting flu vaccine response from gene expression}
+  \only<1>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap}
+  }
+  \only<2>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-heatmap-circled}
+  }
+  \only<2>{
+    \includegraphics[height=0.5\textheight]{Screenshot-flu-vaccine-genes}
+  }
+
+\begin{itemize}
+\item Collaboration with Maiko Narahara (Kyoto University).
+\item Output: response 90 days after vaccination, $n=270$ people.
+\item Inputs: gene expression on day 7 --- 323 probes (227 genes)
+  different. Which are the most important?
+\item<2> L1-regularized logistic regression model predicts accurately
+  %(AUC=0.81) 
+using only three key genes: SDC1, TXNDC5, CD38.
+\item<2> SDC1=CD138, CD38 identify plasma cells in flow cytometry
+  (machine learning identified known markers).
+\end{itemize}
+
+% http://members.cbio.mines-paristech.fr/~thocking/figure-Ab-intervals-variables-samples.png
+
+% Finally, we identified three key genes (SDC1, TXNDC5, and CD38) that
+% could predict antibody responses at day90 (r=0.61, AUC=0.81, error
+% rate=25.9%).
+
+% We evaluated antibody titer responses in two different methods, binary
+% classification into responders and non-responders (R/NR
+% classification), and titer response index (TRI) 10 . For binary
+% classification, we considered a seroconversion as a positive
+% response. The US Food and Drug Administration (FDA) defined a
+% seroconversion for influenza vaccines as four-fold or more increase
+% from the baseline titer, or when the baseline titer was below the
+% detection limit (<10), post-vaccination titers of x40 or more
+% 26. Then we defined a responder as a subject who exhibited
+% seroconversion to at least one strain at a certain time point, and a
+% non-responder otherwise. TRI is a quantitative index of responsiveness
+% relative to the baseline titers, which aggregates titer changes for
+% three strains and different measurement methods 10 . We calculated
+% titer response index as described previously except that we did not
+% have neutralization titer measurements 10 .  The TRI scores were
+% calculated with the 270 subjects who passed the exclusion criteria
+% above.
+
+% We identified 323 probes, or 227 unique genes, that were significantly
+% associated with at least one of the antibody response phenotypes by
+% FDR < 5%: 22, and 225 genes (DEGs) were associated with Day1 TRI,
+% and Day90 TRI, respectively, and no genes were associated with Day7
+% TRI (Figure 3A, Table S6-S7). 41 out of 44 probes associated with Day1
+% TRI were also associated with Day90 TRI, and the P values for
+% significant probes were correlated (Figure S8). But the signs of
+% effect sizes for these probes were all negative for Day1 TRI (higher
+% TRI scores at day1 were associated with lower expression fold
+% changes at day7), and all positive for Day90 TRI.
+
+% We showed that antibody responses at day90 could be effectively
+% predicted by day7 expression of three genes (SDC1, CD38, and TXNDC5)
+% without using expression data of immunoglobulin genes. These three
+% genes were all also found in the DEGs. CD38 and TXNDC5 were clustered
+% in the cluster 1, and SDC1 was in cluster 2 (Figure 3B). SDC1 is also
+% known as CD138. Interestingly CD138 and CD38 proteins are the cell
+% surface markers that are commonly used to identify plasma cells in
+% flow cytometry. Therefore the machine learning approach successfully
+% identified known markers for plasma cells without using a priori
+% knowledge at all.
+
+% TXNDC5 is known to suppress apoptosis and up-regulated in various
+% cancers 78 ; however, its function in the immune system is
+% unknown. Our results suggest a strong involvement of TXNDC5 in
+% antibody responses.  Because TXNDC5 protein is considered to localize
+% in the endoplasmic reticulum 79 , it might possibly involve in
+% secretion of antibodies or cytokines, or transportation of endogenous
+% antigens to present via Class I MHC. Regarding that TXNDC5 was chosen
+% with two plasma cell marker genes, it might also function in plasma
+% cells, and therefore, we speculate that it plays an important role
+% particularly in antibody secretion in plasma cells.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Predicting autoimmune disease based on genetic variants}
+  \includegraphics[height=0.4\textheight]{Screenshot-asthma-pvalues}
+\only<2>{
+  \includegraphics[height=0.4\textheight]{figure-asthma-old}
+}
+  \begin{itemize}
+  \item Collaboration with Audrey Grant (McGill University).
+  \item Output: asthma for $n=120286$ UK BioBank participants (genome
+    wide association study).
+  \item Inputs: SNP markers and HLA alleles, which are more
+    predictive?
+  \item<2> SNP markers are more predictive (model trained on HLA only
+    is less accurate).
+  \item<2> 31/32 SNP markers selected in L1-regularized logistic
+    regression model (1 SNP marker not used).
+  % \item white UK citizens, aged 40-70.
+  % \item Genotyped using microarrays, 32 markers selected using
+  %   univariate logistic regression test, 328 HLA alleles imputed.
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Machine learning setup for variant prioritization}
+%   \begin{itemize}
+%   \item $x\in\mathbb R^p$ = vector of scores from 
+%     annotation programs (evolutionary conservation, biochemical
+%     modeling, etc).
+%   \item $f(x)\in\{0,1\}$ for predicting whether the variant is
+%     pathogenic (1) or benign (0).
+%   \item Existing methods to learn $f$: L1-regularized logistic
+%     regression, random forests, boosting.
+%   \item Scientific question: is the learned score more accurate than
+%     the individual scores? Which features are relevant for predicting
+%     pathogenicity?
+%   \item Main novelty: train on ClinVar data set 2013--2015
+%     (common/rare missense variants, 7059 benign, 4023 pathogenic)
+%   \end{itemize}
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Predicting pathogenicity of genetic variants}
+  \begin{itemize}
+  \item Collaboration with Najmeh Alirezaie (McGill University).
+  \item Output: pathogenicity of $n=11082$ variants in ClinVar.
+  \item Inputs: scores based on conservation, biochemistry, etc.
+  \item Learned ClinPred scores more accurate than individual scores.
+  \item AF=Allele Frequency feature essential for optimal accuracy.
+  \item All features selected in L1-regularized logistic regression.
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{Screenshot-clinpred-auc}
+  \end{center}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Two annotators provide consistent labels, but different
+    precision}
+  \includegraphics[width=1.1\textwidth]{screenshot-several-annotators}
+
+  \begin{itemize}
+  \item TDH peakStart/peakEnd more precise than AM peaks.
+  \item AM noPeaks more precise than TDH no label.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Joint peak calling pipeline for comparing samples}
+\includegraphics[width=\textwidth]{PeakSegJoint-monocytes-up}
+
+\begin{itemize}
+\item Want to characterize active/inactive regions of the genome
+  specifically for each cell type.
+\item PeakSegJoint model predicts presence or absence of a common peak
+  in multiple samples, Hocking and Bourque, arXiv:1506.01286,
+  PeakSegJoint R package.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example of peaks in heartbeat time series data}
+  \includegraphics[width=0.4\textwidth]{Basil} B\'eb\'e Basil.
+  \only<2>{
+  \includegraphics[width=\textwidth]{figure-heartbeat-data-only}
+
+  \scriptsize
+  \url{https://github.com/tdhock/heartbeat/blob/master/heartbeat.mp3}
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Unconstrained maximum likelihood changepoint
+model does not satisfy up-down constraint}
+  \includegraphics[width=\textwidth]{figure-heartbeat-unconstrained}
+
+Optimal changepoints and means for $K=35$ segments.
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Up-down constrained changepoint
+model (PeakSeg) is interpretable in terms of heartbeats}
+  \includegraphics[width=\textwidth]{figure-heartbeat-PeakSeg}
+
+Optimal changepoints and means for $K=35$ up-down segments.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Can measure heartbeat duration}
+  \includegraphics[width=\textwidth]{figure-heartbeat}
+\end{frame}
+ 
 
 \end{document}
 

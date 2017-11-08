@@ -124,7 +124,7 @@ gg <- ggplot()+
                           "false positive"=1))+
   scale_y_continuous(
     ##"read count",
-    "$x_i, u_k$",
+    "$z_i, u_s$",
     breaks=seq(0, 50, by=25),
     minor_breaks=NULL)+
   scale_x_continuous(
@@ -176,7 +176,7 @@ gg <- ggplot()+
                           "false positive"=1))+
   scale_y_continuous(
     ##"read count",
-    "$x_i, u_k$",
+    "$z_i, u_s$",
     breaks=seq(0, 50, by=25),
     minor_breaks=NULL)+
   scale_x_continuous(
@@ -215,7 +215,7 @@ gg <- ggplot()+
                           "false positive"=1))+
   scale_y_continuous(
     ##"read count",
-    "$x_i, u_k$",
+    "$z_i, u_s$",
     breaks=seq(0, 50, by=25),
     minor_breaks=NULL)+
   scale_x_continuous(
