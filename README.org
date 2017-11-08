@@ -53,7 +53,6 @@ problems that I described.
 | [[https://apply.interfolio.com/45498][Amherst CS]]                  | 15 Nov 2017  |
 | [[https://www.stat.ubc.ca/assistant-professor-tenure-track-statistics][UBC stats/data science]]      | 1 Nov 2017   |
 |-----------------------------+--------------|
-| [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%2fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%2bK2NFKZFMg5HByWcfKmbv75QVso%2fMATzi4pE8V2PEZD0Uu%2fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%3d][VISci]] [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%252fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%252bK2NFKZFMg5HByWcfKmbv75QVso%252fMATzi4pE8V2PEZD0Uu%252fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%253d][Venter Inst]]           | 10 Nov 2017  |
 | [[https://jobs.omni.fsu.edu/psc/sprdhr_er/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_SCHJOB&Action=U&FOCUS=Applicant&SiteId=1][FloridaSt Stats]] 42342 42317 | 15 Nov 2017  |
 | [[https://apply.interfolio.com/43597][SDSU Stats]]                  | 15 Nov 2017  |
 | [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]              | 15 Nov 2017  |
@@ -114,3 +113,4 @@ problems that I described.
 | [[https://aprecruit.ucmerced.edu/apply/JPF00522][Merced Math]]                 | 1 Nov 2017   |
 | [[https://recruit.ucdavis.edu/apply/JPF01680][Davis Stats]]                 | 1 Nov 2017   |
 | [[https://www.cs.mcgill.ca/careers/academic#1][McGill Data Science]]         | 20 Nov 2017  |
+| [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%2fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%2bK2NFKZFMg5HByWcfKmbv75QVso%2fMATzi4pE8V2PEZD0Uu%2fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%3d][VISci]] [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%252fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%252bK2NFKZFMg5HByWcfKmbv75QVso%252fMATzi4pE8V2PEZD0Uu%252fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%253d][Venter Inst]]           | 10 Nov 2017  |

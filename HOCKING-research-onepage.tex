@@ -1,0 +1,151 @@
+\documentclass{article}
+
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage[cm]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\setlength{\headheight}{9.2pt}
+\setlength{\headsep}{5.2pt}
+\pagestyle{fancyplain}
+\pagenumbering{gobble}
+\lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
+\chead{{\LARGE \bf Research Summary} }
+\rhead{\includegraphics[height=0.75cm]{logo-mcgill}}
+
+\begin{document}
+
+\mbox{ }
+% \vspace{ -0.5cm}
+
+%\section*{\centering Research Statement}
+
+% During 2009-2012, I completed my PhD degree in applied mathematics
+% from the Ecole Normale Sup\'erieure de Cachan, France. I studied
+% statistical machine learning algorithms for biology and medicine, under the
+% supervision of Dr. Francis Bach (INRIA, ENS) and Dr. Jean-Philippe
+% Vert (Institut Curie, Mines ParisTech). I am currently a
+% postdoctoral research associate under the supervision of Dr. Guillaume
+% Bourque, in the McGill University Department of Human Genetics.
+
+% With recent advances in technology, more data are being generated and
+% recorded than ever before in human history. For example, in scientific
+% fields such as medicine and biology, new sensors and DNA sequencing
+% machines are being used to generate many high-dimensional data
+% sets. This has led to a need to develop new statistical models and
+% machine learning algorithms to understand patterns in these data, i.e.
+% to generate knowledge about how the human genome influences medical
+% conditions. 
+
+I create new statistical machine learning algorithms for solving big
+data analysis problems in scientific domains such as medicine and
+biology. I work in close collaboration with domain experts on
+developing appropriate models, and I work with other statisticians and
+machine learners on fast and accurate optimization algorithms. So far
+my research has been focused on proposing new statistical machine
+learning models for clustering, regression, changepoint detection,
+ranking, and classification. My contributions to the statistics and
+machine learning literature are algorithms for efficiently solving
+these discrete and convex optimization problems. I am particularly
+interested in developing algorithms that are fast enough to support
+interactive labeling and supervised machine learning in very large
+genomic data sets. The following is a summary of my previous research
+projects, and my future research plan.
+
+\paragraph{Changepoint detection and regression algorithms for DNA copy
+  number data}
+
+In work published in \emph{BMC Bioinformatics}
+\citep{HOCKING-breakpoints}, we proposed a labeling and supervised
+learning framework for changepoint detection in DNA copy number data.
+In work published in \emph{Statistics and Computing} \citep{fpop}, we
+proposed a fast algorithm for optimal changepoint detection. In work
+published in \emph{Bioinformatics} \citep{hocking-SegAnnDB}, we
+proposed a web application that facilitates interactive labeling and
+model updates, so our machine learning algortihms can be easily used
+in practice by genomic scientists. We have used this system to
+facilitate collaborations with cancer biologists at Intitute Curie,
+Paris, France \citep{Chicard}; and Aichi Cancer Center, Nagoya, Japan
+\citep{Hocking-Leukemia-2016,m14:clonal}.
+
+\paragraph{Machine learning models for peak detection in ChIP-seq data.}
+
+In work published in \emph{Bioinformatics} \citep{HOCKING-chipseq}, we
+proposed a labeling method and supervised learning framework for peak
+detection in ChIP-seq data. In work published at \emph{ICML'15}
+\citep{HOCKING-PeakSeg}, we proposed a constrained changepoint
+detection model for peak detection in ChIP-seq data. In work under
+review in \emph{Annals of Applied Statistics}
+\citep{Hocking-constrained-changepoint-detection}, we proposed a fast
+algorithm that computes the optimal solution to the constrained
+changepoint detection problem. In ongoing work, I have proposed a
+changepoint detection model that enforces the constraint that peaks
+should occur in the same positions across samples
+\citep{HOCKING-PeakSegJoint}.
+
+\paragraph{Censored regression algorithms for predicting the number of changepoints.}
+
+I have proposed supervised machine learning algorithms that can be
+used to select changepoint model parameters with optimal detection
+accuracy. In work published at \emph{ICML'13}
+\citep{HOCKING-penalties}, we proposed a fast and accurate censored
+linear regression algorithm for predicting the penalty in optimal
+changepoint models. I implemented these algorithms in the
+penaltyLearning R package, which I presented during a \emph{useR2017}
+tutorial on optimal changepoint detection algorithms
+\citep{change-tutorial}. In more recent work which was accepted for
+publication at \emph{NIPS'17} \citep{MMIT}, we proposed a nonlinear
+decision tree model for the same problem.
+
+\paragraph{Other machine learning models for big data.} In work
+published at \emph{ICML'11} \citep{HOCKING-clusterpath}, we described
+efficient algorithms for hierarchical clustering using convex fusion
+penalties. This influential paper has over 80 citations including
+theoretical, algorithmic, and applications papers. In work for my
+Masters thesis that we published in \emph{PLOS ONE}
+\citep{HOCKING-evolution}, we proposed to identify genetic markers
+under selection using a hierarchical Bayesian model of evolution. In
+my 2013 postdoc at Tokyo Institute of Technology, I studied a support
+vector machine algorithm for ranking and comparing
+\citep{svmcompare}. 
+
+\paragraph{Adding interactivity to the grammar of graphics.} In work
+under review in \emph{Journal of Computational and Graphical
+  Statistics} \citep{animint}, we described new keywords for
+interactivity and animation in the grammar of graphics. This work was
+also presented in an invited session at \emph{Joint Statistical
+  Meetings 2015} and in a tutorial at \emph{useR2016}.
+
+\paragraph{Contributions to reproducible research and free/open-source
+  software.} For each of my research papers, I have written an R
+package which provides a reference implementation of the corresponding
+algorithm/model. Our \emph{Journal of Statistical Software} article
+\citep{hocking13:inlinedocs} describes a new documentation generation
+system for R that simplifies writing documentation for such packages.
+
+\paragraph{Plan for future research.} I plan to continue contributing
+to literature of machine learning, statistics, and bioinformatics. In
+the short term, I plan to pursue research projects related to optimal
+changepoint detection and penalty function learning, which have proven
+to be very accurate for recognizing patterns in genomic data. In the
+medium term, I plan to develop GenomicLearner, a genome browser which
+natively supports labeling and supervised machine learning in various
+genomic data sets. The two main goals of the GenomicLearner project
+will be to (1) make state-of-the-art machine learning algorithms more
+accessible to genomic scientists, an (2) gather a large database of
+labeled genomic data in order to make these data more accessible to
+the machine learning community. In the long term, my research will be
+focused on other statistical models such as deep learning, and
+efficient optimization algorithms for interactive analysis and
+understanding of big genomic data sets. I am especially interested to
+continue collaborating with genomic scientists and medical doctors, in
+order to help understand how the human genome influences medical
+conditions such as cancer.
+
+
+\bibliographystyle{plain}
+\bibliography{TDH-refs}
+
+\end{document}
