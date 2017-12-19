@@ -10,8 +10,8 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
-\setlength{\headheight}{9.2pt}
-\setlength{\headsep}{5.2pt}
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{6pt}
 \pagestyle{fancyplain}
 \pagenumbering{gobble}
 \lhead{\textbf{{\large Toby Dylan Hocking}  \\ \texttt{toby.hocking@mail.mcgill.ca} }}
@@ -25,7 +25,7 @@
 Je crée de nouveaux algorithmes d'apprentissage statistique pour
 résoudre des problèmes d'analyse de données dans plusieurs domaines
 scientifiques tels que la médecine la biologie. Mes recherches
-précédantes étaient axées sur des nouveaux modèles d'apprentissage
+précédentes étaient axées sur des nouveaux modèles d'apprentissage
 pour le regroupement (clustering), la régression, la détection des
 ruptures, le classement (ranking) et la classification. Mes
 contributions à la littérature de la statistique et l'apprentissage
@@ -45,7 +45,7 @@ fréquent chez les enfants. Les médecins voulaient donner des
 traitements ciblés basés sur le nombre de ruptures dans les données de
 nombre de copies de l'ADN de la tumeur du patient. En utilisant des
 algorithmes existants pour la détection des ruptures, les médecins ont
-constaté des taux d'erreur trop grand (par rapport à leur
+constaté des taux d'erreurs trop grands (par rapport à leur
 interprétation visuelle du signal et bruit dans ces données). Ma
 contribution était de développer des nouveaux algorithmes basés sur
 des étiquettes fournies par les médecins.
@@ -58,7 +58,7 @@ formulation supervisée pour le problème de détection de ruptures. Dans
 notre formulation, les médecins ont d'abord étiqueté un sous-ensemble
 de leurs données avec des régions positives qui contiennent des
 ruptures, et des régions négatives qui ne contiennent pas de rupture.
-Nous avons proposé une méthode pour l'entrainement des algorithmes
+Nous avons proposé une méthode pour l'entraînement des algorithmes
 existants, en choissisant des paramètres qui minimisent le nombre de
 étiquettes incorrectes. Nous avons comparé les algorithmes en
 calculant le nombre de étiquettes classées correctement dans un
@@ -66,9 +66,7 @@ ensemble de test. Nous avons démontré que la meilleure méthode
 existante était un modèle de détection de rupture qui maximise la
 vraisemblance gaussienne.  Dans cet article, nous avons sélectionné le
 nombre de changements en utilisant un fonction de pénalité univariée
-qui dépend uniquement du nombre de données, et dans notre prochain
-article, nous avons étudié une généralisation pour les fonctions de
-pénalité multivariées.
+qui dépend uniquement du nombre de données.
 
 \paragraph{Modèles de régression pour apprendre la fonction de pénalité.}
 
@@ -78,13 +76,12 @@ pénalité dans les modèles de détection de ruptures. Nous avons
 démontré que l'apprentissage d'une fonction de pénalité pour
 sélectionner le nombre de ruptures est un problème de régression avec
 sorties censurées. Nous avons proposé d'apprendre une fonction de
-pénalité linéaire, en minimisant une fonction de perte convexe qui
+pénalité linéaire multivariée, en minimisant une fonction de perte convexe qui
 exploite la structure des sorties censurées. Notre contribution
-principale était une nouvelle algorithme efficace pour résoudre ce
+principale était un nouvel algorithme efficace pour résoudre ce
 problème d'optimisation convexe. Nous avons démontré que notre
 algorithme apprend une fonction de pénalité multivariée, et fournit
-des taux d'erreur moins élevé que la pénalité univariée
-précédente. J'ai implémenté ces algorithmes dans le paquetage
+des taux d'erreurs moins élevés. J'ai implémenté ces algorithmes dans le paquet
 penaltyLearning dans R, que j'ai présenté lors d'un tutoriel à
 \emph{useR2017} \citep{change-tutorial}. Dans des travaux plus récents
 qui ont été acceptés pour publication à \emph{NIPS'17} \citep{MMIT},
@@ -121,7 +118,7 @@ ruptures optimales. Ces techniques sont très intéressantes du point de
 vue computationnel : elles permettent un temps de calcul très rapide
 (linéaire dans la quantité de données). Une technique est basée sur
 les fonctions, et l'autre technique est basée sur les inégalités. Nous
-voulions étudier quelle méthode est plus efficace. Nous avons démontré
+voulions comparer le temps de calcul de chacune des méthodes. Nous avons démontré
 mathématiquement que la technique fonctionnelle élague toutes les
 candidates élaguées par la technique d'inégalités. Ce résultat
 théorique a suggéré que l'algorithme d'élagage fonctionnel devrait
@@ -230,11 +227,11 @@ l'interactivité et l'animation dans la grammaire des graphiques. Ce travail ét
 
 \paragraph{Contributions à la recherche reproductible et le logiciel
   libre.} Pour chacun de mes articles de recherche, j'ai aussi écrit
-un paquetage R qui fournit une implémentation de référence du
+un paquet R qui fournit une implémentation de référence du
 algorithme décrit dans l'article. Notre article \emph{Journal of
   Statistical Software} \citep{hocking13:inlinedocs} propose un
 nouveau système pour la génération de documentation dans R, ce qui
-simplifie l'écriture de documentation pour mes paquetages.
+simplifie l'écriture de documentation pour mes paquets.
 
 \section{Plan pour mon projet de recherche}
 
@@ -244,9 +241,9 @@ pénalité. Ces algorithmes se sont révélés très efficaces pour les
 données génomiques et je poursuivra des collaborations pour étudier
 d'autres applications (neurosciences, audio, suivi médical,
 etc.). Plus précisement, je prévois de trouver des doctorants et
-post-docs pour travailler sur les Objectifs ci-dessous. Je soumettrai
+post-docs pour travailler sur les objectifs ci-dessous. Je soumettrai
 des demandes de subvention au CSRNG et à la IRSC pour financer ces
-projets. Je continuerai à publier des paquetages R pour accompagner
+projets. Je continuerai à publier des paquets R pour accompagner
 mes articles, afin de faciliter la reproductibilité de mes
 recherches. À long terme, mes recherches seront axées sur d'autres
 modèles statistiques et algorithmes d'optimisation efficaces pour
