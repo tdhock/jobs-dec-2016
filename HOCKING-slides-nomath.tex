@@ -8,7 +8,7 @@
 \usepackage{algorithmic}
 \usepackage{multirow}
 
-\usepackage{appendixnumberbeamer}
+%\usepackage{appendixnumberbeamer}
 
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
@@ -57,7 +57,7 @@
 learning algorithms for 
 understanding big data in
   genomics and medicine}
-\date{27 October 2017}
+\date{10 January 2018}
 \author{
   Toby Dylan Hocking\\
   toby.hocking@mail.mcgill.ca
@@ -164,8 +164,8 @@ Computer vision
   Applications of machine learning in collaboration with domain experts:
   \begin{itemize}
   \item Collaborations: applying machine learning methods to better
-    understand/model data from various fields (especially biology and
-    medicine).
+    understand/model data from biology and
+    medicine.
   \item New labeling methods and benchmark data sets to facilitate
     collaborations between machine learners and domain experts.
   \end{itemize}
@@ -433,6 +433,68 @@ SegAnnDB demo:\\interactively label chr1/chrX
 \end{frame}
 
 \begin{frame}
+  \frametitle{PeakSeg is constrained maximum likelihood segmentation}
+  H {\it et al.}, {\it ICML} 2015. 
+
+  \input{figure-PeakSeg}
+  \vskip -0.8cm    
+  \begin{itemize}
+  \item We have $n$ count data $z_1, \dots, z_n\in\ZZ_+$.
+  \item Fix the number of segments $S\in\{1, 2, \dots, n\}$.
+  \item Optimization variables: $S-1$ changepoints
+    $t_1 < \cdots < t_{S-1}$ and $S$ segment means $u_1,\dots,u_S\in\RR_+$.
+  \item Let $0=t_0<t_1 < \cdots < t_{S-1}<t_S=n$ be the segment
+    limits.
+  \item Statistical model: for every segment $s\in\{1,\dots,S\}$,
+    $z_i \stackrel{\text{iid}}{\sim} \text{Poisson}(u_s)$ for every data
+    point $i\in(t_{s-1},t_s]$.
+  \item PeakSeg up-down constraint: $u_1\leq u_2 \geq u_3 \leq u_4 \geq \cdots$
+  \item Want to find means $u_s$ which maximize the Poisson likelihood:
+    $P(Z = z_i|u_s) = u_s^{z_i} e^{-u_s} / (z_i!)$.
+  \item Equivalent to finding means $u_s$ which minimize the Poisson
+    loss: $\ell(u_s, z_i) = u_s - z_i\log u_s$.
+  % \item Comparison to Hidden Markov Model:
+  %   \begin{description}
+  %   \item[Likelihood] Same emission terms, no transition terms.
+  %   \item[Constraint] Number of changes rather than values.
+  %   \end{description}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Maximum likelihood changepoint detection with up-down constraints on adjacent segment means (PeakSeg)}
+H {\it et al.}, {\it ICML} 2015. 
+    
+\only<1>{\input{figure-PeakSeg}}      
+\only<2>{\input{figure-PeakSeg-unconstrained}}
+\only<3>{\input{figure-PeakSeg-constrained}}
+\vskip -1.4cm
+\begin{align*}
+    \minimize_{\substack{
+  \mathbf u\in\RR^{S}
+\\
+   0=t_0<t_1<\cdots<t_{S-1}<t_S=n
+  }} &\ \ 
+    \sum_{s=1}^S\  \sum_{i=t_{s-1}+1}^{t_s} \ell( u_s,  z_i) 
+  \label{PeakSegPDPA}
+\\
+      \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{s-1} \leq u_s\ \forall s\in\{2,4,\dots\},}
+  \nonumber\\
+  &\ \ \alert<3>{u_{s-1} \geq u_s\ \forall s\in\{3,5,\dots\}.}
+  \nonumber 
+\end{align*}
+\vskip -0.4cm
+\begin{itemize}  
+\item Simple: 1 parameter = number of segments $S\in\{1,3,\dots\}$.
+\item Hard optimization problem, naively $O(n^S)$ time.
+\item \alert<2>{Previous unconstrained model: not always up-down changes.}
+\item \alert<3>{Interpretable: $P=(S-1)/2$ peaks (segments 2, 4, ...).}
+\item New $O(Sn^2)$ time Constrained Dynamic Programming Algorithm
+  (CDPA, R package PeakSegDP).
+\end{itemize}
+\end{frame} 
+
+\begin{frame}
   \frametitle{Fast and optimal algorithm for PeakSeg}
   H {\it et al.}, arXiv:1703.03352. New GPDPA for 
   constrained changepoint models, under review at {\it Annals of
@@ -460,7 +522,7 @@ SegAnnDB demo:\\interactively label chr1/chrX
   % }
 \end{frame}
 
-\section{Summary and future work}
+\section{Other projects and future work}
 
 % \begin{frame}
 %   \frametitle{My research focus is new statistical machine learning algorithms and applications to biomedical data analysis}
@@ -540,20 +602,47 @@ under review at \emph{Journal}\\
 \end{frame}
 
 \begin{frame}
-  \frametitle{Future projects for my research lab}
+  \frametitle{Project 1: functional pruning algorithms for constrained changepoint detection in genomic data}
   \begin{itemize}
-  \item Collaborations with experts from other scientific domains.
-  \item Supervising Polytechnique/MILA students who want to work on algorithms
-    for solving important scientific problems.
-  \item Multi-task learning for predicting the number of changepoints
-    (multiple scientists provide breakpoint or peak labels).
-  % \item Survival models for predicting the number of changepoints: R
-  %   package iregnet.
-  \item Fast algorithms for other constrained changepoint models
-    (neuro spike train data, segmented regression, etc).
-  \item Deep learning for nonparametric changepoint detection.
-  \item GenomicLearner platform for collaborations: interactive
-    labeling and machine learning analysis.
+  \item Segmented regression model for computing the most likely
+    hotspot regions in Genome-Wide Association Studies.
+  \item Model with constraints on the minimum absolute value of a
+    change, for avoiding false positive breakpoints in dense DNA copy
+    number data.
+  \item Model with any number of changepoints, constrained to be
+    consistent with the labels (combines ideas from two previous
+    algorithms, FPOP + SegAnnot).
+  \item Multi-state models for changepoint detection in ChIP-seq and
+    neuroscience data sets.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Project 2: learning algorithms that exploit the structure of related problems, and the genome
+}
+%Idea: modify existing censored regression algorithms, to learn penalty functions that predict the number of changepoints in genomic data
+  \begin{itemize}
+  \item Multi-task learning: how to jointly model data from different
+    scientists and experiment types? (there should be clusters of
+    similar tasks)
+  \item Semi-supervised learning: how to exploit the structure of the
+    test set (e.g. the whole genome) to obtain more accurate
+    predictions?
+  \item Active learning: how to suggest the next genomic region to
+    label?
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Project 3: deep learning for nonparametric pattern recognition in genomic data}
+  Adapt successful methods from computer vision to genomic data,
+    e.g. Convolutional neural networks. \\
+Challenges:
+  \begin{itemize}
+  \item Fast learning algorithms for interactive analysis?
+  \item Weak labels (scientists do not know the exact position of the change).
+  \item Not many labels (scientists have limited time).
   \end{itemize}
 \end{frame}
 
@@ -578,9 +667,9 @@ Any questions?
 
 \hskip 1cm
 
-\includegraphics[width=\textwidth]{timeline-SteJustine}
+%\includegraphics[width=\textwidth]{timeline-SteJustine}
 
-  % Write me at \alert{\texttt{toby.hocking@mail.mcgill.ca}} to collaborate!
+ Write me at \alert{\texttt{toby.hocking@mail.mcgill.ca}} 
 
   % \vskip 1cm
 
@@ -589,21 +678,6 @@ Any questions?
 \end{frame}
 
 \appendix
-
-\begin{frame}
-  \frametitle{Future work}
-  \begin{itemize}
-  \item More collaborations with biomedical scientists.
-  \item Survival models for penalty function learning: R package
-    iregnet.
-  \item Multi-task penalty function learning: how to 
-  \item Functional pruning algorithms for other constrained
-    changepoint models.
-  \item GenomicLearner platform for interactive analysis and
-    collboarations.
-  \item Deep learning for nonparametric changepoint detection.
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \frametitle{Test error in three different experiments}
@@ -773,48 +847,15 @@ predict accurately for another person\\
   Test error in four-fold cross-validation.
 \end{frame}
 
-\begin{frame}
-  \frametitle{Maximum likelihood changepoint detection with up-down constraints on adjacent segment means (PeakSeg)}
-H {\it et al.}, {\it ICML} 2015. 
-   
-\only<1>{\input{figure-PeakSeg}}      
-\only<2>{\input{figure-PeakSeg-unconstrained}}
-\only<3>{\input{figure-PeakSeg-constrained}}
-\vskip -1.5cm
-\begin{align*}
-    \minimize_{\substack{
-  \mathbf u\in\RR^{K}
-\\
-   0=t_0<t_1<\cdots<t_{K-1}<t_K=n
-  }} &\ \ 
-    \sum_{k=1}^K\  \sum_{i=t_{k-1}+1}^{t_k} \ell( u_k,  x_i) 
-  \label{PeakSegPDPA}
-\\
-      \text{subject to \hskip 0.75cm} &\ \ \alert<3>{u_{k-1} \leq u_k\ \forall k\in\{2,4,\dots\},}
-  \nonumber\\
-  &\ \ \alert<3>{u_{k-1} \geq u_k\ \forall k\in\{3,5,\dots\}.}
-  \nonumber 
-\end{align*}
-\vskip -0.4cm
-\begin{itemize}  
-\item Simple: 1 parameter = number of segments $K\in\{1,3,\dots\}$.
-\item Hard optimization problem, naively $O(n^K)$ time.
-\item \alert<2>{Previous unconstrained model: not always up-down changes.}
-\item \alert<3>{Interpretable: $P=(K-1)/2$ peaks (segments 2, 4, ...).}
-\item New $O(Kn^2)$ time approximate algorithm based on classic
-  dynamic programming (R package PeakSegDP).
-\end{itemize}
-\end{frame} 
+% \begin{frame}
+%   \frametitle{Multi-state changepoint model for neuro spike train
+%     data}
+%   Autoregressive single-state changepoint detection model (always
+%   decreasing) Jewell and Witten, arXiv:1703.08644.
 
-\begin{frame}
-  \frametitle{Multi-state changepoint model for neuro spike train
-    data}
-  Autoregressive single-state changepoint detection model (always
-  decreasing) Jewell and Witten, arXiv:1703.08644.
-
-  \includegraphics[width=0.45\textwidth]{Screenshot-neuro-spike-train}
-  \includegraphics[width=0.45\textwidth]{Screenshot-three-states}
-\end{frame}
+%   \includegraphics[width=0.45\textwidth]{Screenshot-neuro-spike-train}
+%   \includegraphics[width=0.45\textwidth]{Screenshot-three-states}
+% \end{frame}
 
 \section*{Collaborations: applications of 
 machine learning to genomics}
