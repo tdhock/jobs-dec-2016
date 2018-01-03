@@ -57,19 +57,12 @@ problems that I described.
 | [[https://aprecruit.berkeley.edu/apply/JPF01464][Berkeley Stats]]              | 15 Nov 2017  |
 | [[http://jobs.imstat.org/job/assistant-professor-grant-tenure-track-in-biostatistics/36765449/][UBC bioStats]]                | 15 Nov 2017  |
 | [[https://jobs.carleton.edu/postings/3269][Carleton MN]]                 | 30 Nov 2017  |
+| [[https://aprecruit.ucsf.edu/apply/JPF01218][UCSF Comp Health Sci]]        | 3 July 2018  |
 | [[https://apply.interfolio.com/43943][SDSU CS]]                     | 1 Dec 2017   |
 |-----------------------------+--------------|
-| [[https://recruit.ap.ucsb.edu/apply/JPF01097][UCSB Stats]]                  | 1 Dec 2017   |
-| [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]                  | 1 Dec 2017   |
-| [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]                | 1 Dec 2017   |
-| [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]                | 1 Dec 2017   |
-| [[https://recruit.ucsc.edu/apply/JPF00481][UCSC Data sci]]               | 4 Dec 2017   |
 | [[https://recruit.ap.uci.edu/apply/JPF04235][UCI Stats]] [[https://recruit.ap.uci.edu/apply/JPF04236][CS]]                | 15 Dec 2017  |
 | [[https://aprecruit.ucsf.edu/apply/JPF00957][UCSF Biostats]]               | 30 Dec 2017  |
 | [[https://recruit.apo.ucla.edu/apply/JPF03318][UCLA Biostats]]               | 15 Jan 2018  |
-| [[https://www.mathjobs.org/jobs?joblist--10504][OK stats]]                    | 31 Jan 2018  |
-| [[https://www.mathjobs.org/jobs?joblist--10329][Lawrence Stats]]              | 1 Feb 2018   |
-| [[https://aprecruit.ucsf.edu/apply/JPF01218][UCSF Comp Health Sci]]        | 3 July 2018  |
 | [[https://utah.peopleadmin.com/postings/65870][Utah Biostats]]               | ??           |
 | [[http://jobs.amstat.org/jobs/10064031/methodologist-assistant-associate-professor-research][Colorado]]                    | ??           |
 | [[http://jobs.amstat.org/jobs/10125453/assistant-associate-research-professor-in-biostatistics-hematology][City of Hope Biostats]]       | ??           |
@@ -114,3 +107,10 @@ problems that I described.
 | [[https://recruit.ucdavis.edu/apply/JPF01680][Davis Stats]]                 | 1 Nov 2017   |
 | [[https://www.cs.mcgill.ca/careers/academic#1][McGill Data Science]]         | 20 Nov 2017  |
 | [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%2fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%2bK2NFKZFMg5HByWcfKmbv75QVso%2fMATzi4pE8V2PEZD0Uu%2fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%3d][VISci]] [[https://www.vscyberhosting3.com/jcvi/Careers.aspx?adata=EDrdUa4RHStkV2gcvHq%252fLFj1iaWbVUUT7arN1xP2I661dBZfjzWxDzdbWgOgQGZEMHFwrSFb4xR9MhbLLDXMG%252bK2NFKZFMg5HByWcfKmbv75QVso%252fMATzi4pE8V2PEZD0Uu%252fMkZxhrzU1VC4zvRXK2uW6JAHR6zUFdB8awMMtW3MUkzSFMm0lKxyfTweFs3Q3OUrP4ksI8Dd8WTWclDBmw4%253d][Venter Inst]]           | 10 Nov 2017  |
+| [[https://recruit.ap.ucsb.edu/apply/JPF01097][UCSB Stats]]                  | 1 Dec 2017   |
+| [[https://recruit.ucsc.edu/apply/JPF00481][UCSC Data sci]]               | 4 Dec 2017   |
+| [[https://www.mathjobs.org/jobs/jobs/10680][ULaval Stats]]                | 1 Dec 2017   |
+| [[https://academicjobsonline.org/ajo/jobs/9242][Duke Dec Sci]]                | 1 Dec 2017   |
+| [[https://www.cs.cornell.edu/information/jobpostings/facultypositionsithaca][Cornell CS]]                  | 1 Dec 2017   |
+| [[https://www.mathjobs.org/jobs?joblist--10504][OK stats]]                    | 31 Jan 2018  |
+| [[https://www.mathjobs.org/jobs?joblist--10329][Lawrence Stats]]              | 1 Feb 2018   |

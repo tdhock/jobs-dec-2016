@@ -1,0 +1,45 @@
+[[file:HOCKING-i-864.pdf]]
+NEED:
+- proof of domicile in USA, see below.
+- proof of citizenship (copy of birth certificate and biographic data
+  page of USA passport)
+- proof of income: a recent letter from your employer, showing your
+  employer’s address and telephone number, and indicating your annual
+  salary. You may also provide pay stubs showing your income for the
+  previous six months.
+- salary for McGill in [[file:HOCKING-McGill-offer-letter-2018.pdf]] is
+  28.75$CAD/hour, which means 28.75 * 40 * 52 / 1.379 =
+  43364.76$US/year, based on 1.379$CAD/$US in 2016 from [[https://www.irs.gov/individuals/international-taxpayers/yearly-average-currency-exchange-rates][yearly average
+  exchange rates]]. From [[https://www.uscis.gov/i-864p][I864p]], poverty 125% in 2017 is $25,525 for a 3 person
+  household which is smaller than my income so that is fine.
+- Tax return from 2016.
+
+If you are not currently living in the United States, you may meet the
+domicile requirement if you can submit evidence to establish that any
+of the following conditions apply:
+
+2. You are living abroad temporarily.
+
+If you are not currently living in the United States, you must provide
+proof that your trip abroad is temporary and that you have maintained
+your domicile in the United States. Examples of proof include:
+
+A.	 Your voting record in the United States;
+B.	 Records of paying U.S. state or local taxes;
+C.	 Having property in the United States;
+D.	 Maintaining bank or investment accounts in the United States;
+E.	 Having a permanent mailing address in the United States; or
+F.	 Other proof such as evidence that you are a student studying abroad or that a foreign government has authorized a
+temporary stay.
+
+3. You intend in good faith to reestablish your domicile in the United
+   States no later than the date of the intending immigrant’s
+   admission or adjustment of status.
+
+You must submit proof that you have taken concrete steps to establish
+that you will domicile in the United States at a time no later than
+the date of the intending immigrant’s admission or adjustment of
+status. Concrete steps might include accepting a job in the United
+States, signing a lease or purchasing a residence in the United
+States, or registering children in U.S. schools. Please attach proof
+of the steps you have taken to establish domicile as described above.
